@@ -8,11 +8,79 @@ import java.util.List;
 public class Student {
     private long studentNumber;
     private char gender; // M, F, U
-    private List<Integer> yearsOfStudy;
+    private int yearsOfStudy;
+    private List<Semester> semesters;
 
+    public Student(long studentNumber, char gender, int yearsOfStudy, Semester semester) {
+        this.studentNumber = studentNumber;
+        this.gender = gender;
+        this.yearsOfStudy = yearsOfStudy;
+        this.semesters.add(semester);
+    }
+    public Student(long studentNumber, char gender) {
+        this.studentNumber = studentNumber;
+        this.gender = gender;
+    }
 
-    //lets make this a class like Semester or something and each semester will have an action, semester number and program associated with it. this will make indexing easier i think
-    private List<Integer> semesterCodes; // four digit SFU semester number code of form ZZZS, where the year is1900 + ZZZ, and the semester S is one of {1=Spring, 4=Summer, 7=Fall}.
-    private List<String> actions; // admt, add, fin, dropout
-    private List<String> program; // program associated with the action
+    public Student(long studentNumber, Semester semester) {
+        this.studentNumber = studentNumber;
+        this.semesters.add(semester);
+    }
+
+    public Student(long studentNumber, int yearsOfStudy, Semester semester) {
+        this.studentNumber = studentNumber;
+        this.yearsOfStudy = yearsOfStudy;
+        this.semesters.add(semester);
+    }
+    public Student(long studentNumber) {
+        this.studentNumber = studentNumber;
+    }
+
+    public long getStudentNumber() {
+        return studentNumber;
+    }
+
+    public void setStudentNumber(long studentNumber) {
+        this.studentNumber = studentNumber;
+    }
+
+    public char getGender() {
+        return gender;
+    }
+
+    public void setGender(char gender) {
+        this.gender = gender;
+    }
+
+    public int getYearsOfStudy() {
+        return yearsOfStudy;
+    }
+
+    public void setYearsOfStudy(int yearsOfStudy) {
+        this.yearsOfStudy = yearsOfStudy;
+    }
+
+    public List<Semester> getSemesters() {
+        return semesters;
+    }
+
+    public  boolean hasSemester (int semesterVal){
+        for (Semester semester: semesters) {
+            if(semesterVal == semester.getSemesterCode()){
+                return true;
+            }
+        }
+        return false;
+    }
+    public  Semester getSemester (int semesterVal){
+        for (Semester semester: semesters) {
+            if(semesterVal == semester.getSemesterCode()){
+                return semester;
+            }
+        }
+        return null;
+    }
+    public void addSemester (Semester semester){
+        semesters.add(semester);
+    }
 }

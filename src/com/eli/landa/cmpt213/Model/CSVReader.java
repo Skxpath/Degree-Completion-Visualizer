@@ -72,9 +72,15 @@ public class CSVReader {
 
         } else if (csvInfo.length == 4) {// length of 4 indications test_program.csv
 
+            //Parses a semester value from csv into integer.
             int semesterVal = Integer.parseInt(csvInfo[1]);
-            String actionVal = csvInfo[2];
-            String program = csvInfo[3];
+
+            //Parses an action from csv, which is originally retrieved as a string
+            //And converts it to an ActionEnum using StringToActionEnum class, before creating an Action.
+            ActionEnum actionVal = StringToActionEnum.convert(csvInfo[2]);
+
+            //Same logic as above for program.
+            ProgramEnum program = StringToProgramEnum.convert(csvInfo[3]);
 
             Action action = new Action(actionVal, program);
 

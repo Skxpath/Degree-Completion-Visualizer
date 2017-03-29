@@ -14,16 +14,20 @@ public class Semester {
         this.yearVal = yearVal;
     }
 
-    public void setAction(Action action) {
-        this.action = action;
-    }
-
     public int getSemesterCode() {
         return semesterCode;
     }
 
     public Action getAction() {
         return action;
+    }
+
+    public void setAction(Action action) {
+        this.action = action;
+    }
+
+    public int getYearVal() {
+        return yearVal;
     }
 }
 

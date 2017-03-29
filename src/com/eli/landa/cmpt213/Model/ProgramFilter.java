@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by Aria on 3/28/2017.
  */
-public class ProgramFilter implements StudentFilter {
+public class ProgramFilter {
 
     private static List<Student> filteredStudents = new ArrayList<>();
 
@@ -17,6 +17,8 @@ public class ProgramFilter implements StudentFilter {
         switch (program) {
             case CSMAJ:
                 for (Student s : students) {
+
+                    filteredStudents.add(s);
                 }
 }
 return null;

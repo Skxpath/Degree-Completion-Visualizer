@@ -2,9 +2,8 @@ package com.eli.landa.cmpt213.Model;
 
 /**
  * Created by Aria on 3/28/2017.
- *
+ * <p>
  * Converts a programVal into a ProgramEnum before inserting to Action
- *
  */
 public class StringToProgramEnum {
 

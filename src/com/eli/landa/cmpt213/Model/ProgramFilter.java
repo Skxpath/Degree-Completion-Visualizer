@@ -5,6 +5,9 @@ import java.util.List;
 
 /**
  * Created by Aria on 3/28/2017.
+ *
+ * To be completed. Will probably filter the list we get from SemesterFilter?
+ *
  */
 public class ProgramFilter {
 
@@ -20,11 +23,11 @@ public class ProgramFilter {
 
                     filteredStudents.add(s);
                 }
-}
-return null;
+        }
+        return null;
     }
 
     public Student filter(Student student) {
-return null;
+        return null;
     }
 }

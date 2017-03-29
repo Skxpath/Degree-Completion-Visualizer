@@ -2,9 +2,8 @@ package com.eli.landa.cmpt213.Model;
 
 /**
  * Created by Aria on 3/28/2017.
- *
+ * <p>
  * Converts an actionVal into an ActionEnum before inputting into Action class
- *
  */
 public class StringToActionEnum {
 

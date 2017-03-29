@@ -1,7 +1,6 @@
 package com.eli.landa.cmpt213.Model;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.NavigableMap;
 import java.util.TreeMap;
 
 /**
@@ -12,7 +11,15 @@ public class Student {
     private long studentNumber;
     private char gender; // M, F, U
     private int yearsOfStudy;
-    private TreeMap<Integer, Semester> semesters = new TreeMap<>(); //new tree map sorted by semester code. The natural order.
+    private NavigableMap<Integer, Semester> semesters = new TreeMap<>(); //new tree map sorted by semester code. The natural order.
+
+    //Different semesters mapping to the students admitted semster, end of first, second, third, foruth semesters for easy retrieval later.
+    private Semester admittedSemester;
+    private Semester endOfFirstYearSemester;
+    private Semester endOfSecondYearSemester;
+    private Semester endOfThirdYearSemester;
+    private Semester endOfFourthYearSemester;
+
 
     public Student(long studentNumber, char gender) {
         this.studentNumber = studentNumber;
@@ -43,14 +50,14 @@ public class Student {
         this.yearsOfStudy = yearsOfStudy;
     }
 
-    public TreeMap getSemesters() { //Returns the semester TreeMap
+    public NavigableMap getSemesters() { //Returns the semester TreeMap
         return semesters;
     }
 
     public Semester getSemester(int semesterVal) {
-            if (semesters.containsKey(semesterVal)) { //Checks through the treemap if it contains a semester with the semester val. If true, return this.
-                return semesters.get(semesterVal);
-            }
+        if (semesters.containsKey(semesterVal)) { //Checks through the treemap if it contains a semester with the semester val. If true, return this.
+            return semesters.get(semesterVal);
+        }
         return null;
     }
 
@@ -58,8 +65,49 @@ public class Student {
     public void addSemester(Semester semester) {
         semesters.put(semester.getSemesterCode(), semester);
     }
-}
 
+
+    //Getters and setters for different key semesters of a student
+    public Semester getAdmittedSemester() {
+        return admittedSemester;
+    }
+
+    public void setAdmittedSemester(Semester admittedSemester) {
+        this.admittedSemester = admittedSemester;
+    }
+
+    public Semester getEndOfFirstYearSemester() {
+        return endOfFirstYearSemester;
+    }
+
+    public void setEndOfFirstYearSemester(Semester endOfFirstYearSemester) {
+        this.endOfFirstYearSemester = endOfFirstYearSemester;
+    }
+
+    public Semester getEndOfSecondYearSemester() {
+        return endOfSecondYearSemester;
+    }
+
+    public void setEndOfSecondYearSemester(Semester endOfSecondYearSemester) {
+        this.endOfSecondYearSemester = endOfSecondYearSemester;
+    }
+
+    public Semester getEndOfThirdYearSemester() {
+        return endOfThirdYearSemester;
+    }
+
+    public void setEndOfThirdYearSemester(Semester endOfThirdYearSemester) {
+        this.endOfThirdYearSemester = endOfThirdYearSemester;
+    }
+
+    public Semester getEndOfFourthYearSemester() {
+        return endOfFourthYearSemester;
+    }
+
+    public void setEndOfFourthYearSemester(Semester endOfFourthYearSemester) {
+        this.endOfFourthYearSemester = endOfFourthYearSemester;
+    }
+}
 //Unnecessary constructors
 
 /*    public Student(long studentNumber, char gender, int yearsOfStudy, Semester semester) {

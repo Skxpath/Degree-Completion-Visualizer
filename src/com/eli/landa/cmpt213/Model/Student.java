@@ -8,7 +8,7 @@ import java.util.TreeMap;
  */
 
 public class Student {
-    private long studentNumber;
+    private int studentNumber;
     private char gender; // M, F, U
     private int yearsOfStudy;
     private NavigableMap<Integer, Semester> semesters = new TreeMap<>(); //new tree map sorted by semester code. The natural order.
@@ -21,16 +21,16 @@ public class Student {
     private Semester endOfFourthYearSemester;
 
 
-    public Student(long studentNumber, char gender) {
+    public Student(int studentNumber, char gender) {
         this.studentNumber = studentNumber;
         this.gender = gender;
     }
 
-    public long getStudentNumber() {
+    public int getStudentNumber() {
         return studentNumber;
     }
 
-    public void setStudentNumber(long studentNumber) {
+    public void setStudentNumber(int studentNumber) {
         this.studentNumber = studentNumber;
     }
 
@@ -56,14 +56,25 @@ public class Student {
 
     public Semester getSemester(int semesterVal) {
         if (semesters.containsKey(semesterVal)) { //Checks through the treemap if it contains a semester with the semester val. If true, return this.
+            System.out.println("got existing semester!");
             return semesters.get(semesterVal);
+
         }
+        System.out.println("DID NOT GET existing semester! " + studentNumber);
         return null;
     }
 
     //Adds semester to the treemap, ordered naturally by semester code.
     public void addSemester(Semester semester) {
-        semesters.put(semester.getSemesterCode(), semester);
+      /*  Semester test = new Semester(10, 2);
+        System.out.println("Semester: " + test.getSemesterCode() + " yearVal: " + test.getYearVal());
+        semesters.put(test.getSemesterCode(), test);
+        System.out.println("Retrieved Semester: " + semesters.get(10).getSemesterCode() + " yearVal: " + semesters.get(10).getYearVal());*/
+
+       // System.out.println("Added semester!" + semester.toString());
+         semesters.put(semester.getSemesterCode(), semester);
+         semesters.get(semester.getSemesterCode());
+       System.out.println("semester size: " + semesters.size());
     }
 
 
@@ -106,6 +117,11 @@ public class Student {
 
     public void setEndOfFourthYearSemester(Semester endOfFourthYearSemester) {
         this.endOfFourthYearSemester = endOfFourthYearSemester;
+    }
+
+    @Override
+    public String toString() {
+        return ("Student Number: " + studentNumber + " Gender: " + gender + " Year Of Study: " + yearsOfStudy + " end of first year semesters " + semesters.size());
     }
 }
 //Unnecessary constructors

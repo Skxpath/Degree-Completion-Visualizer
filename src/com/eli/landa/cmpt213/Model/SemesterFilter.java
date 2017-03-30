@@ -22,7 +22,7 @@ public class SemesterFilter {
     //Method to generate a filtered list of students. Passes in a list of students to filter, and the end of year to filter by.
     //Returns a list of students who had participated in this year, and sets their "critical semesters" for later iterating.
 
-    List generateList(List<Student> students, SemesterEnum year) {
+    public List generateList(List<Student> students, SemesterEnum year) {
 
         List<Student> filteredStudentList = new ArrayList<>();
 

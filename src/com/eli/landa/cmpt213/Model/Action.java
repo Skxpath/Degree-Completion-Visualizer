@@ -19,4 +19,9 @@ public class Action {
     public ProgramEnum getProgram() {
         return program;
     }
+
+    @Override
+    public String toString() {
+        return action.toString();
+    }
 }

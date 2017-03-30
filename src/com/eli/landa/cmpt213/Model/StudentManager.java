@@ -10,15 +10,15 @@ import java.util.List;
 public class StudentManager {
     private static List<Student> students = new ArrayList<>();
 
-    public static void addStudent(Student student) {
+    public void addStudent(Student student) {
         students.add(student);
     }
 
-    public static List<Student> getStudents() {
+    public List<Student> getStudents() {
         return students;
     }
 
-    public static boolean hasStudent(int studentNumber) {
+    public boolean hasStudent(int studentNumber) {
         for (Student student : students) {
             if (studentNumber == student.getStudentNumber()) {
                 return true;
@@ -27,12 +27,15 @@ public class StudentManager {
         return false;
     }
 
-    public static Student getStudent(int studentNumber) {
+    public Student getStudent(int studentNumber) {
         for (Student student : students) {
+          // System.out.println("in student list");
             if (studentNumber == student.getStudentNumber()) {
+              //  System.out.println("GOT A STUDENT");
                 return student;
             }
         }
+       // System.out.println("NNO STUDENTS!!!!");
         return null;
     }
 }

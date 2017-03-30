@@ -29,6 +29,15 @@ public class Semester {
     public int getYearVal() {
         return yearVal;
     }
+
+    public void setYearVal(int yearVal) {
+        this.yearVal = yearVal;
+    }
+
+    @Override
+    public String toString() {
+        return ("semester code: " + semesterCode + " year val: " + yearVal + " action: ");
+    }
 }
 
 /*  public Semester(int semesterCodes, Action action) {

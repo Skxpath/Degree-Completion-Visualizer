@@ -10,7 +10,6 @@ import java.util.TreeMap;
 public class Student {
     private int studentNumber;
     private char gender; // M, F, U
-    private int yearsOfStudy;
     private NavigableMap<Integer, Semester> semesters = new TreeMap<>(); //new tree map sorted by semester code. The natural order.
 
     //Different semesters mapping to the students admitted semster, end of first, second, third, foruth semesters for easy retrieval later.
@@ -42,14 +41,6 @@ public class Student {
         this.gender = gender;
     }
 
-    public int getYearsOfStudy() {
-        return yearsOfStudy;
-    }
-
-    public void setYearsOfStudy(int yearsOfStudy) {
-        this.yearsOfStudy = yearsOfStudy;
-    }
-
     public NavigableMap getSemesters() { //Returns the semester TreeMap
         return semesters;
     }
@@ -71,10 +62,10 @@ public class Student {
         semesters.put(test.getSemesterCode(), test);
         System.out.println("Retrieved Semester: " + semesters.get(10).getSemesterCode() + " yearVal: " + semesters.get(10).getYearVal());*/
 
-       // System.out.println("Added semester!" + semester.toString());
-         semesters.put(semester.getSemesterCode(), semester);
-         semesters.get(semester.getSemesterCode());
-       System.out.println("semester size: " + semesters.size());
+        // System.out.println("Added semester!" + semester.toString());
+        semesters.put(semester.getSemesterCode(), semester);
+        semesters.get(semester.getSemesterCode());
+        System.out.println("semester size: " + semesters.size());
     }
 
 
@@ -121,7 +112,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return ("Student Number: " + studentNumber + " Gender: " + gender + " Year Of Study: " + yearsOfStudy + " end of first year semesters " + semesters.size());
+        return ("Student Number: " + studentNumber + " Gender: " + gender + " Semesters List Size: " + semesters.size());
     }
 }
 //Unnecessary constructors

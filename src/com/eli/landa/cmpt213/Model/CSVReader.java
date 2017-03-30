@@ -112,19 +112,23 @@ public class CSVReader {
             NavigableMap list = facade.getStudentManager().getStudent(studentNumber).getSemesters();
             Map.Entry<Integer, Semester> prev = list.lowerEntry(semesterVal);
 
-            switch (action.getAction()) {
+            switch (action.getSemesterAction()) {
 
                 case ADMT:
                     test.setYearVal(1);
+                    test.setAction(action);
                     break;
                 case ADD:
                     test.setYearVal(prev.getValue().getYearVal());
+                    test.setAction(action);
                     break;
                 case FIN:
                     test.setYearVal(8);
+                    test.setAction(action);
                     break;
                 case DROPOUT:
                     test.setYearVal(prev.getValue().getYearVal());
+                    test.setAction(action);
                     break;
                 case NO_ACTION:
                     System.out.println("No this should never happen - switchstatenment addactiontoexistjhgfdjgdf");
@@ -178,7 +182,7 @@ public class CSVReader {
 
     public List<File> populateFiles() {
         List<File> files = new ArrayList<>();
-        File directory = new File("C:\\Users\\QueenNadine\\IdeaProjects\\Degree-Completion-Visualizer\\src\\com\\eli\\landa\\cmpt213\\Data");
+        File directory = new File("C:\\Users\\Aria\\IdeaProjects\\Degree-Completion-Visualizer\\src\\com\\eli\\landa\\cmpt213\\Data");
         int AMOUNT_OF_FILES_IN_DIRECTORY = directory.listFiles().length;
         for (int i = 0; i < AMOUNT_OF_FILES_IN_DIRECTORY; i++) {
             files.add(directory.listFiles()[i]);

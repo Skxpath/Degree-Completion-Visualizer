@@ -4,16 +4,21 @@ package com.eli.landa.cmpt213.Model;
  * Created by Eli on 2017-03-25.
  */
 public class Action {
-    private ActionEnum action; // admt, add, fin, dropout - see ActionEnum
-    private ProgramEnum program; // program associated with the action - see ProgramEnum
+
+    private ActionEnum semesterAction; // admt, add, fin, dropout - see ActionEnum
+    private ProgramEnum program; // program associated with the semesterAction - see ProgramEnum
 
     public Action(ActionEnum action, ProgramEnum program) {
-        this.action = action;
+        this.semesterAction = action;
         this.program = program;
     }
 
-    public ActionEnum getAction() {
-        return action;
+    public void setSemesterAction(ActionEnum semesterAction) {
+        this.semesterAction = semesterAction;
+    }
+
+    public ActionEnum getSemesterAction() {
+        return semesterAction;
     }
 
     public ProgramEnum getProgram() {
@@ -22,6 +27,6 @@ public class Action {
 
     @Override
     public String toString() {
-        return action.toString();
+        return "Semester semesterAction: " + semesterAction.toString() + " Semester Program: " + program.toString();
     }
 }

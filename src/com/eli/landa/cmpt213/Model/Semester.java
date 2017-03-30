@@ -12,6 +12,7 @@ public class Semester {
     public Semester(int semesterCodes, int yearVal) {
         this.semesterCode = semesterCodes;
         this.yearVal = yearVal;
+        this.action = new Action(ActionEnum.NO_ACTION, ProgramEnum.NO_PROGRAM); //Sets default action of each semester to no action, and default no program.
     }
 
     public int getSemesterCode() {

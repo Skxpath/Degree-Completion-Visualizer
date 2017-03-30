@@ -29,13 +29,13 @@ public class StudentManager {
 
     public Student getStudent(int studentNumber) {
         for (Student student : students) {
-          // System.out.println("in student list");
+            // System.out.println("in student list");
             if (studentNumber == student.getStudentNumber()) {
-              //  System.out.println("GOT A STUDENT");
+                //  System.out.println("GOT A STUDENT");
                 return student;
             }
         }
-       // System.out.println("NNO STUDENTS!!!!");
+        // System.out.println("NNO STUDENTS!!!!");
         return null;
     }
 }

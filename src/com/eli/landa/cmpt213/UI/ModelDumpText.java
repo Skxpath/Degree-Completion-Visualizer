@@ -1,5 +1,8 @@
 package com.eli.landa.cmpt213.UI;
 
+import com.eli.landa.cmpt213.Enums.ActionEnum;
+import com.eli.landa.cmpt213.Enums.ProgramEnum;
+import com.eli.landa.cmpt213.Enums.SemesterEnum;
 import com.eli.landa.cmpt213.Model.*;
 
 import java.util.List;

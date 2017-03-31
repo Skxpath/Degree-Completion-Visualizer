@@ -1,6 +1,7 @@
 package com.eli.landa.cmpt213.Model;
 
-import java.util.Map;
+import com.eli.landa.cmpt213.Enums.GenderEnum;
+
 import java.util.NavigableMap;
 import java.util.TreeMap;
 
@@ -13,19 +14,10 @@ import java.util.TreeMap;
 
 public class Student {
     private int studentNumber;
-    private char gender; // M, F, U
+    private GenderEnum gender; // Male, Female, Unknown
     private NavigableMap<Integer, Semester> semesters = new TreeMap<>(); //new tree map sorted by semester code. The natural order.
 
-    //Different semesters mapping to the students admitted semster, end of first, second, third, foruth semesters for easy retrieval later.
-    private Semester admittedSemester;
-    private Semester endOfFirstYearSemester;
-    private Semester endOfSecondYearSemester;
-    private Semester endOfThirdYearSemester;
-    private Semester endOfFourthYearSemester;
-
-    private ProgramEnum admittedProgram = ProgramEnum.NO_PROGRAM;
-
-    public Student(int studentNumber, char gender) {
+    public Student(int studentNumber, GenderEnum gender) {
         this.studentNumber = studentNumber;
         this.gender = gender;
     }
@@ -38,11 +30,11 @@ public class Student {
         this.studentNumber = studentNumber;
     }
 
-    public char getGender() {
+    public GenderEnum getGender() {
         return gender;
     }
 
-    public void setGender(char gender) {
+    public void setGender(GenderEnum gender) {
         this.gender = gender;
     }
 
@@ -65,55 +57,6 @@ public class Student {
         semesters.put(semester.getSemesterCode(), semester);
         semesters.get(semester.getSemesterCode());
 
-    }
-
-
-    //Getters and setters for different key semesters of a student
-    public Semester getAdmittedSemester() {
-        for (Map.Entry<Integer, Semester> semester : semesters.entrySet()) {
-            Semester currentSemester = semester.getValue();
-            if (currentSemester.getAction().getSemesterAction() == ActionEnum.ADMT) {
-                return currentSemester;
-            }
-        }
-        return null;
-    }
-
-
-    public void setAdmittedSemester(Semester admittedSemester) {
-        this.admittedSemester = admittedSemester;
-    }
-
-    public Semester getEndOfFirstYearSemester() {
-        return endOfFirstYearSemester;
-    }
-
-    public void setEndOfFirstYearSemester(Semester endOfFirstYearSemester) {
-        this.endOfFirstYearSemester = endOfFirstYearSemester;
-    }
-
-    public Semester getEndOfSecondYearSemester() {
-        return endOfSecondYearSemester;
-    }
-
-    public void setEndOfSecondYearSemester(Semester endOfSecondYearSemester) {
-        this.endOfSecondYearSemester = endOfSecondYearSemester;
-    }
-
-    public Semester getEndOfThirdYearSemester() {
-        return endOfThirdYearSemester;
-    }
-
-    public void setEndOfThirdYearSemester(Semester endOfThirdYearSemester) {
-        this.endOfThirdYearSemester = endOfThirdYearSemester;
-    }
-
-    public Semester getEndOfFourthYearSemester() {
-        return endOfFourthYearSemester;
-    }
-
-    public void setEndOfFourthYearSemester(Semester endOfFourthYearSemester) {
-        this.endOfFourthYearSemester = endOfFourthYearSemester;
     }
 
     @Override

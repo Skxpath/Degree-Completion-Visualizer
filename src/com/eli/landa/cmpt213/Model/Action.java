@@ -1,5 +1,8 @@
 package com.eli.landa.cmpt213.Model;
 
+import com.eli.landa.cmpt213.Enums.ActionEnum;
+import com.eli.landa.cmpt213.Enums.ProgramEnum;
+
 /**
  * Created by Eli on 2017-03-25.
  *

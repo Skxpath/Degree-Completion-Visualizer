@@ -2,7 +2,7 @@ package com.eli.landa.cmpt213.UI;
 
 import com.eli.landa.cmpt213.Model.CSVReader;
 import com.eli.landa.cmpt213.Model.DegreeCompletionVisualizerFacade;
-import com.eli.landa.cmpt213.Model.ProgramEnum;
+import com.eli.landa.cmpt213.Enums.ProgramEnum;
 
 import java.io.File;
 import java.util.List;

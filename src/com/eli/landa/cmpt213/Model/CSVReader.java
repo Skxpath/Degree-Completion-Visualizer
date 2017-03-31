@@ -1,5 +1,7 @@
 package com.eli.landa.cmpt213.Model;
 
+import com.eli.landa.cmpt213.Enums.*;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +14,9 @@ import java.util.NavigableMap;
  * CSVreader class
  */
 public class CSVReader {
+    public static final int noYearValue = 0;
+    public static final int admittedYearValue = 1;
+    public static final int graduatedYearValue = 8;
     private BufferedReader br = null;
     private String line = "";
     private String cvsSplitBy = ",";
@@ -72,7 +77,25 @@ public class CSVReader {
         //check what kind of file we are reading
         if (fileEnum.equals(FileEnum.TEST_STUDENTS)) { //length of 2 indicated test_student.csv
             char gender = csvInfo[1].charAt(1);
-            Student newStudent = new Student(studentNumber, gender);
+
+            GenderEnum genderEnum = GenderEnum.UNKNOWN;
+
+            switch (gender) {
+                case 'M':
+                    genderEnum = GenderEnum.MALE;
+                    break;
+                case 'F':
+                    genderEnum = GenderEnum.FEMALE;
+                    break;
+                case 'U':
+                    genderEnum = GenderEnum.UNKNOWN;
+                    break;
+                default:
+                    System.out.println("gender enum failed to populate in csv");
+                    //This should never happe
+            }
+
+            Student newStudent = new Student(studentNumber, genderEnum);
             //Add new student to facade. For a student to exist in any other csv file, it must exist in this one first.
             addStudentToFacade(newStudent);
 
@@ -124,8 +147,9 @@ public class CSVReader {
         //check if semester exists. if yes, change action this.
         if (facade.getStudentManager().getStudent(studentNumber).getSemester(semesterVal) == null) {
 
-            Semester test = new Semester(semesterVal, 0);
-            facade.getStudentManager().getStudent(studentNumber).addSemester(test);
+
+            Semester semester = new Semester(semesterVal, noYearValue);
+            facade.getStudentManager().getStudent(studentNumber).addSemester(semester);
 
             NavigableMap list = facade.getStudentManager().getStudent(studentNumber).getSemesters();
             Map.Entry<Integer, Semester> prev = list.lowerEntry(semesterVal);
@@ -133,20 +157,20 @@ public class CSVReader {
             switch (action.getSemesterAction()) {
 
                 case ADMT:
-                    test.setYearVal(1);
-                    test.setAction(action);
+                    semester.setYearValue(admittedYearValue);
+                    semester.addAction(action);
                     break;
                 case ADD:
-                    test.setYearVal(prev.getValue().getYearVal());
-                    test.setAction(action);
+                    semester.setYearValue(prev.getValue().getYearVal()); //Gets the year value of the semester right before this one
+                    semester.addAction(action);
                     break;
                 case FIN:
-                    test.setYearVal(8);
-                    test.setAction(action);
+                    semester.setYearValue(graduatedYearValue);
+                    semester.addAction(action);
                     break;
                 case DROPOUT:
-                    test.setYearVal(prev.getValue().getYearVal());
-                    test.setAction(action);
+                    semester.setYearValue(prev.getValue().getYearVal());
+                    semester.addAction(action);
                     break;
                 case NO_ACTION:
                     System.out.println("No this should never happen - switchstatenment addactiontoexistjhgfdjgdf");
@@ -156,8 +180,7 @@ public class CSVReader {
         } else {
             //else make a new semester, put into treemap
             //depending on the action, set level accordingly
-
-            getExistingSemester(studentNumber, semesterVal).setAction(action);
+            getExistingSemester(studentNumber, semesterVal).addAction(action);
         }
     }
 

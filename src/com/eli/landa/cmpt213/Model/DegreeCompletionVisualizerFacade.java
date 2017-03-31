@@ -34,7 +34,7 @@ public class DegreeCompletionVisualizerFacade {
     }
 
     public void generateListsForProgram(ProgramEnum Program) {
-yearlyListManager.generateLists(studentManager.getStudents(), Program);
+        yearlyListManager.generateLists(studentManager.getStudents(), Program);
     }
 
 

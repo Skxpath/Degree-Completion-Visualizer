@@ -48,25 +48,20 @@ public class Student {
 
     public Semester getSemester(int semesterVal) {
         if (semesters.containsKey(semesterVal)) { //Checks through the treemap if it contains a semester with the semester val. If true, return this.
-           // System.out.println("got existing semester!");
+
             return semesters.get(semesterVal);
 
         }
-      //  System.out.println("DID NOT GET existing semester! " + studentNumber);
+
         return null;
     }
 
     //Adds semester to the treemap, ordered naturally by semester code.
     public void addSemester(Semester semester) {
-      /*  Semester test = new Semester(10, 2);
-        System.out.println("Semester: " + test.getSemesterCode() + " yearVal: " + test.getYearVal());
-        semesters.put(test.getSemesterCode(), test);
-        System.out.println("Retrieved Semester: " + semesters.get(10).getSemesterCode() + " yearVal: " + semesters.get(10).getYearVal());*/
 
-        // System.out.println("Added semester!" + semester.toString());
         semesters.put(semester.getSemesterCode(), semester);
         semesters.get(semester.getSemesterCode());
-    //    System.out.println("semester size: " + semesters.size());
+
     }
 
 
@@ -116,34 +111,3 @@ public class Student {
         return ("Student Number: " + studentNumber + " Gender: " + gender + " Semesters List Size: " + semesters.size());
     }
 }
-//Unnecessary constructors
-
-/*    public Student(long studentNumber, char gender, int yearsOfStudy, Semester semester) {
-        this.studentNumber = studentNumber;
-        this.gender = gender;
-        this.yearsOfStudy = yearsOfStudy;
-        this.semesters.add(semester);
-    }*/
-
-/*    public Student(long studentNumber, Semester semester) {
-        this.studentNumber = studentNumber;
-        this.semesters.add(semester);
-    }
-
-    public Student(long studentNumber, int yearsOfStudy, Semester semester) {
-        this.studentNumber = studentNumber;
-        this.yearsOfStudy = yearsOfStudy;
-        this.semesters.add(semester);
-    }*/
-/*    public Student(long studentNumber) {
-        this.studentNumber = studentNumber;
-    }*/
-
- /*   public boolean hasSemester(int semesterVal) {
-        for (Semester semester : semesters) {
-            if (semesterVal == semester.getSemesterCode()) {
-                return true;
-            }
-        }
-        return false;
-    }*/

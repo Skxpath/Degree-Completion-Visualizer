@@ -114,30 +114,30 @@ public class SemesterFilter {
                         break;
                     } else if ((nextSemester.getValue().getYearVal() > year)) { //If this is the last semester before the student moves to the nextSemester level, or has no future semester
 
-                            switch (year) {
-                                case FIRST_YEAR:
-                                    s.setEndOfFirstYearSemester(currentSemester); //Set the critical semester of the student relating to which year we are filtering by
-                                    filteredStudentList.add(s); //Add to the filtered list
-                                    break;
-                                case SECOND_YEAR:
-                                    s.setEndOfSecondYearSemester(currentSemester);
-                                    filteredStudentList.add(s);
-                                    break;
-                                case THIRD_YEAR:
-                                    s.setEndOfThirdYearSemester(currentSemester);
-                                    filteredStudentList.add(s);
-                                    break;
-                                case FOURTH_YEAR:
-                                    s.setEndOfFourthYearSemester(currentSemester);
-                                    filteredStudentList.add(s);
-                                    break;
-
-                            }
+                        switch (year) {
+                            case FIRST_YEAR:
+                                s.setEndOfFirstYearSemester(currentSemester); //Set the critical semester of the student relating to which year we are filtering by
+                                filteredStudentList.add(s); //Add to the filtered list
+                                break;
+                            case SECOND_YEAR:
+                                s.setEndOfSecondYearSemester(currentSemester);
+                                filteredStudentList.add(s);
+                                break;
+                            case THIRD_YEAR:
+                                s.setEndOfThirdYearSemester(currentSemester);
+                                filteredStudentList.add(s);
+                                break;
+                            case FOURTH_YEAR:
+                                s.setEndOfFourthYearSemester(currentSemester);
+                                filteredStudentList.add(s);
+                                break;
 
                         }
+
                     }
                 }
             }
+        }
 
 
         return filteredStudentList;

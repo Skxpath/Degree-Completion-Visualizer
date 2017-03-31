@@ -1,6 +1,8 @@
 package com.eli.landa.cmpt213.UI;
 
-import com.eli.landa.cmpt213.Model.*;
+import com.eli.landa.cmpt213.Model.CSVReader;
+import com.eli.landa.cmpt213.Model.DegreeCompletionVisualizerFacade;
+import com.eli.landa.cmpt213.Model.ProgramEnum;
 
 import java.io.File;
 import java.util.List;
@@ -20,11 +22,9 @@ public class Main {
         }
 
 
-ModelDumpText modelDumpText = new ModelDumpText(ProgramEnum.CSMAJ);
+        ModelDumpText modelDumpText = new ModelDumpText(ProgramEnum.CSMAJ);
 
         modelDumpText.print();
-
-
 
 
     }

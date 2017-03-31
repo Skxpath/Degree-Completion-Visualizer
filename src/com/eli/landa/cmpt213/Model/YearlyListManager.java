@@ -24,13 +24,13 @@ public class YearlyListManager { //Returns each year of students by program
         ProgramFilter programFilter = new ProgramFilter();
 
         List<Student> tempList = semesterFilter.generateList(list, SemesterEnum.ADMITTED);
-        admittedStudentList = programFilter.generateList(tempList,program);
+        admittedStudentList = programFilter.generateList(tempList, program);
 
-        endOfFirstYearStudentList = semesterFilter.generateList(admittedStudentList,SemesterEnum.FIRST_YEAR);
+        endOfFirstYearStudentList = semesterFilter.generateList(admittedStudentList, SemesterEnum.FIRST_YEAR);
 
-        endOfSecondYearStudentList = semesterFilter.generateList(admittedStudentList,SemesterEnum.SECOND_YEAR);
-        endOfThirdYearStudentList = semesterFilter.generateList(admittedStudentList,SemesterEnum.THIRD_YEAR);
-        endOfFourthYearStudentList = semesterFilter.generateList(admittedStudentList,SemesterEnum.FOURTH_YEAR);
+        endOfSecondYearStudentList = semesterFilter.generateList(admittedStudentList, SemesterEnum.SECOND_YEAR);
+        endOfThirdYearStudentList = semesterFilter.generateList(admittedStudentList, SemesterEnum.THIRD_YEAR);
+        endOfFourthYearStudentList = semesterFilter.generateList(admittedStudentList, SemesterEnum.FOURTH_YEAR);
 
     }
 

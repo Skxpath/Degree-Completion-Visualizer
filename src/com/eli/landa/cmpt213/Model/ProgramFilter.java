@@ -6,7 +6,8 @@ import java.util.List;
 /**
  * Created by Aria on 3/28/2017.
  * <p>
- * To be completed. Will probably filter the list we get from SemesterFilter?
+ * Filters a list of students by a specific program.
+ *
  */
 public class ProgramFilter {
 

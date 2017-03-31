@@ -10,6 +10,7 @@ public class Semester {
 
     private ProgramEnum lastMajor;
     private ProgramEnum newMajor;
+    private boolean remFlag = false;
 
     public Semester(int semesterCodes, int yearVal) {
         this.semesterCode = semesterCodes;
@@ -31,6 +32,9 @@ public class Semester {
         }
 
         if (action.getSemesterAction() == ActionEnum.ADD) {
+            if (this.action.getSemesterAction() == ActionEnum.REM) {
+                remFlag = true;
+            }
             this.newMajor = action.getProgram();
         }
         this.action = action;
@@ -55,5 +59,9 @@ public class Semester {
     @Override
     public String toString() {
         return ("semester code: " + semesterCode + " year val: " + yearVal + " action: " + action.getSemesterAction());
+    }
+
+    public boolean isRemFlag() { //Toggles if semester has had a major removed before this add.
+        return remFlag;
     }
 }

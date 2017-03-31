@@ -6,10 +6,10 @@ package com.eli.landa.cmpt213.Model;
  * Action Enum class abstracting the different type of actions we can take.
  */
 public enum ActionEnum {
-    ADMT, // L1
-    ADD, //L(previous semester code L)
+    ADMT,
+    ADD,
     REM,
-    FIN, // L8
-    DROPOUT, // L(previous semester code L)
+    FIN,
+    DROPOUT,
     NO_ACTION;
 }

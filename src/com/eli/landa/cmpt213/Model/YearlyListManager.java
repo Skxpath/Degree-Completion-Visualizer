@@ -5,6 +5,9 @@ import java.util.List;
 
 /**
  * Created by Aria on 3/30/2017.
+ *
+ * YearlyListManager to store a list of students in each year
+ *
  */
 public class YearlyListManager { //Returns each year of students by program
 
@@ -22,15 +25,27 @@ public class YearlyListManager { //Returns each year of students by program
 
         SemesterFilter semesterFilter = new SemesterFilter();
         ProgramFilter programFilter = new ProgramFilter();
+        RemProgramDeleter remProgramDeleter = new RemProgramDeleter();
+        JoinProgramAdder joinProgramAdder = new JoinProgramAdder();
+
 
         List<Student> tempList = semesterFilter.generateList(list, SemesterEnum.ADMITTED);
+
         admittedStudentList = programFilter.generateList(tempList, program);
 
         endOfFirstYearStudentList = semesterFilter.generateList(admittedStudentList, SemesterEnum.FIRST_YEAR);
+       // endOfFirstYearStudentList = remProgramDeleter.generateList(endOfFirstYearStudentList, program, SemesterEnum.FIRST_YEAR);
+        endOfFirstYearStudentList = joinProgramAdder.generateList(endOfFirstYearStudentList, program, SemesterEnum.FIRST_YEAR);
 
-        endOfSecondYearStudentList = semesterFilter.generateList(admittedStudentList, SemesterEnum.SECOND_YEAR);
-        endOfThirdYearStudentList = semesterFilter.generateList(admittedStudentList, SemesterEnum.THIRD_YEAR);
-        endOfFourthYearStudentList = semesterFilter.generateList(admittedStudentList, SemesterEnum.FOURTH_YEAR);
+        endOfSecondYearStudentList = semesterFilter.generateList(endOfFirstYearStudentList, SemesterEnum.SECOND_YEAR);
+      //  endOfSecondYearStudentList = remProgramDeleter.generateList(endOfSecondYearStudentList, program, SemesterEnum.SECOND_YEAR);
+       endOfSecondYearStudentList = joinProgramAdder.generateList(endOfSecondYearStudentList, program, SemesterEnum.SECOND_YEAR);
+
+        endOfThirdYearStudentList = semesterFilter.generateList(endOfSecondYearStudentList, SemesterEnum.THIRD_YEAR);
+       // endOfThirdYearStudentList = remProgramDeleter.generateList(endOfThirdYearStudentList, program, SemesterEnum.THIRD_YEAR);
+        endOfThirdYearStudentList = joinProgramAdder.generateList(endOfThirdYearStudentList, program, SemesterEnum.THIRD_YEAR);
+
+        endOfFourthYearStudentList = semesterFilter.generateList(endOfThirdYearStudentList, SemesterEnum.FOURTH_YEAR);
 
     }
 

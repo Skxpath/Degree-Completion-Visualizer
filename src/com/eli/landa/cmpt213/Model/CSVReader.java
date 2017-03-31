@@ -8,6 +8,8 @@ import java.util.NavigableMap;
 
 /**
  * Created by Eli on 2017-03-25.
+ *
+ * CSVreader class
  */
 public class CSVReader {
     private BufferedReader br = null;

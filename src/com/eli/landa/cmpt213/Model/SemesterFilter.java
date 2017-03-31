@@ -12,12 +12,10 @@ import java.util.NavigableMap;
  */
 public class SemesterFilter {
 
-    //Test code cause build is not pushing properly for some reason
-
     private final int ADMITTED_YEAR = 1; //Admitted, end of first year, etc.
     private final int FIRST_YEAR = 3;
-    private final int SECOND_YEAR = 4;
-    private final int THIRD_YEAR = 6;
+    private final int SECOND_YEAR = 5;
+    private final int THIRD_YEAR = 7;
     private final int FOURTH_YEAR = 8;
 
     private NavigableMap<Integer, Semester> studentSemesterList;
@@ -82,28 +80,7 @@ public class SemesterFilter {
 
                     if ((YEAR_BEFORE < currentSemestersYearVal) && (currentSemestersYearVal <= year)) {
 
-                        switch (year) {
-                            case ADMITTED_YEAR:
-                                s.setAdmittedSemester(currentSemester);
-                                filteredStudentList.add(s);
-                                break;
-                            case FIRST_YEAR:
-                                s.setEndOfFirstYearSemester(currentSemester); //Set the critical semester of the student relating to which year we are filtering by
-                                filteredStudentList.add(s); //Add to the filtered list
-                                break;
-                            case SECOND_YEAR:
-                                s.setEndOfSecondYearSemester(currentSemester);
-                                filteredStudentList.add(s);
-                                break;
-                            case THIRD_YEAR:
-                                s.setEndOfThirdYearSemester(currentSemester);
-                                filteredStudentList.add(s);
-                                break;
-                            case FOURTH_YEAR:
-                                s.setEndOfFourthYearSemester(currentSemester);
-                                filteredStudentList.add(s);
-                                break;
-                        }
+                        addStudentRelativeToYear(filteredStudentList, year, s, currentSemester);
                     }
                 } else if (currentSemestersYearVal == year) {  //If the semester has the same year value as the one we are trying to filter by...
                     if (currentSemester.getAction().getSemesterAction() == ActionEnum.ADMT) { //If we are filtering by the semester the student is admitted. We can break at the first semester we encounter.
@@ -112,27 +89,11 @@ public class SemesterFilter {
 
                         filteredStudentList.add(s); //Add the student to the filtered student list
                         break;
+                    } else if (nextSemester == null) {
+                        addStudentRelativeToYear(filteredStudentList, year, s, currentSemester);
                     } else if ((nextSemester.getValue().getYearVal() > year)) { //If this is the last semester before the student moves to the nextSemester level, or has no future semester
 
-                        switch (year) {
-                            case FIRST_YEAR:
-                                s.setEndOfFirstYearSemester(currentSemester); //Set the critical semester of the student relating to which year we are filtering by
-                                filteredStudentList.add(s); //Add to the filtered list
-                                break;
-                            case SECOND_YEAR:
-                                s.setEndOfSecondYearSemester(currentSemester);
-                                filteredStudentList.add(s);
-                                break;
-                            case THIRD_YEAR:
-                                s.setEndOfThirdYearSemester(currentSemester);
-                                filteredStudentList.add(s);
-                                break;
-                            case FOURTH_YEAR:
-                                s.setEndOfFourthYearSemester(currentSemester);
-                                filteredStudentList.add(s);
-                                break;
-
-                        }
+                        addStudentRelativeToYear(filteredStudentList, year, s, currentSemester);
 
                     }
                 }
@@ -141,5 +102,30 @@ public class SemesterFilter {
 
 
         return filteredStudentList;
+    }
+
+    private void addStudentRelativeToYear(List<Student> filteredStudentList, int year, Student s, Semester currentSemester) {
+        switch (year) {
+            case ADMITTED_YEAR:
+                s.setAdmittedSemester(currentSemester);
+                filteredStudentList.add(s);
+                break;
+            case FIRST_YEAR:
+                s.setEndOfFirstYearSemester(currentSemester); //Set the critical semester of the student relating to which year we are filtering by
+                filteredStudentList.add(s); //Add to the filtered list
+                break;
+            case SECOND_YEAR:
+                s.setEndOfSecondYearSemester(currentSemester);
+                filteredStudentList.add(s);
+                break;
+            case THIRD_YEAR:
+                s.setEndOfThirdYearSemester(currentSemester);
+                filteredStudentList.add(s);
+                break;
+            case FOURTH_YEAR:
+                s.setEndOfFourthYearSemester(currentSemester);
+                filteredStudentList.add(s);
+                break;
+        }
     }
 }

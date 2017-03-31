@@ -2,23 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="428944b9-81f9-4efb-8d34-1e8cf509ac87" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/readme.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/JoinProgramAdder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/RemProgramDeleter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Degree Completion Visualizer/com/eli/landa/cmpt213/UI/Main.class" afterPath="$PROJECT_DIR$/out/production/Degree Completion Visualizer/com/eli/landa/cmpt213/UI/Main.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readme.txt" afterPath="$PROJECT_DIR$/readme.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Data/test_programs.csv" afterPath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Data/test_programs.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Data/test_semesters.csv" afterPath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Data/test_semesters.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Data/test_students.csv" afterPath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Data/test_students.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/Action.java" afterPath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/Action.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/ActionEnum.java" afterPath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/ActionEnum.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/CSVReader.java" afterPath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/CSVReader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/DegreeCompletionVisualizerFacade.java" afterPath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/DegreeCompletionVisualizerFacade.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/ProgramFilter.java" afterPath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/ProgramFilter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/Semester.java" afterPath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/Semester.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/SemesterFilter.java" afterPath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/SemesterFilter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/Student.java" afterPath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/Student.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/StudentManager.java" afterPath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/StudentManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/YearlyListManager.java" afterPath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/YearlyListManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Main.java" afterPath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Main.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -60,8 +52,8 @@
       <file leaf-file-name="DegreeCompletionVisualizerFacade.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/DegreeCompletionVisualizerFacade.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="24" lean-forward="true" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+            <state relative-caret-position="408">
+              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1019#1020#0" expanded="true" />
@@ -69,16 +61,6 @@
                 <element signature="e#1120#1121#0" expanded="true" />
                 <element signature="e#1156#1157#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FileEnum.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/FileEnum.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="18" lean-forward="false" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -98,8 +80,30 @@
       <file leaf-file-name="SemesterFilter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/SemesterFilter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="31" column="37" lean-forward="true" selection-start-line="31" selection-start-column="37" selection-end-line="31" selection-end-column="37" />
+            <state relative-caret-position="665">
+              <caret line="114" column="7" lean-forward="true" selection-start-line="114" selection-start-column="7" selection-end-line="114" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ModelDumpText.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/ModelDumpText.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="682">
+              <caret line="236" column="32" lean-forward="true" selection-start-line="236" selection-start-column="32" selection-end-line="236" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Student.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/Student.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="685">
+              <caret line="79" column="5" lean-forward="true" selection-start-line="79" selection-start-column="5" selection-end-line="79" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -108,27 +112,19 @@
       <file leaf-file-name="YearlyListManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/YearlyListManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="597">
-              <caret line="39" column="72" lean-forward="false" selection-start-line="39" selection-start-column="72" selection-end-line="39" selection-end-column="72" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JoinProgramAdder.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/JoinProgramAdder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="2" lean-forward="false" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
+            <state relative-caret-position="291">
+              <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#3479#3480#0" expanded="true" />
+                <element signature="e#3521#3522#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProgramEnum.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/ProgramEnum.java">
+      <file leaf-file-name="SemesterEnum.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/SemesterEnum.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
               <caret line="7" column="12" lean-forward="false" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
@@ -140,19 +136,21 @@
       <file leaf-file-name="ProgramFilter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/ProgramFilter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="27" column="32" lean-forward="true" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
+            <state relative-caret-position="391">
+              <caret line="24" column="21" lean-forward="true" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CSVReader.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/CSVReader.java">
+      <file leaf-file-name="StudentManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/StudentManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="11" column="18" lean-forward="false" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-              <folding />
+            <state relative-caret-position="153">
+              <caret line="9" column="2" lean-forward="false" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -193,17 +191,17 @@
         <option value="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/FileEnum.java" />
         <option value="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/StringToActionEnum.java" />
         <option value="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/ModelDumpText.java" />
-        <option value="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/Student.java" />
-        <option value="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/StudentManager.java" />
         <option value="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/Semester.java" />
         <option value="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Main.java" />
         <option value="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/ActionEnum.java" />
         <option value="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/Action.java" />
-        <option value="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/ProgramFilter.java" />
         <option value="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/JoinProgramAdder.java" />
         <option value="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/CSVReader.java" />
         <option value="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/DegreeCompletionVisualizerFacade.java" />
         <option value="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/RemProgramDeleter.java" />
+        <option value="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/StudentManager.java" />
+        <option value="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/ProgramFilter.java" />
+        <option value="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/Student.java" />
         <option value="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/YearlyListManager.java" />
         <option value="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/SemesterFilter.java" />
       </list>
@@ -772,7 +770,7 @@
       <workItem from="1490560878576" duration="6198000" />
       <workItem from="1490846712728" duration="92000" />
       <workItem from="1490846831967" duration="8323000" />
-      <workItem from="1490906764415" duration="24998000" />
+      <workItem from="1490906764415" duration="32291000" />
     </task>
     <task id="LOCAL-00001" summary="CSVReader gets null pointer exception with 5- Dropout data set.&#10;&#10;Error:&#10;&#10;Exception in thread &quot;main&quot; java.lang.NumberFormatException: For input string: &quot;r&quot;&#10;&#9;at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)&#10;&#9;at java.lang.Integer.parseInt(Integer.java:580)&#10;&#9;at java.lang.Integer.parseInt(Integer.java:615)&#10;&#9;at com.eli.landa.cmpt213.Model.CSVReader.storeCSVInfoToStudentManager(CSVReader.java:68)&#10;&#9;at com.eli.landa.cmpt213.Model.CSVReader.readCSVFile(CSVReader.java:32)&#10;&#9;at com.eli.landa.cmpt213.UI.Main.main(Main.java:18)&#10;&#9;at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#10;&#9;at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)&#10;&#9;at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)&#10;&#9;at java.lang.reflect.Method.invoke(Method.java:498)&#10;&#9;at com.intellij.rt.execution.application.AppMain.main(AppMain.java:147)&#10;&#9;&#10;Figure out why this is then we can continue.&#10;&#10;Replace data files if you dont want a crash.">
       <created>1490851605548</created>
@@ -809,11 +807,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490931411801</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Initial final commit for part one.&#10;&#10;Lots of stuff to fix up.">
+      <created>1490937880314</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1490937880314</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39611000" />
+    <option name="totallyTimeSpent" value="46904000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -840,7 +845,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23081024" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -901,19 +906,12 @@
     <MESSAGE value="Not working commit but mid way save" />
     <MESSAGE value="UI sorta filled with dummy data.&#10;&#10;Lots of model issues to be solved." />
     <MESSAGE value="Cleaned up code a bit." />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up code a bit." />
+    <MESSAGE value="Initial final commit for part one.&#10;&#10;Lots of stuff to fix up." />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial final commit for part one.&#10;&#10;Lots of stuff to fix up." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/ModelDumpText.java</url>
-          <line>210</line>
-          <properties />
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="25" />
+      <option name="time" value="26" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1148,42 +1146,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/SemesterEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="12" lean-forward="false" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/StudentManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="36" column="9" lean-forward="false" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/Student.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/ModelDumpText.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="154" column="13" lean-forward="false" selection-start-line="119" selection-start-column="12" selection-end-line="154" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/Action.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -1244,36 +1206,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/DegreeCompletionVisualizerFacade.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="24" lean-forward="true" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1019#1020#0" expanded="true" />
-            <element signature="e#1070#1071#0" expanded="true" />
-            <element signature="e#1120#1121#0" expanded="true" />
-            <element signature="e#1156#1157#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/ProgramFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="27" column="32" lean-forward="true" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/YearlyListManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="597">
-          <caret line="39" column="72" lean-forward="false" selection-start-line="39" selection-start-column="72" selection-end-line="39" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/RemProgramDeleter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="205">
@@ -1284,10 +1216,80 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/ProgramFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="24" column="21" lean-forward="true" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/StudentManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="2" lean-forward="false" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/Student.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="685">
+          <caret line="79" column="5" lean-forward="true" selection-start-line="79" selection-start-column="5" selection-end-line="79" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/ModelDumpText.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="682">
+          <caret line="236" column="32" lean-forward="true" selection-start-line="236" selection-start-column="32" selection-end-line="236" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/DegreeCompletionVisualizerFacade.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1019#1020#0" expanded="true" />
+            <element signature="e#1070#1071#0" expanded="true" />
+            <element signature="e#1120#1121#0" expanded="true" />
+            <element signature="e#1156#1157#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/SemesterEnum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="12" lean-forward="false" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/YearlyListManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3479#3480#0" expanded="true" />
+            <element signature="e#3521#3522#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/Model/SemesterFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="31" column="37" lean-forward="true" selection-start-line="31" selection-start-column="37" selection-end-line="31" selection-end-column="37" />
+        <state relative-caret-position="665">
+          <caret line="114" column="7" lean-forward="true" selection-start-line="114" selection-start-column="7" selection-end-line="114" selection-end-column="7" />
           <folding />
         </state>
       </provider>

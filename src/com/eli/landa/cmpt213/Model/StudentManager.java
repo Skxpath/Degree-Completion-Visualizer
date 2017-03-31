@@ -5,6 +5,9 @@ import java.util.List;
 
 /**
  * Created by Eli on 2017-03-25.
+ *
+ * StudentManager class that manages a list of students.
+ *
  */
 
 public class StudentManager {

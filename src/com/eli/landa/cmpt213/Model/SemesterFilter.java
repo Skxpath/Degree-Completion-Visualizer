@@ -13,16 +13,16 @@ import java.util.NavigableMap;
 public class SemesterFilter {
 
     private final int ADMITTED_YEAR = 1; //Admitted, end of first year, etc.
-    private final int FIRST_YEAR = 3;
+    private final int FIRST_YEAR = 3; //End of first, beginning of second boundary
     private final int SECOND_YEAR = 5;
     private final int THIRD_YEAR = 7;
     private final int FOURTH_YEAR = 8;
-
-    private NavigableMap<Integer, Semester> studentSemesterList;
-
-    private int YEAR_BEFORE = 0; //Holds the variable for the year before the year we want to filter by.
+    private final int GRADUATED_YEAR = 9;
 
     SemesterEnum SemesterYearEnum;
+
+    private NavigableMap<Integer, Semester> studentSemesterList;
+    private int CURRENT_YEAR = 0; //Holds the variable for the year we want to filter by.
 
     //Method to generate a filtered list of students. Passes in a list of students to filter, and the end of year to filter by.
     //Returns a list of students who had participated in this year, and sets their "critical semesters" for later iterating.
@@ -35,19 +35,20 @@ public class SemesterFilter {
 
         switch (year) {
             case ADMITTED: //Sets the year before this one, to allow us to find the boundary if they dropped mid way.
-                YEAR_BEFORE = 0;
+                CURRENT_YEAR = 0;
+                //List of students to pass in, list of students to return, upper bound. In Admit and fourth year, we have boundary case issues.
                 return getList(students, filteredStudentList, ADMITTED_YEAR);
             case FIRST_YEAR:
-                YEAR_BEFORE = ADMITTED_YEAR;
-                return getList(students, filteredStudentList, FIRST_YEAR);
-            case SECOND_YEAR:
-                YEAR_BEFORE = FIRST_YEAR;
+                CURRENT_YEAR = FIRST_YEAR;
                 return getList(students, filteredStudentList, SECOND_YEAR);
-            case THIRD_YEAR:
-                YEAR_BEFORE = SECOND_YEAR;
+            case SECOND_YEAR:
+                CURRENT_YEAR = SECOND_YEAR;
                 return getList(students, filteredStudentList, THIRD_YEAR);
+            case THIRD_YEAR:
+                CURRENT_YEAR = THIRD_YEAR;
+                return getList(students, filteredStudentList, FOURTH_YEAR);
             case FOURTH_YEAR:
-                YEAR_BEFORE = THIRD_YEAR;
+                CURRENT_YEAR = FOURTH_YEAR;
                 return getList(students, filteredStudentList, FOURTH_YEAR);
             default:
                 return filteredStudentList; //Should never occur
@@ -55,14 +56,20 @@ public class SemesterFilter {
 
     }
 
-    //Function to filter students by current semester
-    private List getList(List<Student> students, List<Student> filteredStudentList, int year) {
+    //Function to filter students by current semester - We bound them from lower to upper.
+    //Admitted year (Beginning of first year): Only for L1 and action ADMT.
+    //End of first year, beginning of second year: For everyone below L3 (31+ credits);
+    //End of second year: For everyone below L5 (61+);
+    //End of third year: For everyone below L7;
+    //End of fourth year: People who graduated (L8 and action FIN);
+    private List getList(List<Student> students, List<Student> filteredStudentList, int year) { //list of students to iterate over, student list to return, year we are filtering by
 
+        //First loop adds all students who belong to their respective semesters.
         //For each loop over every student in the student list.
-        for (Student s : students) {
+        for (Student currentStudent : students) {
 
             //Get the current iterated student's semester TreeMap.
-            studentSemesterList = s.getSemesters();
+            studentSemesterList = currentStudent.getSemesters();
 
             //For each semester in the TreeMap...
             for (Map.Entry<Integer, Semester> semester : studentSemesterList.entrySet()) { //iterate through the treemap
@@ -72,60 +79,42 @@ public class SemesterFilter {
 
                 Semester currentSemester = semester.getValue(); //Current semester we are iterating
                 int currentSemestersYearVal = currentSemester.getYearVal(); //Current semesters year value
+                ActionEnum currentSemesterAction = currentSemester.getAction().getSemesterAction(); //Current semesters action
 
-                boolean studentDroppedOrFinishedProgram = currentSemester.getAction().getSemesterAction() == ActionEnum.DROPOUT
-                        || currentSemester.getAction().getSemesterAction() == ActionEnum.FIN; //Boolean of if we dropped or finished the program
-
-                if (studentDroppedOrFinishedProgram) {
-
-                    if ((YEAR_BEFORE < currentSemestersYearVal) && (currentSemestersYearVal <= year)) {
-
-                        addStudentRelativeToYear(filteredStudentList, year, s, currentSemester);
-                    }
-                } else if (currentSemestersYearVal == year) {  //If the semester has the same year value as the one we are trying to filter by...
-                    if (currentSemester.getAction().getSemesterAction() == ActionEnum.ADMT) { //If we are filtering by the semester the student is admitted. We can break at the first semester we encounter.
-
-                        s.setAdmittedSemester(currentSemester); //Add to personal students admitted list this semester and the following semester, for easy retrevial of information
-
-                        filteredStudentList.add(s); //Add the student to the filtered student list
-                        break;
-                    } else if (nextSemester == null) {
-                        addStudentRelativeToYear(filteredStudentList, year, s, currentSemester);
-                    } else if ((nextSemester.getValue().getYearVal() > year)) { //If this is the last semester before the student moves to the nextSemester level, or has no future semester
-
-                        addStudentRelativeToYear(filteredStudentList, year, s, currentSemester);
-
-                    }
+                int nextSemestersYearValue = -1;
+                //Next semesters year value. In the case where there is a next semester.
+                if (nextSemester != null) {
+                    nextSemestersYearValue = nextSemester.getValue().getYearVal();
                 }
+                // Case where we are adding every student who was admitted to the school.
+                if (currentSemestersYearVal == ADMITTED_YEAR && currentSemesterAction == ActionEnum.ADMT && year == ADMITTED_YEAR) {
+                    filteredStudentList.add(currentStudent);
+                    break;
+                } else
+                    //Edge case when we are in the fourth year to add graduates.
+                    if (currentSemestersYearVal == FOURTH_YEAR && currentSemesterAction == ActionEnum.FIN && year == FOURTH_YEAR) {
+                        filteredStudentList.add(currentStudent);
+                        break;
+                    }
+                //Edge case if we have a new enrollment that drops out right afterward.
+                if (currentSemestersYearVal == CURRENT_YEAR && currentSemesterAction == ActionEnum.DROPOUT) {
+                    filteredStudentList.add(currentStudent);
+                    break;
+                } else
+                    //Case where the semester is within the desired level range but theres no semester ahead of it because they dropped out.
+                    if (CURRENT_YEAR < currentSemestersYearVal && currentSemestersYearVal < year && currentSemesterAction == ActionEnum.DROPOUT) {
+                        filteredStudentList.add(currentStudent);
+                        break;
+                    } else
+                        //Base case.
+                        if (currentSemestersYearVal < year && year == nextSemestersYearValue) {
+                            filteredStudentList.add(currentStudent);
+                            break;
+                        }
             }
         }
-
-
         return filteredStudentList;
-    }
 
-    private void addStudentRelativeToYear(List<Student> filteredStudentList, int year, Student s, Semester currentSemester) {
-        switch (year) {
-            case ADMITTED_YEAR:
-                s.setAdmittedSemester(currentSemester);
-                filteredStudentList.add(s);
-                break;
-            case FIRST_YEAR:
-                s.setEndOfFirstYearSemester(currentSemester); //Set the critical semester of the student relating to which year we are filtering by
-                filteredStudentList.add(s); //Add to the filtered list
-                break;
-            case SECOND_YEAR:
-                s.setEndOfSecondYearSemester(currentSemester);
-                filteredStudentList.add(s);
-                break;
-            case THIRD_YEAR:
-                s.setEndOfThirdYearSemester(currentSemester);
-                filteredStudentList.add(s);
-                break;
-            case FOURTH_YEAR:
-                s.setEndOfFourthYearSemester(currentSemester);
-                filteredStudentList.add(s);
-                break;
-        }
+        //Student #:359491818 - dropped out in L8, still exists in year 4 list. Everything else seems okay.
     }
 }

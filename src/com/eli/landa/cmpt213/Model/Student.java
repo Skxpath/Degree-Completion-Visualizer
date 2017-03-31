@@ -1,10 +1,14 @@
 package com.eli.landa.cmpt213.Model;
 
+import java.util.Map;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 
 /**
  * Created by Eli on 2017-03-25.
+ *
+ * Student Class that stores an object for each student.
+ *
  */
 
 public class Student {
@@ -52,7 +56,6 @@ public class Student {
             return semesters.get(semesterVal);
 
         }
-
         return null;
     }
 
@@ -67,8 +70,15 @@ public class Student {
 
     //Getters and setters for different key semesters of a student
     public Semester getAdmittedSemester() {
-        return admittedSemester;
+        for (Map.Entry<Integer, Semester> semester : semesters.entrySet()) {
+            Semester currentSemester = semester.getValue();
+            if (currentSemester.getAction().getSemesterAction() == ActionEnum.ADMT) {
+                return currentSemester;
+            }
+        }
+        return null;
     }
+
 
     public void setAdmittedSemester(Semester admittedSemester) {
         this.admittedSemester = admittedSemester;

@@ -15,18 +15,16 @@ public class ProgramFilter {
     //Returns a list of students with a given program.
     //First Argument: List of students to filter.
     //Second Argument:
-    List generateList(List<Student> students, ProgramEnum program) {
+    public List generateList(List<Student> students, ProgramEnum program) {
         switch (program) {
             case CSMAJ:
                 for (Student s : students) {
-
-                    filteredStudents.add(s);
+                    if (s.getAdmittedSemester().getAction().getProgram() == ProgramEnum.CSMAJ) {
+                        filteredStudents.add(s);
+                    }
                 }
         }
-        return null;
+        return filteredStudents;
     }
 
-    public Student filter(Student student) {
-        return null;
-    }
 }

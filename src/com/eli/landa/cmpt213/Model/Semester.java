@@ -8,6 +8,8 @@ public class Semester {
     private int yearVal; //Stores the level the student has currently completed.
     private Action action;
 
+    private ProgramEnum lastMajor;
+    private ProgramEnum newMajor;
 
     public Semester(int semesterCodes, int yearVal) {
         this.semesterCode = semesterCodes;
@@ -24,6 +26,13 @@ public class Semester {
     }
 
     public void setAction(Action action) {
+        if (action.getSemesterAction() == ActionEnum.REM) {
+            this.lastMajor = action.getProgram();
+        }
+
+        if (action.getSemesterAction() == ActionEnum.ADD) {
+            this.newMajor = action.getProgram();
+        }
         this.action = action;
     }
 
@@ -35,13 +44,16 @@ public class Semester {
         this.yearVal = yearVal;
     }
 
+    public ProgramEnum getLastMajor() {
+        return lastMajor;
+    }
+
+    public ProgramEnum getNewMajor() {
+        return newMajor;
+    }
+
     @Override
     public String toString() {
-        return ("semester code: " + semesterCode + " year val: " + yearVal + " action: ");
+        return ("semester code: " + semesterCode + " year val: " + yearVal + " action: " + action.getSemesterAction());
     }
 }
-
-/*  public Semester(int semesterCodes, Action action) {
-        this.semesterCode = semesterCodes;
-        this.action = action;
-    }*/

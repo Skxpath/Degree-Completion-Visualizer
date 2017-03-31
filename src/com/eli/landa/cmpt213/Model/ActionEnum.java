@@ -8,6 +8,7 @@ package com.eli.landa.cmpt213.Model;
 public enum ActionEnum {
     ADMT, // L1
     ADD, //L(previous semester code L)
+    REM,
     FIN, // L8
     DROPOUT, // L(previous semester code L)
     NO_ACTION;

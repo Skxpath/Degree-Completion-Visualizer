@@ -8,5 +8,5 @@ package com.eli.landa.cmpt213.Model;
 public enum FileEnum {
     TEST_PROGRAMS,
     TEST_SEMESTERS,
-    TEST_STUDENTS,
+    TEST_STUDENTS;
 }

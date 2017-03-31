@@ -80,7 +80,9 @@ public class CSVReader {
         } else if (fileEnum.equals(FileEnum.TEST_SEMESTERS)) {//length of 3 indicates test_semester.csv
 
             int semesterVal = Integer.parseInt(csvInfo[1]);
-            System.out.println(studentNumber + " " + semesterVal);
+
+           // System.out.println(studentNumber + " " + semesterVal);
+
             int yearVal = Integer.parseInt(String.valueOf(csvInfo[2].charAt(1)));
             Semester semester = new Semester(semesterVal, yearVal);
 
@@ -170,7 +172,7 @@ public class CSVReader {
     private void addSemesterToExistingStudent(int studentNumber, Semester semester) {
         Student student = getExistingStudent(studentNumber);
         if (student == null) {
-            System.out.println("Student is null");
+         //   System.out.println("Student is null");
         }
         // System.out.println(semester.toString());
         student.addSemester(semester);
@@ -186,7 +188,7 @@ public class CSVReader {
         //System.out.println("got existing student");
         DegreeCompletionVisualizerFacade model = DegreeCompletionVisualizerFacade.getInstance();
         if (facade.getStudentManager() == null) {
-            System.out.println("manager is null!!!!!!!!!!!!!!!!!!!!!!!!!");
+          //  System.out.println("manager is null!!!!!!!!!!!!!!!!!!!!!!!!!");
         }
         Student student = facade.getStudentManager().getStudent(studentNumber);
         if (student == null) {
@@ -199,13 +201,13 @@ public class CSVReader {
     private Semester getExistingSemester(int studentNumber, int semesterVal) {
         // System.out.println("got existing semester");
         Semester semester = getExistingStudent(studentNumber).getSemester(semesterVal);
-        System.out.println(semester.getYearVal() + "");
+       // System.out.println(semester.getYearVal() + "");
         return semester;
     }
 
     public List<File> populateFiles() {
         List<File> files = new ArrayList<>();
-        File directory = new File("C:\\Users\\Eli\\IdeaProjects\\Degree-Completion-Visualizer-use-this\\src\\com\\eli\\landa\\cmpt213\\Data");
+        File directory = new File("C:\\Users\\Aria\\IdeaProjects\\Degree-Completion-Visualizer\\src\\com\\eli\\landa\\cmpt213\\Data");
         int AMOUNT_OF_FILES_IN_DIRECTORY = directory.listFiles().length;
         for (int i = 0; i < AMOUNT_OF_FILES_IN_DIRECTORY; i++) {
             files.add(directory.listFiles()[i]);

@@ -19,6 +19,7 @@ public class Student {
     private Semester endOfThirdYearSemester;
     private Semester endOfFourthYearSemester;
 
+    private ProgramEnum admittedProgram = ProgramEnum.NO_PROGRAM;
 
     public Student(int studentNumber, char gender) {
         this.studentNumber = studentNumber;
@@ -47,11 +48,11 @@ public class Student {
 
     public Semester getSemester(int semesterVal) {
         if (semesters.containsKey(semesterVal)) { //Checks through the treemap if it contains a semester with the semester val. If true, return this.
-            System.out.println("got existing semester!");
+           // System.out.println("got existing semester!");
             return semesters.get(semesterVal);
 
         }
-        System.out.println("DID NOT GET existing semester! " + studentNumber);
+      //  System.out.println("DID NOT GET existing semester! " + studentNumber);
         return null;
     }
 
@@ -65,7 +66,7 @@ public class Student {
         // System.out.println("Added semester!" + semester.toString());
         semesters.put(semester.getSemesterCode(), semester);
         semesters.get(semester.getSemesterCode());
-        System.out.println("semester size: " + semesters.size());
+    //    System.out.println("semester size: " + semesters.size());
     }
 
 

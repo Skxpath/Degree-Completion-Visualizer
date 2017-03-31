@@ -15,9 +15,9 @@ public class SemesterFilter {
     //Test code cause build is not pushing properly for some reason
 
     private final int ADMITTED_YEAR = 1; //Admitted, end of first year, etc.
-    private final int FIRST_YEAR = 2;
-    private final int SECOND_YEAR = 5;
-    private final int THIRD_YEAR = 7;
+    private final int FIRST_YEAR = 3;
+    private final int SECOND_YEAR = 4;
+    private final int THIRD_YEAR = 6;
     private final int FOURTH_YEAR = 8;
 
     private NavigableMap<Integer, Semester> studentSemesterList;
@@ -106,7 +106,7 @@ public class SemesterFilter {
                         }
                     }
                 } else if (currentSemestersYearVal == year) {  //If the semester has the same year value as the one we are trying to filter by...
-                    if (year == ADMITTED_YEAR) { //If we are filtering by the semester the student is admitted. We can break at the first semester we encounter.
+                    if (currentSemester.getAction().getSemesterAction() == ActionEnum.ADMT) { //If we are filtering by the semester the student is admitted. We can break at the first semester we encounter.
 
                         s.setAdmittedSemester(currentSemester); //Add to personal students admitted list this semester and the following semester, for easy retrevial of information
 

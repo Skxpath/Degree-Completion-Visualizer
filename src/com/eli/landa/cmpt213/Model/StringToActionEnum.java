@@ -21,6 +21,8 @@ public class StringToActionEnum {
             case "dropout":
                 return ActionEnum.DROPOUT;
 
+            case "rem":
+                return ActionEnum.REM;
             default:
                 return ActionEnum.NO_ACTION; //In the case when there is no action identified. Return this for error checking in Action class.
         }

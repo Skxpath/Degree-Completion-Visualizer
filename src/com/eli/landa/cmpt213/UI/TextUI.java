@@ -34,6 +34,36 @@ public class TextUI {
     }
 
     private static void displayUI(ProgramEnum selectedProgram) {
+
+        displayStudentsInProgramAtMilestone(selectedProgram);
+        displayStudentsJoiningProgram(selectedProgram);
+        displayStudentsLeavingProgram(selectedProgram);
+        
+    }
+
+    private static void displayStudentsLeavingProgram(ProgramEnum selectedProgram) {
+        System.out.println("******************************************************\n" +
+                "* LEAVING: Students leaving program before milestone *\n" +
+                "******************************************************");
+
+        studentsWhoLeftProgramAtMilestone(YearEnum.FIRST_YEAR, selectedProgram);
+        studentsWhoLeftProgramAtMilestone(YearEnum.SECOND_YEAR, selectedProgram);
+        studentsWhoLeftProgramAtMilestone(YearEnum.THIRD_YEAR, selectedProgram);
+        studentsWhoLeftProgramAtMilestone(YearEnum.FOURTH_YEAR, selectedProgram);
+    }
+
+    private static void displayStudentsJoiningProgram(ProgramEnum selectedProgram) {
+        System.out.println("\n*************************************************\n" +
+                "* Students joining program going into milestone *\n" +
+                "*************************************************");
+
+        studentsWhoJoinProgramAtMilestone(YearEnum.FIRST_YEAR, selectedProgram);
+        studentsWhoJoinProgramAtMilestone(YearEnum.SECOND_YEAR, selectedProgram);
+        studentsWhoJoinProgramAtMilestone(YearEnum.THIRD_YEAR, selectedProgram);
+        studentsWhoJoinProgramAtMilestone(YearEnum.FOURTH_YEAR, selectedProgram);
+    }
+
+    private static void displayStudentsInProgramAtMilestone(ProgramEnum selectedProgram) {
         System.out.println("************************************\n" +
                 "* Students in program at milestone *\n" +
                 "************************************");
@@ -44,24 +74,6 @@ public class TextUI {
         studentsInProgramAtMilestone(YearEnum.THIRD_YEAR, selectedProgram);
         studentsInProgramAtMilestone(YearEnum.FOURTH_YEAR, selectedProgram);
         studentsInProgramAtMilestone(YearEnum.GRADUATED, selectedProgram);
-
-        System.out.println("\n*************************************************\n" +
-                "* Students joining program going into milestone *\n" +
-                "*************************************************");
-
-        studentsWhoJoinProgramAtMilestone(YearEnum.FIRST_YEAR, selectedProgram);
-        studentsWhoJoinProgramAtMilestone(YearEnum.SECOND_YEAR, selectedProgram);
-        studentsWhoJoinProgramAtMilestone(YearEnum.THIRD_YEAR, selectedProgram);
-        studentsWhoJoinProgramAtMilestone(YearEnum.FOURTH_YEAR, selectedProgram);
-
-        System.out.println("******************************************************\n" +
-                "* LEAVING: Students leaving program before milestone *\n" +
-                "******************************************************");
-
-        studentsWhoLeftProgramAtMilestone(YearEnum.FIRST_YEAR, selectedProgram);
-        studentsWhoLeftProgramAtMilestone(YearEnum.SECOND_YEAR, selectedProgram);
-        studentsWhoLeftProgramAtMilestone(YearEnum.THIRD_YEAR, selectedProgram);
-        studentsWhoLeftProgramAtMilestone(YearEnum.FOURTH_YEAR, selectedProgram);
     }
 
     private static void studentsInProgramAtMilestone(YearEnum yearEnum, ProgramEnum programEnum) {

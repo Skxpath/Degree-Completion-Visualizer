@@ -104,7 +104,39 @@ public class CSVReader {
             int semesterVal = Integer.parseInt(csvInfo[1]);
 
             int yearVal = Integer.parseInt(String.valueOf(csvInfo[2].charAt(1)));
-            Semester semester = new Semester(semesterVal, yearVal);
+
+            YearEnum yearEnum = YearEnum.ADMITTED;
+
+            switch (yearVal) {
+                case 1:
+                    yearEnum = YearEnum.FIRST_YEAR;
+                    break;
+                case 2:
+                    yearEnum = YearEnum.FIRST_YEAR;
+                    break;
+                case 3:
+                    yearEnum = YearEnum.SECOND_YEAR;
+                    break;
+                case 4:
+                    yearEnum = YearEnum.SECOND_YEAR;
+                    break;
+                case 5:
+                    yearEnum = YearEnum.THIRD_YEAR;
+                    break;
+                case 6:
+                    yearEnum = YearEnum.THIRD_YEAR;
+                    break;
+                case 7:
+                    yearEnum = YearEnum.FOURTH_YEAR;
+                    break;
+                case 8:
+                    yearEnum = YearEnum.FOURTH_YEAR;
+                    break;
+                default:
+                    break; //should never happen
+            }
+
+            Semester semester = new Semester(semesterVal, yearEnum);
 
             //Try catch block in case we cannot add a semester to student
             try {
@@ -148,7 +180,7 @@ public class CSVReader {
         if (facade.getStudentManager().getStudent(studentNumber).getSemester(semesterVal) == null) {
 
 
-            Semester semester = new Semester(semesterVal, noYearValue);
+            Semester semester = new Semester(semesterVal, YearEnum.ADMITTED);
             facade.getStudentManager().getStudent(studentNumber).addSemester(semester);
 
             NavigableMap list = facade.getStudentManager().getStudent(studentNumber).getSemesters();
@@ -157,19 +189,19 @@ public class CSVReader {
             switch (action.getSemesterAction()) {
 
                 case ADMT:
-                    semester.setYearValue(admittedYearValue);
+                    semester.setYearValue(YearEnum.ADMITTED);
                     semester.addAction(action);
                     break;
                 case ADD:
-                    semester.setYearValue(prev.getValue().getYearVal()); //Gets the year value of the semester right before this one
+                    semester.setYearValue(prev.getValue().getYearEnum()); //Gets the year value of the semester right before this one
                     semester.addAction(action);
                     break;
                 case FIN:
-                    semester.setYearValue(graduatedYearValue);
+                    semester.setYearValue(YearEnum.GRADUATED);
                     semester.addAction(action);
                     break;
                 case DROPOUT:
-                    semester.setYearValue(prev.getValue().getYearVal());
+                    semester.setYearValue(prev.getValue().getYearEnum());
                     semester.addAction(action);
                     break;
                 case NO_ACTION:
@@ -180,7 +212,16 @@ public class CSVReader {
         } else {
             //else make a new semester, put into treemap
             //depending on the action, set level accordingly
-            getExistingSemester(studentNumber, semesterVal).addAction(action);
+
+            Semester existingSemester =   getExistingSemester(studentNumber, semesterVal);
+          existingSemester.addAction(action);
+
+          if (action.getSemesterAction().equals(ActionEnum.ADMT)) {
+                existingSemester.setYearValue(YearEnum.ADMITTED);
+            } else if (action.getSemesterAction().equals(ActionEnum.FIN)) {
+              existingSemester.setYearValue(YearEnum.GRADUATED);
+          }
+
         }
     }
 

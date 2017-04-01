@@ -1,3 +1,4 @@
+/*
 package com.eli.landa.cmpt213.UI;
 
 import com.eli.landa.cmpt213.Enums.ActionEnum;
@@ -9,9 +10,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.NavigableMap;
 
-/**
- * Created by Aria on 3/30/2017.
- */
+// Created by Aria on 3/30/2017.
+
+
 public class ModelDumpText { //UI is not done, just dummy data for some parts for the time being.
 
     String Major;
@@ -21,7 +22,6 @@ public class ModelDumpText { //UI is not done, just dummy data for some parts fo
     public ModelDumpText(ProgramEnum program) {
 
         this.program = program;
-        model.generateListsForProgram(program);
 
         switch (program) {
             case CSMAJ:
@@ -59,11 +59,11 @@ public class ModelDumpText { //UI is not done, just dummy data for some parts fo
                 "* Students in program at milestone *\n" +
                 "************************************");
 
-        printValuesAtYears(SemesterEnum.ADMITTED);
-        printValuesAtYears(SemesterEnum.FIRST_YEAR);
-        printValuesAtYears(SemesterEnum.SECOND_YEAR);
-        printValuesAtYears(SemesterEnum.THIRD_YEAR);
-        printValuesAtYears(SemesterEnum.FOURTH_YEAR);
+        printValuesAtYears(YearEnum.ADMITTED);
+        printValuesAtYears(YearEnum.FIRST_YEAR);
+        printValuesAtYears(YearEnum.SECOND_YEAR);
+        printValuesAtYears(YearEnum.THIRD_YEAR);
+        printValuesAtYears(YearEnum.FOURTH_YEAR);
 
         //
 
@@ -71,10 +71,10 @@ public class ModelDumpText { //UI is not done, just dummy data for some parts fo
                 "* Students joining program going into milestone *\n" +
                 "*************************************************");
 
-        printJoiningMilestone(SemesterEnum.FIRST_YEAR);
-        printJoiningMilestone(SemesterEnum.SECOND_YEAR);
-        printJoiningMilestone(SemesterEnum.THIRD_YEAR);
-        printJoiningMilestone(SemesterEnum.FOURTH_YEAR);
+        printJoiningMilestone(YearEnum.FIRST_YEAR);
+        printJoiningMilestone(YearEnum.SECOND_YEAR);
+        printJoiningMilestone(YearEnum.THIRD_YEAR);
+        printJoiningMilestone(YearEnum.FOURTH_YEAR);
 
         System.out.println("\n******************************************************\n" +
                 "* LEAVING: Students leaving program before milestone *\n" +
@@ -114,7 +114,7 @@ public class ModelDumpText { //UI is not done, just dummy data for some parts fo
     }
 
 
-    public void printEachJoiningMilestoneYearSpecificMajor(SemesterEnum Year, List<Student> list, ProgramEnum program) {
+    public void printEachJoiningMilestoneYearSpecificMajor(YearEnum Year, List<Student> list, ProgramEnum program) {
         int maleStudents = 0;
         int femaleStudents = 0;
         int unknownStudents = 0;
@@ -159,7 +159,7 @@ public class ModelDumpText { //UI is not done, just dummy data for some parts fo
         }
     }
 
-    public void printEachJoiningMilestoneYear(SemesterEnum Year) {
+    public void printEachJoiningMilestoneYear(YearEnum Year) {
 
         SemesterFilter filter = new SemesterFilter();
 
@@ -185,7 +185,7 @@ public class ModelDumpText { //UI is not done, just dummy data for some parts fo
                 "     Total   0");
     }
 
-    public void printJoiningMilestone(SemesterEnum Year) {
+    public void printJoiningMilestone(YearEnum Year) {
 
         switch (Year) {
             case FIRST_YEAR:
@@ -207,7 +207,7 @@ public class ModelDumpText { //UI is not done, just dummy data for some parts fo
         }
     }
 
-    private List getCurrentYearList(SemesterEnum Year) {
+    private List getCurrentYearList(YearEnum Year) {
 
         switch (Year) {
             case ADMITTED:
@@ -230,7 +230,7 @@ public class ModelDumpText { //UI is not done, just dummy data for some parts fo
         }
     }
 
-    public void printValuesAtYears(SemesterEnum Year) {
+    public void printValuesAtYears(YearEnum Year) {
 
         List<Student> currentYearStudentList = getCurrentYearList(Year);
 
@@ -281,3 +281,4 @@ public class ModelDumpText { //UI is not done, just dummy data for some parts fo
     }
 }
 
+*/

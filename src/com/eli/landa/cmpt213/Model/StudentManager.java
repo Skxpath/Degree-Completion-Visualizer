@@ -59,8 +59,11 @@ public class StudentManager {
 
                 if (currentSemester.hasSemesterAction(ActionEnum.ADMT)
                         || currentSemester.hasSemesterAction(ActionEnum.ADD)) {
-                    currentProgram = currentSemester.getListOfActions().get(0).getProgram();
-
+                    if(currentSemester.hasSemesterAction(ActionEnum.ADMT)) {
+                        currentProgram = currentSemester.getListOfActions().get(0).getProgram();
+                    } else {
+                        currentProgram = currentSemester.getListOfActions().get(1).getProgram();
+                    }
                 }
                 currentSemester.setProgram(currentProgram);
             }

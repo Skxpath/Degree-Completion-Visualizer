@@ -32,7 +32,7 @@ public class Main {
         studentsInProgramAtMilestone(YearEnum.FIRST_YEAR, ProgramEnum.CSMAJ);
         studentsInProgramAtMilestone(YearEnum.SECOND_YEAR, ProgramEnum.CSMAJ);
         studentsInProgramAtMilestone(YearEnum.THIRD_YEAR, ProgramEnum.CSMAJ);
-        //  studentsInProgramAtMilestone(YearEnum.FOURTH_YEAR, ProgramEnum.CSMAJ);
+        studentsInProgramAtMilestone(YearEnum.FOURTH_YEAR, ProgramEnum.CSMAJ);
 
 
     }

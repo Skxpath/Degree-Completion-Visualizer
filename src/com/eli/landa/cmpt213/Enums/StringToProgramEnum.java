@@ -15,18 +15,27 @@ public class StringToProgramEnum {
                 return ProgramEnum.SOSY;
             case "CSMNR":
                 return ProgramEnum.CSMNR;
+            case "CSJNT":
+                return ProgramEnum.CSJNT;
             case "HIST":
-                return ProgramEnum.HIST;
+                return ProgramEnum.OTHER;
+               // return ProgramEnum.HIST;
             case "ENSC":
-                return ProgramEnum.ENSC;
+                return ProgramEnum.OTHER;
+               // return ProgramEnum.ENSC;
             case "MSE":
-                return ProgramEnum.MSE;
+                return ProgramEnum.OTHER;
+                //return ProgramEnum.MSE;
             case "STAT":
-                return ProgramEnum.STAT;
+                return ProgramEnum.OTHER;
+                //return ProgramEnum.STAT;
             case "OTHER":
                 return ProgramEnum.OTHER;
+            case "Other":
+                return ProgramEnum.OTHER;
             default:
-                return ProgramEnum.NO_PROGRAM; //This case occurs when the person drops out of the program typically. The csvReader reads a blank.
+                return ProgramEnum.OTHER;
+               // return ProgramEnum.NO_PROGRAM; //This case occurs when the person drops out of the program typically. The csvReader reads a blank.
         }
     }
 }

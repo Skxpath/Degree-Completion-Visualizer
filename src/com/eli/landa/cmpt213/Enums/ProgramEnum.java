@@ -9,10 +9,12 @@ public enum ProgramEnum {
     CSMAJ,
     SOSY,
     CSMNR,
+    CSJNT,
     HIST,
     ENSC,
     MSE,
     STAT,
     OTHER,
-    NO_PROGRAM;
+    NO_PROGRAM,
+    DROPOUT;
 }

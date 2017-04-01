@@ -3,19 +3,19 @@ package com.eli.landa.cmpt213.UI;
 import com.eli.landa.cmpt213.Enums.GenderEnum;
 import com.eli.landa.cmpt213.Enums.ProgramEnum;
 import com.eli.landa.cmpt213.Enums.YearEnum;
-import com.eli.landa.cmpt213.Model.*;
+import com.eli.landa.cmpt213.Model.CSVReader;
+import com.eli.landa.cmpt213.Model.DegreeCompletionVisualizerFacade;
+import com.eli.landa.cmpt213.Model.Student;
+import com.eli.landa.cmpt213.Model.StudentManager;
 
 import java.io.File;
 import java.util.List;
-import java.util.Map;
-import java.util.NavigableMap;
 
 public class Main {
     static DegreeCompletionVisualizerFacade model = DegreeCompletionVisualizerFacade.getInstance();
 
     //Files are populated from a local directory in CSVReader.java line 192. This must be changed to fit the directory of the user.
     public static void main(String[] args) {
-
 
         CSVReader reader = new CSVReader();
         List<File> files = reader.populateFiles();
@@ -27,119 +27,173 @@ public class Main {
 
         model.getStudentManager().populateProgramsInStudentSemesters();
 
-        //System.out.println(model.getStudentManager().getStudent(302343785).getSemesters().toString());
-        studentsInProgramAtMilestone(YearEnum.ADMITTED, ProgramEnum.CSMAJ);
-        studentsInProgramAtMilestone(YearEnum.FIRST_YEAR, ProgramEnum.CSMAJ);
-        studentsInProgramAtMilestone(YearEnum.SECOND_YEAR, ProgramEnum.CSMAJ);
-        studentsInProgramAtMilestone(YearEnum.THIRD_YEAR, ProgramEnum.CSMAJ);
-        studentsInProgramAtMilestone(YearEnum.FOURTH_YEAR, ProgramEnum.CSMAJ);
+        displayUI(ProgramEnum.CSMAJ);
 
 
     }
 
-    static void printSecondYearFemales() {
+    private static void displayUI(ProgramEnum selectedProgram) {
+        System.out.println("************************************\n" +
+                "* Students in program at milestone *\n" +
+                "************************************");
+
+        studentsInProgramAtMilestone(YearEnum.ADMITTED, selectedProgram);
+        studentsInProgramAtMilestone(YearEnum.FIRST_YEAR, selectedProgram);
+        studentsInProgramAtMilestone(YearEnum.SECOND_YEAR, selectedProgram);
+        studentsInProgramAtMilestone(YearEnum.THIRD_YEAR, selectedProgram);
+        studentsInProgramAtMilestone(YearEnum.FOURTH_YEAR, selectedProgram);
+        studentsInProgramAtMilestone(YearEnum.GRADUATED, selectedProgram);
+
+        System.out.println("\n*************************************************\n" +
+                "* Students joining program going into milestone *\n" +
+                "*************************************************");
+
+        studentsWhoJoinProgramAtMilestone(YearEnum.FIRST_YEAR, selectedProgram);
+        studentsWhoJoinProgramAtMilestone(YearEnum.SECOND_YEAR, selectedProgram);
+        studentsWhoJoinProgramAtMilestone(YearEnum.THIRD_YEAR, selectedProgram);
+        studentsWhoJoinProgramAtMilestone(YearEnum.FOURTH_YEAR, selectedProgram);
+
+        System.out.println("******************************************************\n" +
+                "* LEAVING: Students leaving program before milestone *\n" +
+                "******************************************************");
+
+        studentsWhoLeftProgramAtMilestone(YearEnum.FIRST_YEAR, selectedProgram);
+        studentsWhoLeftProgramAtMilestone(YearEnum.SECOND_YEAR, selectedProgram);
+        studentsWhoLeftProgramAtMilestone(YearEnum.THIRD_YEAR, selectedProgram);
+        studentsWhoLeftProgramAtMilestone(YearEnum.FOURTH_YEAR, selectedProgram);
+    }
+
+    static void studentsWhoJoinProgramAtMilestone(YearEnum yearEnum, ProgramEnum programEnum) {
+
+        System.out.println("Year: " + yearEnum);
+
+        int totalJoined = 0;
+
+        totalJoined += joinedFromSpecificProgram(programEnum, ProgramEnum.CSMAJ, yearEnum);
+        totalJoined += joinedFromSpecificProgram(programEnum, ProgramEnum.SOSY, yearEnum);
+        totalJoined += joinedFromSpecificProgram(programEnum, ProgramEnum.CSMNR, yearEnum);
+        totalJoined += joinedFromSpecificProgram(programEnum, ProgramEnum.CSJNT, yearEnum);
+        totalJoined += joinedFromSpecificProgram(programEnum, ProgramEnum.OTHER, yearEnum);
+        totalJoined += joinedFromSpecificProgram(programEnum, ProgramEnum.NO_PROGRAM, yearEnum);
+        System.out.println("Total Joined: " + totalJoined + "\n");
+    }
+
+    static void studentsWhoLeftProgramAtMilestone(YearEnum yearEnum, ProgramEnum programEnum) {
+
+        System.out.println("Year: " + yearEnum);
+
+        int totalLeft = 0;
+
+        totalLeft += leftToSpecificProgram(programEnum, ProgramEnum.CSMAJ, yearEnum);
+        totalLeft += leftToSpecificProgram(programEnum, ProgramEnum.SOSY, yearEnum);
+        totalLeft += leftToSpecificProgram(programEnum, ProgramEnum.CSMNR, yearEnum);
+        totalLeft += leftToSpecificProgram(programEnum, ProgramEnum.CSJNT, yearEnum);
+        totalLeft += leftToSpecificProgram(programEnum, ProgramEnum.OTHER, yearEnum);
+        totalLeft += leftToSpecificProgram(programEnum, ProgramEnum.NO_PROGRAM, yearEnum);
+        System.out.println("Total Left: " + totalLeft + "\n");
+    }
+
+    static int leftToSpecificProgram(ProgramEnum programEnum, ProgramEnum newProgram, YearEnum yearEnum) {
+        DumpWithFilters dumpWithFilters = new DumpWithFilters();
+
         StudentManager studentManager = model.getStudentManager();
         List<Student> allStudent = studentManager.getStudents();
-        DumpWithFilters dumpWithFilters = new DumpWithFilters();
-        List<Student> filteredStudnts;
-        filteredStudnts = dumpWithFilters.sortByYear(YearEnum.SECOND_YEAR, allStudent);
-        filteredStudnts = dumpWithFilters.sortByGender(GenderEnum.FEMALE, filteredStudnts);
-        for (Student student : filteredStudnts) {
-            System.out.println(student.toString());
+
+        List<Student> filteredStudntsMale;
+        List<Student> filteredStudntsFemale;
+        List<Student> filteredStudntsUnknown;
+
+        List<Student> filteredStudntsMaleLeft;
+        List<Student> filteredStudntsFemaleLeft;
+        List<Student> filteredStudntsUnknownLeft;
+
+        List<Student> filteredStudntsMaleDropped;
+        List<Student> filteredStudntsFemaleDropped;
+        List<Student> filteredStudntsUnknownDropped;
+
+        filteredStudntsMale = dumpWithFilters.sortByProgramWithGivenYear(newProgram, yearEnum, allStudent);
+        filteredStudntsMale = dumpWithFilters.sortByGender(GenderEnum.MALE, filteredStudntsMale);
+        filteredStudntsFemale = dumpWithFilters.sortByProgramWithGivenYear(newProgram, yearEnum, allStudent);
+        filteredStudntsFemale = dumpWithFilters.sortByGender(GenderEnum.FEMALE, filteredStudntsFemale);
+        filteredStudntsUnknown = dumpWithFilters.sortByProgramWithGivenYear(newProgram, yearEnum, allStudent);
+        filteredStudntsUnknown = dumpWithFilters.sortByGender(GenderEnum.UNKNOWN, filteredStudntsUnknown);
+
+        filteredStudntsMaleLeft = dumpWithFilters.listOfStudentsLeavingToAGivenProgramAtAGivenYear(yearEnum, filteredStudntsMale, programEnum);
+        filteredStudntsFemaleLeft = dumpWithFilters.listOfStudentsLeavingToAGivenProgramAtAGivenYear(yearEnum, filteredStudntsFemale, programEnum);
+        filteredStudntsUnknownLeft = dumpWithFilters.listOfStudentsLeavingToAGivenProgramAtAGivenYear(yearEnum, filteredStudntsUnknown, programEnum);
+
+        int totalLeft = filteredStudntsMaleLeft.size() + filteredStudntsFemaleLeft.size() + filteredStudntsUnknownLeft.size();
+
+        if (newProgram == ProgramEnum.NO_PROGRAM) {
+            filteredStudntsMale = dumpWithFilters.sortByProgramWithGivenYear(programEnum, yearEnum, allStudent);
+            filteredStudntsMale = dumpWithFilters.sortByGender(GenderEnum.MALE, filteredStudntsMale);
+            filteredStudntsFemale = dumpWithFilters.sortByProgramWithGivenYear(programEnum, yearEnum, allStudent);
+            filteredStudntsFemale = dumpWithFilters.sortByGender(GenderEnum.FEMALE, filteredStudntsFemale);
+            filteredStudntsUnknown = dumpWithFilters.sortByProgramWithGivenYear(programEnum, yearEnum, allStudent);
+            filteredStudntsUnknown = dumpWithFilters.sortByGender(GenderEnum.UNKNOWN, filteredStudntsUnknown);
+
+            filteredStudntsMaleDropped = dumpWithFilters.listOfStudentWhoDroppedOutInAGivenYear(yearEnum, filteredStudntsMale);
+            filteredStudntsFemaleDropped = dumpWithFilters.listOfStudentWhoDroppedOutInAGivenYear(yearEnum, filteredStudntsFemale);
+            filteredStudntsUnknownDropped = dumpWithFilters.listOfStudentWhoDroppedOutInAGivenYear(yearEnum, filteredStudntsUnknown);
+
+            totalLeft = filteredStudntsMaleDropped.size()+filteredStudntsFemaleDropped.size()+filteredStudntsUnknownDropped.size();
+
+            System.out.println("left: " + totalLeft
+                    + " M=    " + filteredStudntsMaleDropped.size()
+                    + " F=    " + filteredStudntsFemaleDropped.size() + " U=    " + filteredStudntsUnknownDropped.size() + " (reason for leaving " + newProgram + ")");
+
+            return totalLeft;
         }
 
-        NavigableMap<Integer, Semester> studentSemesterList;
-        studentSemesterList = studentManager.getStudent(326209703).getSemesters();
-        System.out.println(studentSemesterList.toString());
+        System.out.println("left: " + totalLeft
+                + " M=    " + filteredStudntsMaleLeft.size()
+                + " F=    " + filteredStudntsFemaleLeft.size() + " U=    " + filteredStudntsUnknownLeft.size() + " (reason for leaving " + newProgram + ")");
 
-        System.out.println(studentSemesterList.size());
-
-        for (Map.Entry<Integer, Semester> semester : studentSemesterList.entrySet()) {
-            System.out.println(semester.getValue().toString());
-        }
-
+        return totalLeft;
     }
 
-    static void printSecondYearFemalesInCSMajor() {
+
+    static int joinedFromSpecificProgram(ProgramEnum programEnum, ProgramEnum newProgram, YearEnum yearEnum) {
+
+        DumpWithFilters dumpWithFilters = new DumpWithFilters();
+
         StudentManager studentManager = model.getStudentManager();
         List<Student> allStudent = studentManager.getStudents();
-        DumpWithFilters dumpWithFilters = new DumpWithFilters();
-        List<Student> filteredStudnts;
-        filteredStudnts = dumpWithFilters.sortByGender(GenderEnum.FEMALE, allStudent);
-        System.out.println("Size of filtered List " + filteredStudnts.size());
-        filteredStudnts = dumpWithFilters.sortByProgramWithGivenYear(ProgramEnum.CSMAJ, YearEnum.SECOND_YEAR, filteredStudnts);
-        System.out.println("Size of filtered List " + filteredStudnts.size());
 
+        List<Student> filteredStudntsMale;
+        List<Student> filteredStudntsFemale;
+        List<Student> filteredStudntsUnknown;
 
-        for (Student student : filteredStudnts) {
-            System.out.println(student.toString());
-        }
+        List<Student> filteredStudntsMaleLeft;
+        List<Student> filteredStudntsFemaleLeft;
+        List<Student> filteredStudntsUnknownLeft;
 
-        // System.out.println(studentSemesterList.size());
+        filteredStudntsMale = dumpWithFilters.sortByProgramWithGivenYear(programEnum, yearEnum, allStudent);
+        filteredStudntsMale = dumpWithFilters.sortByGender(GenderEnum.MALE, filteredStudntsMale);
+        filteredStudntsFemale = dumpWithFilters.sortByProgramWithGivenYear(programEnum, yearEnum, allStudent);
+        filteredStudntsFemale = dumpWithFilters.sortByGender(GenderEnum.FEMALE, filteredStudntsFemale);
+        filteredStudntsUnknown = dumpWithFilters.sortByProgramWithGivenYear(programEnum, yearEnum, allStudent);
+        filteredStudntsUnknown = dumpWithFilters.sortByGender(GenderEnum.UNKNOWN, filteredStudntsUnknown);
 
+        filteredStudntsMaleLeft = dumpWithFilters.listOfStudentsLeavingToAGivenProgramAtAGivenYear(yearEnum, filteredStudntsMale, newProgram);
+        filteredStudntsFemaleLeft = dumpWithFilters.listOfStudentsLeavingToAGivenProgramAtAGivenYear(yearEnum, filteredStudntsFemale, newProgram);
+        filteredStudntsUnknownLeft = dumpWithFilters.listOfStudentsLeavingToAGivenProgramAtAGivenYear(yearEnum, filteredStudntsUnknown, newProgram);
 
+        int totalJoined = filteredStudntsMaleLeft.size() + filteredStudntsFemaleLeft.size() + filteredStudntsUnknownLeft.size();
+
+        System.out.println("joined: " + totalJoined
+                + " M=    " + filteredStudntsMaleLeft.size()
+                + " F=    " + filteredStudntsFemaleLeft.size() + " U=    " + filteredStudntsUnknownLeft.size() + " (previous program " + newProgram + ")");
+
+        return totalJoined;
     }
 
-    static void printOutFlowOfStudentsIn2ndYearCSMajorThatAreAlsoFemale() {
-        StudentManager studentManager = model.getStudentManager();
-        List<Student> allStudent = studentManager.getStudents();
-        DumpWithFilters dumpWithFilters = new DumpWithFilters();
-        List<Student> filteredStudnts;
-        filteredStudnts = dumpWithFilters.sortByGender(GenderEnum.MALE, allStudent);
-        // System.out.println("Size of filtered List " + filteredStudnts.size());
-        filteredStudnts = dumpWithFilters.listOfStudentsLeavingToAGivenProgramAtAGivenYear(YearEnum.THIRD_YEAR, filteredStudnts, ProgramEnum.CSMAJ);
-        // filteredStudnts = dumpWithFilters.listOfStudentsLeavingAtAGivenYear(YearEnum.THIRD_YEAR, filteredStudnts);
-        System.out.println("Size of filtered List " + filteredStudnts.size());
-        for (Student student : filteredStudnts) {
-            if (!student.getRemoveSemesters().isEmpty()) {
-                System.out.println(student.getStudentNumber() + ": Leaving to " + student.lastRemoveInAGivenYear(YearEnum.THIRD_YEAR).getListOfActions().get(1).getProgram());
-            } else {
-                System.out.println(student.toString() + "no remove");
-            }
-
-        }
-
-    }
-
-    static void printInFlowOfStudentsIn2ndYearCSMajorThatAreAlsoFemale() {
-        StudentManager studentManager = model.getStudentManager();
-        List<Student> allStudent = studentManager.getStudents();
-        DumpWithFilters dumpWithFilters = new DumpWithFilters();
-        List<Student> filteredStudnts;
-        filteredStudnts = dumpWithFilters.sortByGender(GenderEnum.MALE, allStudent);
-        // System.out.println("Size of filtered List " + filteredStudnts.size());
-        filteredStudnts = dumpWithFilters.listOfStudentsComingToAGivenProgramAtAGivenYear(YearEnum.THIRD_YEAR, filteredStudnts, ProgramEnum.SOSY);
-        // filteredStudnts = dumpWithFilters.listOfStudentsLeavingAtAGivenYear(YearEnum.THIRD_YEAR, filteredStudnts);
-        System.out.println("Size of filtered List " + filteredStudnts.size());
-        for (Student student : filteredStudnts) {
-            if (!student.getRemoveSemesters().isEmpty()) {
-                System.out.println(student.getStudentNumber() + ": Coming from " + student.lastRemoveInAGivenYear(YearEnum.THIRD_YEAR).getListOfActions().get(0).getProgram());
-            } else {
-                System.out.println(student.toString() + "no remove");
-            }
-
-        }
-
-    }
 
     static void studentsInProgramAtMilestone(YearEnum yearEnum, ProgramEnum programEnum) {
-/*        ************************************
-*       Students in program at milestone *
-        ************************************
-        ADMITTED    1: M=    0  F=    1  U=    0 (CS_MAJOR students at ADMITTED)
-        YEAR1    1: M=    0  F=    1  U=    0 (CS_MAJOR students at YEAR1)
-        YEAR2    1: M=    0  F=    1  U=    0 (CS_MAJOR students at YEAR2)
-        YEAR3    1: M=    0  F=    1  U=    0 (CS_MAJOR students at YEAR3)
-        YEAR4    1: M=    0  F=    1  U=    0 (CS_MAJOR students at YEAR4)
-        GRADUATED    1: M=    0  F=    1  U=    0 (CS_MAJOR students at GRADUATED)*/
-
-
 
         StudentManager studentManager = model.getStudentManager();
         List<Student> allStudent = studentManager.getStudents();
         DumpWithFilters dumpWithFilters = new DumpWithFilters();
-
-        //System.out.println(allStudent.size());
 
         List<Student> filteredStudntsMale;
         List<Student> filteredStudntsFemale;
@@ -155,7 +209,6 @@ public class Main {
         filteredStudntsMale = dumpWithFilters.sortByGender(GenderEnum.MALE, filteredStudntsMale);
         filteredStudntsMaleLeft = dumpWithFilters.listOfStudentsLeavingToAGivenProgramAtAGivenYear(yearEnum, filteredStudntsMale, programEnum);
         filteredStudntsMaleDropped = dumpWithFilters.listOfStudentWhoDroppedOutInAGivenYear(yearEnum, filteredStudntsMale);
-
 
 
         filteredStudntsFemale = dumpWithFilters.sortByProgramWithGivenYear(programEnum, yearEnum, allStudent);

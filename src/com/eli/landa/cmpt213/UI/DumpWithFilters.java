@@ -65,8 +65,11 @@ public class DumpWithFilters {
             public boolean acceptStudent(Student student) {
                 //if the student in their last semester in the given year is in the given program, accept
                 if(student.hasSemesters()) {
+
                     if (student.getLastSemesterInAYear(yearEnum) != null) {
+
                         if (student.getLastSemesterInAYear(yearEnum).getProgram() != null) {
+
                             if (student.getLastSemesterInAYear(yearEnum).getProgram().equals(programEnum)) {
                                 return true;
                             }
@@ -81,6 +84,7 @@ public class DumpWithFilters {
                 filteredStudents.add(student);
             }
         }
+
 
         return filteredStudents;
     }

@@ -4,7 +4,6 @@ import com.eli.landa.cmpt213.Enums.ActionEnum;
 import com.eli.landa.cmpt213.Enums.GenderEnum;
 import com.eli.landa.cmpt213.Enums.YearEnum;
 
-import java.util.List;
 import java.util.Map;
 import java.util.NavigableMap;
 import java.util.TreeMap;
@@ -81,14 +80,13 @@ public class Student {
             //if there are, then you didnt drop out mid year
             //if its true, return the final value in the semestersInAGivenYear (this semester is your last semester in a given year since the map is ordered)
            if (hasYear) {
-                if (semesters.higherEntry(semestersinAGivenYear.lastKey()) != null) {
-                    if (!semestersinAGivenYear.lastEntry().getValue().getListOfActions().isEmpty()) {
-                        if (semestersinAGivenYear.lastEntry().getValue().getListOfActions().get(0).equals(ActionEnum.FIN)
-                                || semestersinAGivenYear.lastEntry().getValue().getListOfActions().get(0).equals(ActionEnum.DROPOUT)) {
-                            return semestersinAGivenYear.lastEntry().getValue();
-                        }
-                  }
+                if (!semestersinAGivenYear.lastEntry().getValue().getListOfActions().isEmpty()) {
+                    if (semestersinAGivenYear.lastEntry().getValue().getListOfActions().get(0).equals(ActionEnum.FIN) || semestersinAGivenYear.lastEntry().getValue().getListOfActions().get(0).equals(ActionEnum.DROPOUT)) {
+                        return semestersinAGivenYear.lastEntry().getValue();
+                    }
                 }
+             //  System.out.println(semestersinAGivenYear.lastEntry().getValue().getProgram());
+               return semestersinAGivenYear.lastEntry().getValue();
            }
             else {
                 return null;

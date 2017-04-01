@@ -139,7 +139,7 @@ public class Main {
         List<Student> allStudent = studentManager.getStudents();
         DumpWithFilters dumpWithFilters = new DumpWithFilters();
 
-        System.out.println(allStudent.size());
+        //System.out.println(allStudent.size());
 
         List<Student> filteredStudntsMale;
         List<Student> filteredStudntsFemale;
@@ -152,7 +152,6 @@ public class Main {
         List<Student> filteredStudntsUnknownDropped;
 
         filteredStudntsMale = dumpWithFilters.sortByProgramWithGivenYear(programEnum, yearEnum, allStudent);
-        System.out.println( filteredStudntsMale.size());
         filteredStudntsMale = dumpWithFilters.sortByGender(GenderEnum.MALE, filteredStudntsMale);
         filteredStudntsMaleLeft = dumpWithFilters.listOfStudentsLeavingToAGivenProgramAtAGivenYear(yearEnum, filteredStudntsMale, programEnum);
         filteredStudntsMaleDropped = dumpWithFilters.listOfStudentWhoDroppedOutInAGivenYear(yearEnum, filteredStudntsMale);
@@ -169,11 +168,11 @@ public class Main {
         filteredStudntsUnknownLeft = dumpWithFilters.listOfStudentsLeavingToAGivenProgramAtAGivenYear(yearEnum, filteredStudntsUnknown, programEnum);
         filteredStudntsUnknownDropped = dumpWithFilters.listOfStudentWhoDroppedOutInAGivenYear(yearEnum, filteredStudntsUnknown);
 
-        NavigableMap<Integer, Semester> semestersinAGivenYear = studentManager.getStudent(392960629).getSemesters();
+       /* NavigableMap<Integer, Semester> semestersinAGivenYear = studentManager.getStudent(392960629).getSemesters();
 
         for (Map.Entry<Integer, Semester> semester : semestersinAGivenYear.entrySet()) {
             //  System.out.println(semester.getValue().getProgram());
-        }
+        }*/
 
 
         // System.out.println("M Drop: " + filteredStudntsMaleLeft.size() + " F Drop: " + filteredStudntsFemaleLeft.size() + " U Drop: " + filteredStudntsUnknownLeft.size());

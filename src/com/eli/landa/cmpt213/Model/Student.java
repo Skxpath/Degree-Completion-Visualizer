@@ -1,27 +1,26 @@
 package com.eli.landa.cmpt213.Model;
 
+import com.eli.landa.cmpt213.Enums.ActionEnum;
+import com.eli.landa.cmpt213.Enums.GenderEnum;
+import com.eli.landa.cmpt213.Enums.YearEnum;
+
+import java.util.Map;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 
 /**
  * Created by Eli on 2017-03-25.
+ *
+ * Student Class that stores an object for each student.
+ *
  */
 
 public class Student {
     private int studentNumber;
-    private char gender; // M, F, U
-    private int yearsOfStudy;
+    private GenderEnum gender; // Male, Female, Unknown
     private NavigableMap<Integer, Semester> semesters = new TreeMap<>(); //new tree map sorted by semester code. The natural order.
 
-    //Different semesters mapping to the students admitted semster, end of first, second, third, foruth semesters for easy retrieval later.
-    private Semester admittedSemester;
-    private Semester endOfFirstYearSemester;
-    private Semester endOfSecondYearSemester;
-    private Semester endOfThirdYearSemester;
-    private Semester endOfFourthYearSemester;
-
-
-    public Student(int studentNumber, char gender) {
+    public Student(int studentNumber, GenderEnum gender) {
         this.studentNumber = studentNumber;
         this.gender = gender;
     }
@@ -34,20 +33,12 @@ public class Student {
         this.studentNumber = studentNumber;
     }
 
-    public char getGender() {
+    public GenderEnum getGender() {
         return gender;
     }
 
-    public void setGender(char gender) {
+    public void setGender(GenderEnum gender) {
         this.gender = gender;
-    }
-
-    public int getYearsOfStudy() {
-        return yearsOfStudy;
-    }
-
-    public void setYearsOfStudy(int yearsOfStudy) {
-        this.yearsOfStudy = yearsOfStudy;
     }
 
     public NavigableMap getSemesters() { //Returns the semester TreeMap
@@ -56,102 +47,112 @@ public class Student {
 
     public Semester getSemester(int semesterVal) {
         if (semesters.containsKey(semesterVal)) { //Checks through the treemap if it contains a semester with the semester val. If true, return this.
-            System.out.println("got existing semester!");
+
             return semesters.get(semesterVal);
 
         }
-        System.out.println("DID NOT GET existing semester! " + studentNumber);
         return null;
     }
 
     //Adds semester to the treemap, ordered naturally by semester code.
     public void addSemester(Semester semester) {
-      /*  Semester test = new Semester(10, 2);
-        System.out.println("Semester: " + test.getSemesterCode() + " yearVal: " + test.getYearVal());
-        semesters.put(test.getSemesterCode(), test);
-        System.out.println("Retrieved Semester: " + semesters.get(10).getSemesterCode() + " yearVal: " + semesters.get(10).getYearVal());*/
 
-       // System.out.println("Added semester!" + semester.toString());
-         semesters.put(semester.getSemesterCode(), semester);
-         semesters.get(semester.getSemesterCode());
-       System.out.println("semester size: " + semesters.size());
+        semesters.put(semester.getSemesterCode(), semester);
+        semesters.get(semester.getSemesterCode());
+
     }
+    public Semester getLastSemesterInAYear (YearEnum yearEnum){
+        //list of semesters in a given year
+        if(hasSemesters()) {
+            NavigableMap<Integer, Semester> semestersinAGivenYear = new TreeMap<>();
+
+            boolean hasYear = false;
+
+            for (Map.Entry<Integer, Semester> semester : semesters.entrySet()) {
+                if (semester.getValue().getYearEnum().equals(yearEnum)) {
+                    semestersinAGivenYear.put(semester.getKey(), semester.getValue());
+                    hasYear = true;
+                }
+            }
 
 
-    //Getters and setters for different key semesters of a student
-    public Semester getAdmittedSemester() {
-        return admittedSemester;
-    }
-
-    public void setAdmittedSemester(Semester admittedSemester) {
-        this.admittedSemester = admittedSemester;
-    }
-
-    public Semester getEndOfFirstYearSemester() {
-        return endOfFirstYearSemester;
-    }
-
-    public void setEndOfFirstYearSemester(Semester endOfFirstYearSemester) {
-        this.endOfFirstYearSemester = endOfFirstYearSemester;
-    }
-
-    public Semester getEndOfSecondYearSemester() {
-        return endOfSecondYearSemester;
-    }
-
-    public void setEndOfSecondYearSemester(Semester endOfSecondYearSemester) {
-        this.endOfSecondYearSemester = endOfSecondYearSemester;
-    }
-
-    public Semester getEndOfThirdYearSemester() {
-        return endOfThirdYearSemester;
-    }
-
-    public void setEndOfThirdYearSemester(Semester endOfThirdYearSemester) {
-        this.endOfThirdYearSemester = endOfThirdYearSemester;
-    }
-
-    public Semester getEndOfFourthYearSemester() {
-        return endOfFourthYearSemester;
-    }
-
-    public void setEndOfFourthYearSemester(Semester endOfFourthYearSemester) {
-        this.endOfFourthYearSemester = endOfFourthYearSemester;
-    }
-
-    @Override
-    public String toString() {
-        return ("Student Number: " + studentNumber + " Gender: " + gender + " Year Of Study: " + yearsOfStudy + " end of first year semesters " + semesters.size());
-    }
-}
-//Unnecessary constructors
-
-/*    public Student(long studentNumber, char gender, int yearsOfStudy, Semester semester) {
-        this.studentNumber = studentNumber;
-        this.gender = gender;
-        this.yearsOfStudy = yearsOfStudy;
-        this.semesters.add(semester);
-    }*/
-
-/*    public Student(long studentNumber, Semester semester) {
-        this.studentNumber = studentNumber;
-        this.semesters.add(semester);
-    }
-
-    public Student(long studentNumber, int yearsOfStudy, Semester semester) {
-        this.studentNumber = studentNumber;
-        this.yearsOfStudy = yearsOfStudy;
-        this.semesters.add(semester);
-    }*/
-/*    public Student(long studentNumber) {
-        this.studentNumber = studentNumber;
-    }*/
-
- /*   public boolean hasSemester(int semesterVal) {
-        for (Semester semester : semesters) {
-            if (semesterVal == semester.getSemesterCode()) {
-                return true;
+            //checks to make sure there are years occuring after your final semester in the given year
+            //if there are, then you didnt drop out mid year
+            //if its true, return the final value in the semestersInAGivenYear (this semester is your last semester in a given year since the map is ordered)
+           if (hasYear) {
+                if (!semestersinAGivenYear.lastEntry().getValue().getListOfActions().isEmpty()) {
+                    if (semestersinAGivenYear.lastEntry().getValue().getListOfActions().get(0).equals(ActionEnum.FIN) || semestersinAGivenYear.lastEntry().getValue().getListOfActions().get(0).equals(ActionEnum.DROPOUT)) {
+                        return semestersinAGivenYear.lastEntry().getValue();
+                    }
+                }
+             //  System.out.println(semestersinAGivenYear.lastEntry().getValue().getProgram());
+               return semestersinAGivenYear.lastEntry().getValue();
+           }
+            else {
+                return null;
             }
         }
+        return null;
+    }
+    public boolean hasSemesters () {
+        if(semesters.size() > 0){
+            return true;
+        }
         return false;
-    }*/
+    }
+    public NavigableMap getRemoveSemesters() { //Returns the semester TreeMap
+        NavigableMap<Integer, Semester> removeSemesters = new TreeMap<>();
+        if(semesters.size() > 0) {
+
+            for (Map.Entry<Integer, Semester> semester : semesters.entrySet()) {
+
+                    if (!semester.getValue().getListOfActions().isEmpty()) {
+
+                        if (semester.getValue().getListOfActions().get(0).getSemesterAction().equals(ActionEnum.REM)) {
+                            removeSemesters.put(semester.getKey(), semester.getValue());
+                        }
+                    }
+                }
+            }
+
+        return removeSemesters;
+    }
+    public NavigableMap getAddSemesters() { //Returns the semester TreeMap
+        NavigableMap<Integer, Semester> addSemesters = new TreeMap<>();
+        for (Map.Entry<Integer, Semester> semester : semesters.entrySet()) {
+            if (semester.getValue().getListOfActions().get(0).equals(ActionEnum.ADD)) {
+                addSemesters.put(semester.getKey(), semester.getValue());
+            }
+        }
+        return addSemesters;
+    }
+    public Semester lastRemoveInAGivenYear (YearEnum yearEnum){
+        //list of all semesters with REM action
+        NavigableMap<Integer, Semester> removeSemesters = new TreeMap<>();
+
+        //list of all semesters with REM action that also happens to be on the given year
+        NavigableMap<Integer, Semester> removeSemestersInTheGivenYear = new TreeMap<>();
+
+        //sets it to list of all semesters with REM action
+        removeSemesters = getRemoveSemesters();
+
+        //iterate
+        for (Map.Entry<Integer, Semester> semester : removeSemesters.entrySet()) {
+            //if the list of all semesters with the REM action has a semester that happens on the given year, put that semester into the removeSemestersInTheGivenYear map
+            if (semester.getValue().getYearEnum().equals(yearEnum)){
+                removeSemestersInTheGivenYear.put(semester.getKey(),semester.getValue());
+            }
+        }
+        //return the final entry in removeSemestersInTheGivenYear map
+        if (!removeSemestersInTheGivenYear.isEmpty()) {
+            return removeSemestersInTheGivenYear.lastEntry().getValue();
+        } else {
+            return null;
+        }
+
+    }
+    @Override
+    public String toString() {
+        return ("Student Number: " + studentNumber + " Gender: " + gender + " Semesters List Size: " + semesters.size());
+    }
+}

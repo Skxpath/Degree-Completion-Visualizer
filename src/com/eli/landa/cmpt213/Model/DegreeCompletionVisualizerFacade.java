@@ -1,17 +1,21 @@
 package com.eli.landa.cmpt213.Model;
 
-import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Eli on 2017-03-25.
+ *
+ * Facade class to access everything required by the system.
  */
 public class DegreeCompletionVisualizerFacade {
 
-    //Singleton model of Facade. Contains a studentmanager which contains everything ele
+    //Singleton model of Facade. Contains a studentmanager which contains everything else
     private static DegreeCompletionVisualizerFacade ourInstance = new DegreeCompletionVisualizerFacade();
-    private  StudentManager studentManager;
+    private StudentManager studentManager;
     private CSVReader reader;
+
+    private static List<Student> startingStudentList = new ArrayList<>();
 
     private DegreeCompletionVisualizerFacade() {
         studentManager = new StudentManager();
@@ -21,10 +25,15 @@ public class DegreeCompletionVisualizerFacade {
         return ourInstance;
     }
 
-    public  StudentManager getStudentManager() {
+    public StudentManager getStudentManager() {
         return studentManager;
     }
-    public void setCSVReader (CSVReader reader){
+
+    public List getAllStudentsList() {
+        return studentManager.getStudents();
+    }
+
+    public void setCSVReader(CSVReader reader) {
         this.reader = reader;
     }
 }

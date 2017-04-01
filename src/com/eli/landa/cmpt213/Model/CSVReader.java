@@ -1,5 +1,7 @@
 package com.eli.landa.cmpt213.Model;
 
+import com.eli.landa.cmpt213.Enums.*;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,12 +10,17 @@ import java.util.NavigableMap;
 
 /**
  * Created by Eli on 2017-03-25.
+ *
+ * CSVreader class
  */
 public class CSVReader {
+    public static final int noYearValue = 0;
+    public static final int admittedYearValue = 1;
+    public static final int graduatedYearValue = 8;
     private BufferedReader br = null;
     private String line = "";
     private String cvsSplitBy = ",";
-
+    private FileEnum fileEnum;
     //Instance of our facade class.
     private static DegreeCompletionVisualizerFacade facade = DegreeCompletionVisualizerFacade.getInstance();
 
@@ -23,13 +30,25 @@ public class CSVReader {
             //read in from file until its empty
             br = new BufferedReader(new FileReader(csvFile));
             line = br.readLine();
+            String[] csvInfo = line.split(cvsSplitBy);
+            //check the size of the FIRST row which has the column names
+            //use this size to determine what file we are looking ar
+            if (csvInfo.length == 2) {
+                fileEnum = FileEnum.TEST_STUDENTS;
+            } else if (csvInfo.length == 3) {
+                fileEnum = FileEnum.TEST_SEMESTERS;
+            } else if (csvInfo.length == 4) {
+                fileEnum = FileEnum.TEST_PROGRAMS;
+            }
             line = br.readLine();
             while (line != null) {
-                // System.out.println("test");
                 // use comma as separator
-                String[] csvInfo = line.split(cvsSplitBy);
+                csvInfo = line.split(cvsSplitBy);
+                if (csvInfo.length == 2) {
+
+                }
                 //this will be some kind of function for actually placing csv info into students or semester classes
-                storeCSVInfoToStudentManager(csvInfo);
+                storeCSVInfoToStudentManager(csvInfo, fileEnum);
                 line = br.readLine();
 
             }
@@ -51,22 +70,73 @@ public class CSVReader {
 
     //this will be some kind of function for actually placing csv info into students or semester classes
     //You would parse students.csv first, followed by semesters, and finally programs.
-    private void storeCSVInfoToStudentManager(String[] csvInfo) {
+    private void storeCSVInfoToStudentManager(String[] csvInfo, FileEnum fileEnum) {
         //student# is always in the 0 column and all csv files have it
         int studentNumber = Integer.parseInt(csvInfo[0]);
 
         //check what kind of file we are reading
-        if (csvInfo.length == 2) { //length of 2 indicated test_student.csv
+        if (fileEnum.equals(FileEnum.TEST_STUDENTS)) { //length of 2 indicated test_student.csv
             char gender = csvInfo[1].charAt(1);
-            Student newStudent = new Student(studentNumber, gender);
+
+            GenderEnum genderEnum = GenderEnum.UNKNOWN;
+
+            switch (gender) {
+                case 'M':
+                    genderEnum = GenderEnum.MALE;
+                    break;
+                case 'F':
+                    genderEnum = GenderEnum.FEMALE;
+                    break;
+                case 'U':
+                    genderEnum = GenderEnum.UNKNOWN;
+                    break;
+                default:
+                    System.out.println("gender enum failed to populate in csv");
+                    //This should never happe
+            }
+
+            Student newStudent = new Student(studentNumber, genderEnum);
             //Add new student to facade. For a student to exist in any other csv file, it must exist in this one first.
             addStudentToFacade(newStudent);
 
-        } else if (csvInfo.length == 3) {//length of 3 indicates test_semester.csv
+        } else if (fileEnum.equals(FileEnum.TEST_SEMESTERS)) {//length of 3 indicates test_semester.csv
 
             int semesterVal = Integer.parseInt(csvInfo[1]);
+
             int yearVal = Integer.parseInt(String.valueOf(csvInfo[2].charAt(1)));
-            Semester semester = new Semester(semesterVal, yearVal);
+
+            YearEnum yearEnum = YearEnum.ADMITTED;
+
+            switch (yearVal) {
+                case 1:
+                    yearEnum = YearEnum.FIRST_YEAR;
+                    break;
+                case 2:
+                    yearEnum = YearEnum.FIRST_YEAR;
+                    break;
+                case 3:
+                    yearEnum = YearEnum.SECOND_YEAR;
+                    break;
+                case 4:
+                    yearEnum = YearEnum.SECOND_YEAR;
+                    break;
+                case 5:
+                    yearEnum = YearEnum.THIRD_YEAR;
+                    break;
+                case 6:
+                    yearEnum = YearEnum.THIRD_YEAR;
+                    break;
+                case 7:
+                    yearEnum = YearEnum.FOURTH_YEAR;
+                    break;
+                case 8:
+                    yearEnum = YearEnum.FOURTH_YEAR;
+                    break;
+                default:
+                    break; //should never happen
+            }
+
+            Semester semester = new Semester(semesterVal, yearEnum);
 
             //Try catch block in case we cannot add a semester to student
             try {
@@ -75,7 +145,7 @@ public class CSVReader {
                 System.out.println("Failed to add action to semester with semester number: " + semesterVal + " Student Number: " + studentNumber + " yearVal: " + yearVal);
             }
 
-        } else if (csvInfo.length == 4) {// length of 4 indications test_program.csv
+        } else if (fileEnum.equals(FileEnum.TEST_PROGRAMS)) {// length of 4 indications test_program.csv
 
             //Parses a semester value from csv into integer.
             int semesterVal = Integer.parseInt(csvInfo[1]);
@@ -85,14 +155,18 @@ public class CSVReader {
             ActionEnum actionVal = StringToActionEnum.convert(csvInfo[2]);
 
             //Same logic as above for program.
-            ProgramEnum program = StringToProgramEnum.convert(csvInfo[3]);
+            ProgramEnum program;
+            if (actionVal.equals(ActionEnum.DROPOUT)) {
+                program = ProgramEnum.NO_PROGRAM;
+            } else {
+                program = StringToProgramEnum.convert(csvInfo[3]);
+            }
+
 
             Action action = new Action(actionVal, program);
 
             //Try catch block in case we cannot add action to semester
             try {
-                // System.out.println("current student: " + semesterVal + " Student Number: " + studentNumber + " action: " + action);
-
                 addActionToExistingSemester(studentNumber, semesterVal, action); //Adds action to existing semester pertaining to existing student.
             } catch (Exception e) {
                 System.out.println("Failed to add action to semester with semester number: " + semesterVal + " Student Number: " + studentNumber + " action: " + action);
@@ -102,29 +176,33 @@ public class CSVReader {
 
     //Adds an action to an existing semester
     private void addActionToExistingSemester(int studentNumber, int semesterVal, Action action) {
-        //System.out.println("added action to existing semester");
         //check if semester exists. if yes, change action this.
         if (facade.getStudentManager().getStudent(studentNumber).getSemester(semesterVal) == null) {
 
-            Semester test = new Semester(semesterVal, 0);
-            facade.getStudentManager().getStudent(studentNumber).addSemester(test);
+
+            Semester semester = new Semester(semesterVal, YearEnum.ADMITTED);
+            facade.getStudentManager().getStudent(studentNumber).addSemester(semester);
 
             NavigableMap list = facade.getStudentManager().getStudent(studentNumber).getSemesters();
             Map.Entry<Integer, Semester> prev = list.lowerEntry(semesterVal);
 
-            switch (action.getAction()) {
+            switch (action.getSemesterAction()) {
 
                 case ADMT:
-                    test.setYearVal(1);
+                    semester.setYearValue(YearEnum.ADMITTED);
+                    semester.addAction(action);
                     break;
                 case ADD:
-                    test.setYearVal(prev.getValue().getYearVal());
+                    semester.setYearValue(prev.getValue().getYearEnum()); //Gets the year value of the semester right before this one
+                    semester.addAction(action);
                     break;
                 case FIN:
-                    test.setYearVal(8);
+                    semester.setYearValue(YearEnum.GRADUATED);
+                    semester.addAction(action);
                     break;
                 case DROPOUT:
-                    test.setYearVal(prev.getValue().getYearVal());
+                    semester.setYearValue(prev.getValue().getYearEnum());
+                    semester.addAction(action);
                     break;
                 case NO_ACTION:
                     System.out.println("No this should never happen - switchstatenment addactiontoexistjhgfdjgdf");
@@ -135,17 +213,21 @@ public class CSVReader {
             //else make a new semester, put into treemap
             //depending on the action, set level accordingly
 
-            getExistingSemester(studentNumber, semesterVal).setAction(action);
+            Semester existingSemester =   getExistingSemester(studentNumber, semesterVal);
+          existingSemester.addAction(action);
+
+          if (action.getSemesterAction().equals(ActionEnum.ADMT)) {
+                existingSemester.setYearValue(YearEnum.ADMITTED);
+            } else if (action.getSemesterAction().equals(ActionEnum.FIN)) {
+              existingSemester.setYearValue(YearEnum.GRADUATED);
+          }
+
         }
     }
 
     //Adds a semester to an existing student
     private void addSemesterToExistingStudent(int studentNumber, Semester semester) {
         Student student = getExistingStudent(studentNumber);
-        if (student == null) {
-            System.out.println("Student is null");
-        }
-        // System.out.println(semester.toString());
         student.addSemester(semester);
     }
 
@@ -156,29 +238,24 @@ public class CSVReader {
 
     //Returns an existing student by student number
     private Student getExistingStudent(int studentNumber) {
-        //System.out.println("got existing student");
         DegreeCompletionVisualizerFacade model = DegreeCompletionVisualizerFacade.getInstance();
-        if (facade.getStudentManager() == null) {
-            System.out.println("manager is null!!!!!!!!!!!!!!!!!!!!!!!!!");
-        }
+
         Student student = facade.getStudentManager().getStudent(studentNumber);
-        if (student == null) {
-            // System.out.println("student is null at the source look at student code");
-        }
+
         return student;
     }
 
     //Returns an existing semester by student number and semesterVal
     private Semester getExistingSemester(int studentNumber, int semesterVal) {
-        // System.out.println("got existing semester");
+
         Semester semester = getExistingStudent(studentNumber).getSemester(semesterVal);
-        System.out.println(semester.getYearVal() + "");
+
         return semester;
     }
 
     public List<File> populateFiles() {
         List<File> files = new ArrayList<>();
-        File directory = new File("C:\\Users\\QueenNadine\\IdeaProjects\\Degree-Completion-Visualizer\\src\\com\\eli\\landa\\cmpt213\\Data");
+        File directory = new File("C:\\Users\\Eli\\IdeaProjects\\Degree-Completion-Visualizer-use-this\\src\\com\\eli\\landa\\cmpt213\\Data");
         int AMOUNT_OF_FILES_IN_DIRECTORY = directory.listFiles().length;
         for (int i = 0; i < AMOUNT_OF_FILES_IN_DIRECTORY; i++) {
             files.add(directory.listFiles()[i]);
@@ -190,31 +267,3 @@ public class CSVReader {
 
 
 
-/*else {//if the student is already in our directories, do the following
-            Student student = StudentManager.getStudent(studentNumber); //grab that student from the manager
-            if (csvInfo.length == 2) {//set students gender
-                char gender = csvInfo[1].charAt(0);
-                student.setGender(gender);
-            } else if (csvInfo.length == 3) {//set year of study and add a semester if there isnt already one
-                int semesterVal = Integer.parseInt(csvInfo[1]);
-                int yearVal = Integer.parseInt(csvInfo[2]);
-                student.setYearsOfStudy(yearVal);
-                if (!student.hasSemester(semesterVal)) {//checks if there is already a semester with this semester value
-                    Semester semester = new Semester(semesterVal);
-                    student.addSemester(semester);
-                }
-
-            } else if (csvInfo.length == 4) {//either add a new semester to the student or edit an existing one by adding an action to it
-                int semesterVal = Integer.parseInt(csvInfo[1]);
-                String actionVal = csvInfo[2];
-                String program = csvInfo[3];
-                Action action = new Action(actionVal, program);
-                Semester semester;
-                if (student.hasSemester(semesterVal)) {
-                    semester = student.getSemester(semesterVal);
-                    semester.setAction(action);
-                } else {
-                    semester = new Semester(semesterVal, action);
-                }
-            }
-        }*/

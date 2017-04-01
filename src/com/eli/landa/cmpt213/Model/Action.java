@@ -5,9 +5,8 @@ import com.eli.landa.cmpt213.Enums.ProgramEnum;
 
 /**
  * Created by Eli on 2017-03-25.
- *
+ * <p>
  * Action class to represent an action in the system.
- *
  */
 public class Action {
 

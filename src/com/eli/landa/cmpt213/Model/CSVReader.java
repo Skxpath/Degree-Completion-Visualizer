@@ -10,8 +10,10 @@ import java.util.NavigableMap;
 
 /**
  * Created by Eli on 2017-03-25.
- *
- * CSVreader class
+ * <p>
+ * CSVReader class to read in the csv files provided.
+ * <p>
+ * The path of the folder read is inputted around line 258.
  */
 public class CSVReader {
     public static final int noYearValue = 0;
@@ -44,16 +46,10 @@ public class CSVReader {
             while (line != null) {
                 // use comma as separator
                 csvInfo = line.split(cvsSplitBy);
-                if (csvInfo.length == 2) {
-
-                }
                 //this will be some kind of function for actually placing csv info into students or semester classes
                 storeCSVInfoToStudentManager(csvInfo, fileEnum);
                 line = br.readLine();
-
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -91,8 +87,8 @@ public class CSVReader {
                     genderEnum = GenderEnum.UNKNOWN;
                     break;
                 default:
-                    System.out.println("gender enum failed to populate in csv");
-                    //This should never happe
+                    System.out.println("GenderEnum failed to populate in CSVReader - storeCSVInfoToStudentManager");
+                    //This should never happen
             }
 
             Student newStudent = new Student(studentNumber, genderEnum);
@@ -157,7 +153,7 @@ public class CSVReader {
             //Same logic as above for program.
             ProgramEnum program;
             if (actionVal.equals(ActionEnum.DROPOUT)) {
-                program = ProgramEnum.NO_PROGRAM;
+                program = ProgramEnum.DROPOUT;
             } else {
                 program = StringToProgramEnum.convert(csvInfo[3]);
             }
@@ -178,7 +174,6 @@ public class CSVReader {
     private void addActionToExistingSemester(int studentNumber, int semesterVal, Action action) {
         //check if semester exists. if yes, change action this.
         if (facade.getStudentManager().getStudent(studentNumber).getSemester(semesterVal) == null) {
-
 
             Semester semester = new Semester(semesterVal, YearEnum.ADMITTED);
             facade.getStudentManager().getStudent(studentNumber).addSemester(semester);
@@ -205,7 +200,7 @@ public class CSVReader {
                     semester.addAction(action);
                     break;
                 case NO_ACTION:
-                    System.out.println("No this should never happen - switchstatenment addactiontoexistjhgfdjgdf");
+                    System.out.println("addActionToExistingSemester NO_ACTION branch triggered");
                     break;
             }
             // in the case where action = add/drop. set to 8 if fin, 1 if admt
@@ -213,14 +208,14 @@ public class CSVReader {
             //else make a new semester, put into treemap
             //depending on the action, set level accordingly
 
-            Semester existingSemester =   getExistingSemester(studentNumber, semesterVal);
-          existingSemester.addAction(action);
+            Semester existingSemester = getExistingSemester(studentNumber, semesterVal);
+            existingSemester.addAction(action);
 
-          if (action.getSemesterAction().equals(ActionEnum.ADMT)) {
+            if (action.getSemesterAction().equals(ActionEnum.ADMT)) {
                 existingSemester.setYearValue(YearEnum.ADMITTED);
             } else if (action.getSemesterAction().equals(ActionEnum.FIN)) {
-              existingSemester.setYearValue(YearEnum.GRADUATED);
-          }
+                existingSemester.setYearValue(YearEnum.GRADUATED);
+            }
 
         }
     }
@@ -240,17 +235,13 @@ public class CSVReader {
     private Student getExistingStudent(int studentNumber) {
         DegreeCompletionVisualizerFacade model = DegreeCompletionVisualizerFacade.getInstance();
 
-        Student student = facade.getStudentManager().getStudent(studentNumber);
-
-        return student;
+        return facade.getStudentManager().getStudent(studentNumber);
     }
 
     //Returns an existing semester by student number and semesterVal
     private Semester getExistingSemester(int studentNumber, int semesterVal) {
 
-        Semester semester = getExistingStudent(studentNumber).getSemester(semesterVal);
-
-        return semester;
+        return getExistingStudent(studentNumber).getSemester(semesterVal);
     }
 
     public List<File> populateFiles() {

@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * Created by Eli on 2017-03-25.
- *
+ * <p>
  * Facade class to access everything required by the system.
  */
 public class DegreeCompletionVisualizerFacade {

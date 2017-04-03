@@ -6,17 +6,23 @@ import com.eli.landa.cmpt213.Enums.ProgramEnum;
 import com.eli.landa.cmpt213.Enums.YearEnum;
 import com.eli.landa.cmpt213.Model.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.NavigableMap;
 
 /**
  * Created by Aria on 3/31/2017.
+ * <p>
+ * FilterContainer class that stores the different filters we will need for the system.
  */
-public class DumpWithFilters {
+public class FilterContainer {
+
     DegreeCompletionVisualizerFacade model = DegreeCompletionVisualizerFacade.getInstance();
     StudentManager studentManager = model.getStudentManager();
     List<Student> allStudent = studentManager.getStudents();
 
-    List<Student> sortByYear (YearEnum yearEnum, List<Student> students){
+    List<Student> sortByYear(YearEnum yearEnum, List<Student> students) {
         List<Student> filteredStudents = new ArrayList<>();
         StudentFilter yearFilter = new StudentFilter() {
             @Override
@@ -24,15 +30,15 @@ public class DumpWithFilters {
                 NavigableMap<Integer, Semester> studentSemesterList;
                 studentSemesterList = student.getSemesters();
                 for (Map.Entry<Integer, Semester> semester : studentSemesterList.entrySet()) {
-                    if(semester.getValue().getYearEnum().equals(yearEnum)){
+                    if (semester.getValue().getYearEnum().equals(yearEnum)) {
                         return true;
                     }
                 }
                 return false;
             }
         };
-        for (Student student: students) {
-            if(yearFilter.acceptStudent(student)){
+        for (Student student : students) {
+            if (yearFilter.acceptStudent(student)) {
                 filteredStudents.add(student);
             }
         }
@@ -50,21 +56,22 @@ public class DumpWithFilters {
                 return false;
             }
         };
-        for (Student student: students) {
-            if(genderFilter.acceptStudent(student)){
+        for (Student student : students) {
+            if (genderFilter.acceptStudent(student)) {
                 filteredStudents.add(student);
             }
         }
         return filteredStudents;
     }
-    List<Student> sortByProgramWithGivenYear (ProgramEnum programEnum, YearEnum yearEnum, List<Student> students){
+
+    List<Student> sortByProgramWithGivenYear(ProgramEnum programEnum, YearEnum yearEnum, List<Student> students) {
         List<Student> filteredStudents = new ArrayList<>();
 
         StudentFilter programFilter = new StudentFilter() {
             @Override
             public boolean acceptStudent(Student student) {
                 //if the student in their last semester in the given year is in the given program, accept
-                if(student.hasSemesters()) {
+                if (student.hasSemesters()) {
 
                     if (student.getLastSemesterInAYear(yearEnum) != null) {
 
@@ -79,8 +86,8 @@ public class DumpWithFilters {
                 return false;
             }
         };
-        for (Student student: students) {
-            if(programFilter.acceptStudent(student)){
+        for (Student student : students) {
+            if (programFilter.acceptStudent(student)) {
                 filteredStudents.add(student);
             }
         }
@@ -88,28 +95,30 @@ public class DumpWithFilters {
 
         return filteredStudents;
     }
-    List<Student> listOfStudentsLeavingAtAGivenYear (YearEnum yearEnum, List<Student> students){
+
+    List<Student> listOfStudentsLeavingAtAGivenYear(YearEnum yearEnum, List<Student> students) {
         List<Student> filteredStudents = new ArrayList<>();
         StudentFilter listOfStudentsLeavingToAGivenProgramAtAGivenYearFilter = new StudentFilter() {
             @Override
             public boolean acceptStudent(Student student) {
                 //if the student in their last semester in the given year is in the given program, accept
-                if(student.hasSemesters()) {
-                    if(student.lastRemoveInAGivenYear(yearEnum)!= null) {
+                if (student.hasSemesters()) {
+                    if (student.lastRemoveInAGivenYear(yearEnum) != null) {
                         return true;
                     }
                 }
                 return false;
             }
         };
-        for (Student student: students) {
-            if(listOfStudentsLeavingToAGivenProgramAtAGivenYearFilter.acceptStudent(student)){
+        for (Student student : students) {
+            if (listOfStudentsLeavingToAGivenProgramAtAGivenYearFilter.acceptStudent(student)) {
                 filteredStudents.add(student);
             }
         }
         return filteredStudents;
     }
-    public List<Student> listOfStudentWhoDroppedOutInAGivenYear (YearEnum yearEnum, List<Student> students) {
+
+    public List<Student> listOfStudentWhoDroppedOutInAGivenYear(YearEnum yearEnum, List<Student> students) {
         List<Student> filteredStudents = new ArrayList<>();
         StudentFilter listOfStudentsLeavingToAGivenProgramAtAGivenYearFilter = new StudentFilter() {
             @Override
@@ -137,15 +146,15 @@ public class DumpWithFilters {
     }
 
 
-    List<Student> listOfStudentsLeavingToAGivenProgramAtAGivenYear (YearEnum yearEnum, List<Student> students, ProgramEnum programEnum){
+    List<Student> listOfStudentsLeavingToAGivenProgramAtAGivenYear(YearEnum yearEnum, List<Student> students, ProgramEnum programEnum) {
         List<Student> filteredStudents = new ArrayList<>();
         StudentFilter listOfStudentsLeavingToAGivenProgramAtAGivenYearFilter = new StudentFilter() {
             @Override
             public boolean acceptStudent(Student student) {
                 //if the student in their last semester in the given year is in the given program, accept
-                if(student.hasSemesters()) {
-                    if(student.lastRemoveInAGivenYear(yearEnum)!= null) {
-                        if(student.lastRemoveInAGivenYear(yearEnum).getListOfActions().get(0).getProgram().equals(programEnum)) {
+                if (student.hasSemesters()) {
+                    if (student.lastRemoveInAGivenYear(yearEnum) != null) {
+                        if (student.lastRemoveInAGivenYear(yearEnum).getListOfActions().get(0).getProgram().equals(programEnum)) {
                             return true;
                         }
                     }
@@ -153,22 +162,23 @@ public class DumpWithFilters {
                 return false;
             }
         };
-        for (Student student: students) {
-            if(listOfStudentsLeavingToAGivenProgramAtAGivenYearFilter.acceptStudent(student)){
+        for (Student student : students) {
+            if (listOfStudentsLeavingToAGivenProgramAtAGivenYearFilter.acceptStudent(student)) {
                 filteredStudents.add(student);
             }
         }
         return filteredStudents;
     }
-    List<Student> listOfStudentsComingToAGivenProgramAtAGivenYear (YearEnum yearEnum, List<Student> students, ProgramEnum programEnum){
+
+    List<Student> listOfStudentsComingToAGivenProgramAtAGivenYear(YearEnum yearEnum, List<Student> students, ProgramEnum programEnum) {
         List<Student> filteredStudents = new ArrayList<>();
         StudentFilter listOfStudentsLeavingToAGivenProgramAtAGivenYearFilter = new StudentFilter() {
             @Override
             public boolean acceptStudent(Student student) {
                 //if the student in their last semester in the given year is in the given program, accept
-                if(student.hasSemesters()) {
-                    if(student.lastRemoveInAGivenYear(yearEnum)!= null) {
-                        if(student.lastRemoveInAGivenYear(yearEnum).getListOfActions().get(1).getProgram().equals(programEnum)) {
+                if (student.hasSemesters()) {
+                    if (student.lastRemoveInAGivenYear(yearEnum) != null) {
+                        if (student.lastRemoveInAGivenYear(yearEnum).getListOfActions().get(1).getProgram().equals(programEnum)) {
                             return true;
                         }
                     }
@@ -176,13 +186,11 @@ public class DumpWithFilters {
                 return false;
             }
         };
-        for (Student student: students) {
-            if(listOfStudentsLeavingToAGivenProgramAtAGivenYearFilter.acceptStudent(student)){
+        for (Student student : students) {
+            if (listOfStudentsLeavingToAGivenProgramAtAGivenYearFilter.acceptStudent(student)) {
                 filteredStudents.add(student);
             }
         }
         return filteredStudents;
     }
-
-
 }

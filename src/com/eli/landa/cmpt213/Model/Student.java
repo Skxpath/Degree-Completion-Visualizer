@@ -10,11 +10,9 @@ import java.util.TreeMap;
 
 /**
  * Created by Eli on 2017-03-25.
- *
+ * <p>
  * Student Class that stores an object for each student.
- *
  */
-
 public class Student {
     private int studentNumber;
     private GenderEnum gender; // Male, Female, Unknown
@@ -61,9 +59,10 @@ public class Student {
         semesters.get(semester.getSemesterCode());
 
     }
-    public Semester getLastSemesterInAYear (YearEnum yearEnum){
+
+    public Semester getLastSemesterInAYear(YearEnum yearEnum) {
         //list of semesters in a given year
-        if(hasSemesters()) {
+        if (hasSemesters()) {
             NavigableMap<Integer, Semester> semestersinAGivenYear = new TreeMap<>();
 
             boolean hasYear = false;
@@ -79,44 +78,43 @@ public class Student {
             //checks to make sure there are years occuring after your final semester in the given year
             //if there are, then you didnt drop out mid year
             //if its true, return the final value in the semestersInAGivenYear (this semester is your last semester in a given year since the map is ordered)
-           if (hasYear) {
+            if (hasYear) {
                 if (!semestersinAGivenYear.lastEntry().getValue().getListOfActions().isEmpty()) {
                     if (semestersinAGivenYear.lastEntry().getValue().getListOfActions().get(0).equals(ActionEnum.FIN) || semestersinAGivenYear.lastEntry().getValue().getListOfActions().get(0).equals(ActionEnum.DROPOUT)) {
                         return semestersinAGivenYear.lastEntry().getValue();
                     }
                 }
-             //  System.out.println(semestersinAGivenYear.lastEntry().getValue().getProgram());
-               return semestersinAGivenYear.lastEntry().getValue();
-           }
-            else {
+                //  System.out.println(semestersinAGivenYear.lastEntry().getValue().getProgram());
+                return semestersinAGivenYear.lastEntry().getValue();
+            } else {
                 return null;
             }
         }
         return null;
     }
-    public boolean hasSemesters () {
-        if(semesters.size() > 0){
-            return true;
-        }
-        return false;
+
+    public boolean hasSemesters() {
+        return semesters.size() > 0;
     }
+
     public NavigableMap getRemoveSemesters() { //Returns the semester TreeMap
         NavigableMap<Integer, Semester> removeSemesters = new TreeMap<>();
-        if(semesters.size() > 0) {
+        if (semesters.size() > 0) {
 
             for (Map.Entry<Integer, Semester> semester : semesters.entrySet()) {
 
-                    if (!semester.getValue().getListOfActions().isEmpty()) {
+                if (!semester.getValue().getListOfActions().isEmpty()) {
 
-                        if (semester.getValue().getListOfActions().get(0).getSemesterAction().equals(ActionEnum.REM)) {
-                            removeSemesters.put(semester.getKey(), semester.getValue());
-                        }
+                    if (semester.getValue().getListOfActions().get(0).getSemesterAction().equals(ActionEnum.REM)) {
+                        removeSemesters.put(semester.getKey(), semester.getValue());
                     }
                 }
             }
+        }
 
         return removeSemesters;
     }
+
     public NavigableMap getAddSemesters() { //Returns the semester TreeMap
         NavigableMap<Integer, Semester> addSemesters = new TreeMap<>();
         for (Map.Entry<Integer, Semester> semester : semesters.entrySet()) {
@@ -126,7 +124,8 @@ public class Student {
         }
         return addSemesters;
     }
-    public Semester lastRemoveInAGivenYear (YearEnum yearEnum){
+
+    public Semester lastRemoveInAGivenYear(YearEnum yearEnum) {
         //list of all semesters with REM action
         NavigableMap<Integer, Semester> removeSemesters = new TreeMap<>();
 
@@ -139,8 +138,8 @@ public class Student {
         //iterate
         for (Map.Entry<Integer, Semester> semester : removeSemesters.entrySet()) {
             //if the list of all semesters with the REM action has a semester that happens on the given year, put that semester into the removeSemestersInTheGivenYear map
-            if (semester.getValue().getYearEnum().equals(yearEnum)){
-                removeSemestersInTheGivenYear.put(semester.getKey(),semester.getValue());
+            if (semester.getValue().getYearEnum().equals(yearEnum)) {
+                removeSemestersInTheGivenYear.put(semester.getKey(), semester.getValue());
             }
         }
         //return the final entry in removeSemestersInTheGivenYear map
@@ -151,6 +150,7 @@ public class Student {
         }
 
     }
+
     @Override
     public String toString() {
         return ("Student Number: " + studentNumber + " Gender: " + gender + " Semesters List Size: " + semesters.size());

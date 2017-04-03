@@ -48,7 +48,7 @@ public class StudentManager {
     public void populateProgramsInStudentSemesters() {
 
         for (Student student : students) {
-            ProgramEnum currentProgram = ProgramEnum.NO_PROGRAM;
+            ProgramEnum currentProgram = ProgramEnum.DROPOUT;
 
             NavigableMap<Integer, Semester> studentSemesterList = student.getSemesters();
 
@@ -59,7 +59,7 @@ public class StudentManager {
 
                 if (currentSemester.hasSemesterAction(ActionEnum.ADMT)
                         || currentSemester.hasSemesterAction(ActionEnum.ADD)) {
-                    if(currentSemester.hasSemesterAction(ActionEnum.ADMT)) {
+                    if (currentSemester.hasSemesterAction(ActionEnum.ADMT)) {
                         currentProgram = currentSemester.getListOfActions().get(0).getProgram();
                     } else {
                         currentProgram = currentSemester.getListOfActions().get(1).getProgram();

@@ -11,16 +11,12 @@ public class StringToActionEnum {
         switch (actionVal) {
             case "admt":
                 return ActionEnum.ADMT;
-
             case "add":
                 return ActionEnum.ADD;
-
             case "fin":
                 return ActionEnum.FIN;
-
             case "dropout":
                 return ActionEnum.DROPOUT;
-
             case "rem":
                 return ActionEnum.REM;
             default:

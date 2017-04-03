@@ -9,6 +9,8 @@ import java.util.List;
 
 /**
  * Created by Eli on 2017-03-25
+ * <p>
+ * Semester class to store different semesters in the system
  */
 public class Semester {
     private int semesterCode; // four digit SFU semester number code of form ZZZS, where the year is1900 + ZZZ, and the semester S is one of {1=Spring, 4=Summer, 7=Fall}.

@@ -13,6 +13,7 @@ public class DegreeCompletionVisualizerFacade {
     //Singleton model of Facade. Contains a studentmanager which contains everything else
     private static DegreeCompletionVisualizerFacade ourInstance = new DegreeCompletionVisualizerFacade();
     private StudentManager studentManager;
+    private List<Observer> observers = new ArrayList<>();
     private CSVReader reader;
 
     private static List<Student> startingStudentList = new ArrayList<>();
@@ -35,5 +36,15 @@ public class DegreeCompletionVisualizerFacade {
 
     public void setCSVReader(CSVReader reader) {
         this.reader = reader;
+    }
+
+    public void registerObserver (Observer observer){
+        observers.add(observer);
+    }
+
+    public void updateObservers (){
+        for (Observer observer: observers) {
+            observer.update();
+        }
     }
 }

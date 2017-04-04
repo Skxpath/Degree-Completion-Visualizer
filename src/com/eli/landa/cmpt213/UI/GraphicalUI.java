@@ -10,15 +10,11 @@ public class GraphicalUI {
         JFrame frame = new JFrame("Degree Completion Visualizer");
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1500, 1500);
+        frame.setSize(1500, 500);
         frame.setLocation(0, 0);
 
-        JPanel dropdownMenu = new DropdownMenu();
-
-        frame.add(dropdownMenu, BorderLayout.WEST);
-
-
-
+        JPanel container = new Containter();
+        frame.add(container);
 
 
 

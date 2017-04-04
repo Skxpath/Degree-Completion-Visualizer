@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 public class DropdownMenu extends JPanel {
     public DropdownMenu () {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
+        setBorder(BorderFactory.createLineBorder(Color.black,5));
         JLabel lbl = new JLabel("Select a Program");
         lbl.setAlignmentX(Component.LEFT_ALIGNMENT);
         add(lbl);

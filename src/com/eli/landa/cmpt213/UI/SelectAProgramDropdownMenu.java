@@ -10,8 +10,8 @@ import java.awt.event.ActionListener;
 /**
  * Created by Eli on 2017-04-03.
  */
-public class DropdownMenu extends JPanel {
-    public DropdownMenu () {
+public class SelectAProgramDropdownMenu extends JPanel {
+    public SelectAProgramDropdownMenu() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(BorderFactory.createLineBorder(Color.black,5));
         JLabel lbl = new JLabel("Select a Program");

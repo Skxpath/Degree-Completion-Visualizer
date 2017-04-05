@@ -11,13 +11,15 @@ public class Rectangle extends JPanel {
     private int height;
     private Color color;
     public  Rectangle (int width, int height, Color color) {
-        setLayout(new GridLayout(1,1));
+        setLayout(new FlowLayout());
         this.width = width;
         this.height = height;
         this.color = color;
+        setBackground(color);
+       // setBorder(BorderFactory.createLineBorder(Color.black, 5));
     }
-    public void paint(Graphics g) {
+/*    public void paint(Graphics g) {
         g.setColor(color);
-        g.fillRect(0,0,width,height);
-    }
+        g.fillRect(0,0,getWidth(),height);
+    }*/
 }

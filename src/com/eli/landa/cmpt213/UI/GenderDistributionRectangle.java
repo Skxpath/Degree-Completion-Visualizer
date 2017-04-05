@@ -2,8 +2,6 @@ package com.eli.landa.cmpt213.UI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Eli on 2017-04-03.
@@ -15,17 +13,30 @@ public class GenderDistributionRectangle extends JPanel {
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
         setBorder(BorderFactory.createLineBorder(Color.black, 5));
 
-        List<JPanel> genderPanels = new ArrayList<>();
-
         Rectangle boysRect = new Rectangle(25, height, Color.blue);
         Rectangle girlsRect = new Rectangle(25, height, Color.RED);
         Rectangle unknownRect = new Rectangle(25, height, Color.GRAY);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.weightx = .1;
+        gridBagConstraints.weighty = 1;
+        gridBagConstraints.fill = 1;
+        add(boysRect, gridBagConstraints);
 
-        genderPanels.add(boysRect);
-        genderPanels.add(unknownRect);
-        genderPanels.add(girlsRect);
-        Container container = new Container(genderPanels);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.weightx = .8;
+        gridBagConstraints.weighty = 1;
+        add(unknownRect, gridBagConstraints);
 
-        add(container);
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.weightx = .1;
+        gridBagConstraints.weighty = 1;
+        add(girlsRect, gridBagConstraints);
+        setPreferredSize(new Dimension(100,30));
     }
 }

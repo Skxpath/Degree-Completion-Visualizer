@@ -32,18 +32,14 @@ public class GraphicalUI {
     }
 
     private static void setupMiddlePanels(JFrame frame, GridBagConstraints gridBagConstraints) {
-        List<JPanel> midPanels = new ArrayList<>();
-        midPanels.add(new FlowRectangle());
-        midPanels.add(new JPanel());
-        midPanels.add(new FlowRectangle());
-        midPanels.add(new JPanel());
-        JPanel containerMiddle = new Container(midPanels);
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = GridBagConstraints.CENTER;
         gridBagConstraints.weightx = 1;
         gridBagConstraints.weighty = 1;
-        frame.add(containerMiddle, gridBagConstraints);
+        frame.add(new FlowRectangle(), gridBagConstraints);
+        gridBagConstraints.gridx = 1;
+        frame.add(new YearRectangle(), gridBagConstraints);
     }
 
     private static void setupTopPanels(JFrame frame, GridBagConstraints gridBagConstraints) {

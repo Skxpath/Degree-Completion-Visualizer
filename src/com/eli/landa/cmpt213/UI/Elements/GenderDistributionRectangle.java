@@ -1,4 +1,4 @@
-package com.eli.landa.cmpt213.UI;
+package com.eli.landa.cmpt213.UI.Elements;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +8,7 @@ import java.awt.*;
  */
 public class GenderDistributionRectangle extends JPanel {
     final int height = 20;
-    public GenderDistributionRectangle () {
+    public GenderDistributionRectangle (float boysPercent, float girlsPercent, float unknownPercent) {
         setLayout(new GridBagLayout());
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
         setBorder(BorderFactory.createLineBorder(Color.black, 5));
@@ -19,7 +19,7 @@ public class GenderDistributionRectangle extends JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = GridBagConstraints.WEST;
-        gridBagConstraints.weightx = .1;
+        gridBagConstraints.weightx = boysPercent;
         gridBagConstraints.weighty = 1;
         gridBagConstraints.fill = 1;
         add(boysRect, gridBagConstraints);
@@ -27,14 +27,14 @@ public class GenderDistributionRectangle extends JPanel {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = GridBagConstraints.WEST;
-        gridBagConstraints.weightx = .8;
+        gridBagConstraints.weightx = unknownPercent;
         gridBagConstraints.weighty = 1;
         add(unknownRect, gridBagConstraints);
 
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = GridBagConstraints.WEST;
-        gridBagConstraints.weightx = .1;
+        gridBagConstraints.weightx = girlsPercent;
         gridBagConstraints.weighty = 1;
         add(girlsRect, gridBagConstraints);
         setPreferredSize(new Dimension(100,30));

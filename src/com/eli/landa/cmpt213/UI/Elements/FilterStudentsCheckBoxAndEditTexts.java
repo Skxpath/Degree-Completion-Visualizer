@@ -1,4 +1,4 @@
-package com.eli.landa.cmpt213.UI;
+package com.eli.landa.cmpt213.UI.Elements;
 
 import com.eli.landa.cmpt213.Model.DegreeCompletionVisualizerFacade;
 
@@ -29,7 +29,7 @@ public class FilterStudentsCheckBoxAndEditTexts extends JPanel{
         topPanel.add(new TextBox());
         topPanel.get(1).setPreferredSize(new Dimension(80,30));
 
-        add(new Container(topPanel));
+        add(new com.eli.landa.cmpt213.UI.Containers.Container(topPanel));
 
         List<JPanel> bottomPanel = new ArrayList<>();
 
@@ -39,7 +39,7 @@ public class FilterStudentsCheckBoxAndEditTexts extends JPanel{
         bottomPanel.add(new TextBox());
         bottomPanel.get(1).setPreferredSize(new Dimension(80,30));
 
-        add(new Container(bottomPanel));
+        add(new com.eli.landa.cmpt213.UI.Containers.Container(bottomPanel));
 
         JButton btn = new JButton("Apply");
         btn.setAlignmentX(Component.LEFT_ALIGNMENT); // added code

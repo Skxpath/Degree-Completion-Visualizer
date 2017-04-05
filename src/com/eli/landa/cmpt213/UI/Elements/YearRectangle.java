@@ -1,4 +1,7 @@
-package com.eli.landa.cmpt213.UI;
+package com.eli.landa.cmpt213.UI.Elements;
+
+import com.eli.landa.cmpt213.Enums.ProgramEnum;
+import com.eli.landa.cmpt213.Enums.YearEnum;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,7 +10,7 @@ import java.awt.*;
  * Created by Eli on 2017-04-05.
  */
 public class YearRectangle extends JPanel{
-    public YearRectangle() {
+    public YearRectangle(YearEnum yearEnum, ProgramEnum programEnum) {
         setLayout(new GridBagLayout());
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
 
@@ -18,12 +21,12 @@ public class YearRectangle extends JPanel{
         gridBagConstraints.weightx = .1;
         gridBagConstraints.weighty = 1;
 
-        JLabel lbl = new JLabel("CS Major");
+        JLabel lbl = new JLabel(programEnum.toString());
         add(lbl, gridBagConstraints);
 
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = 1;
-        add(new GenderDistributionRectangle(), gridBagConstraints);
+        add(new GenderDistributionRectangle(.1f,.5f,.4f), gridBagConstraints);
 
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = 0;
@@ -31,7 +34,7 @@ public class YearRectangle extends JPanel{
         add(amount, gridBagConstraints);
 
         gridBagConstraints.gridy = 3;
-        JLabel year = new JLabel("Admitted");
+        JLabel year = new JLabel(yearEnum.toString());
         add(year, gridBagConstraints);
         setPreferredSize(new Dimension(100,200));
     }

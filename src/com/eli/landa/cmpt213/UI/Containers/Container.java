@@ -1,4 +1,4 @@
-package com.eli.landa.cmpt213.UI;
+package com.eli.landa.cmpt213.UI.Containers;
 
 import javax.swing.*;
 import java.awt.*;

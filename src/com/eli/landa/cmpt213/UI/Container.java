@@ -9,11 +9,10 @@ import java.util.List;
 public class Container extends JPanel{
 
     public Container(List<JPanel> panels){
-        setLayout(new GridLayout(1,panels.size()));
+        setLayout(new GridBagLayout());
         for (JPanel panel: panels) {
             add(panel);
         }
-
     }
 
 

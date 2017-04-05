@@ -22,14 +22,22 @@ public class FilterStudentsCheckBoxAndEditTexts extends JPanel{
 
 
         List<JPanel> topPanel = new ArrayList<>();
+
         topPanel.add(new CheckBox("In selected program in the year"));
+        topPanel.get(0).setPreferredSize(new Dimension(300,30));
+
         topPanel.add(new TextBox());
+        topPanel.get(1).setPreferredSize(new Dimension(80,30));
 
         add(new Container(topPanel));
 
         List<JPanel> bottomPanel = new ArrayList<>();
+
         bottomPanel.add(new CheckBox("Graduated selected program in the year"));
+        bottomPanel.get(0).setPreferredSize(new Dimension(300,30));
+
         bottomPanel.add(new TextBox());
+        bottomPanel.get(1).setPreferredSize(new Dimension(80,30));
 
         add(new Container(bottomPanel));
 

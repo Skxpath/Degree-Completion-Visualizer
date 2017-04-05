@@ -13,38 +13,53 @@ public class GraphicalUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1500, 500);
         frame.setLocation(0, 0);
-
-        setupTopPanels(frame);
-        setupMiddlePanels(frame);
-        setupBottomPanels(frame);
+        frame.setLayout(new GridBagLayout());
+        GridBagConstraints gridBagConstraints = new GridBagConstraints();
+        setupTopPanels(frame, gridBagConstraints);
+        setupMiddlePanels(frame, gridBagConstraints);
+        //setupBottomPanels(frame);
 
 
         frame.setVisible(true); // added code
 
     }
 
-    private static void setupBottomPanels(JFrame frame) {
+    private static void setupBottomPanels(JFrame frame, GridBagConstraints gridBagConstraints) {
         List<JPanel> bottomPanels = new ArrayList<>();
         bottomPanels.add(new FilterStudentsCheckBoxAndEditTexts());
         JPanel containerBottom = new Container(bottomPanels);
-        frame.add(containerBottom, BorderLayout.SOUTH);
+        frame.add(containerBottom);
     }
 
-    private static void setupMiddlePanels(JFrame frame) {
+    private static void setupMiddlePanels(JFrame frame, GridBagConstraints gridBagConstraints) {
         List<JPanel> midPanels = new ArrayList<>();
-        midPanels.add(new GenderDistributionRectangle());
+        midPanels.add(new FlowRectangle());
+        midPanels.add(new JPanel());
+        midPanels.add(new FlowRectangle());
+        midPanels.add(new JPanel());
         JPanel containerMiddle = new Container(midPanels);
-        frame.add(containerMiddle, BorderLayout.CENTER);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = GridBagConstraints.CENTER;
+        gridBagConstraints.weightx = 1;
+        gridBagConstraints.weighty = 1;
+        frame.add(containerMiddle, gridBagConstraints);
     }
 
-    private static void setupTopPanels(JFrame frame) {
+    private static void setupTopPanels(JFrame frame, GridBagConstraints gridBagConstraints) {
         List<JPanel> topPanels = new ArrayList<>();
 
         topPanels.add(new SelectAProgramDropdownMenu());
         topPanels.add(new FilterStudentsCheckBoxAndEditTexts());
-        topPanels.add(new JPanel());
-
+        topPanels.get(0).setPreferredSize(new Dimension(130,130));
+        topPanels.get(1).setPreferredSize(new Dimension(400,130));
         JPanel containerTop = new Container(topPanels);
-        frame.add(containerTop, BorderLayout.NORTH);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1;
+        gridBagConstraints.weighty = 1;
+        frame.add(containerTop, gridBagConstraints);
+        frame.getComponent(0).setLocation(0,0);
     }
 }

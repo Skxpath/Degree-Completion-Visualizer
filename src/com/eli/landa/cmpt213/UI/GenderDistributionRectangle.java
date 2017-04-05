@@ -11,7 +11,8 @@ import java.util.List;
 public class GenderDistributionRectangle extends JPanel {
     final int height = 20;
     public GenderDistributionRectangle () {
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setLayout(new GridBagLayout());
+        GridBagConstraints gridBagConstraints = new GridBagConstraints();
         setBorder(BorderFactory.createLineBorder(Color.black, 5));
 
         List<JPanel> genderPanels = new ArrayList<>();
@@ -24,6 +25,7 @@ public class GenderDistributionRectangle extends JPanel {
         genderPanels.add(unknownRect);
         genderPanels.add(girlsRect);
         Container container = new Container(genderPanels);
+
         add(container);
     }
 }

@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="428944b9-81f9-4efb-8d34-1e8cf509ac87" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/FlowRectangle.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Container.java" afterPath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Container.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/FilterStudentsCheckBoxAndEditTexts.java" afterPath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/FilterStudentsCheckBoxAndEditTexts.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/GenderDistributionRectangle.java" afterPath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/GenderDistributionRectangle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/GraphicalUI.java" afterPath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/GraphicalUI.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -800,7 +795,14 @@
       <option name="project" value="LOCAL" />
       <updated>1491287629190</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Added a dropdown menu and set up observer pattern">
+      <created>1491362406373</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1491362406373</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">

@@ -56,6 +56,7 @@ public class FilterStudentsCheckBoxAndEditTexts extends JPanel{
                 DegreeCompletionVisualizerFacade.getInstance().getFilterSettings().setInSelectedProgramInYear(inSelectedProgramInYear);
                 DegreeCompletionVisualizerFacade.getInstance().getFilterSettings().setGraduatedSelectedProgramInYear(graduatedInSelectedProgramInYear);
                 DegreeCompletionVisualizerFacade.getInstance().updateObservers();
+                System.out.println(DegreeCompletionVisualizerFacade.getInstance().getFilterSettings().isGraduatedSelectedProgramInYear());
             }
         });
         add(btn);

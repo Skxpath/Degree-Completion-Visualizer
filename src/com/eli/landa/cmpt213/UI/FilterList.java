@@ -183,7 +183,7 @@ public class FilterList {
                 filteredStudentsWhoDroppedUnknown = filterContainer.listOfStudentWhoDroppedOutInAGivenYear(yearEnum, filteredStudentListUnknown);
 
                 //new stuff
-                totalLeft = filteredStudentsWhoDroppedMale.size() + filteredStudentsWhoDroppedFemale.size() + filteredStudentsWhoDroppedUnknown.size();
+                int dropout = filteredStudentsWhoDroppedMale.size() + filteredStudentsWhoDroppedFemale.size() + filteredStudentsWhoDroppedUnknown.size();
                 //male
                 studentsWhoLeftToASpecificProgram.add(filteredStudentListWhoLeftProgramMale.size());
                 //female
@@ -191,17 +191,17 @@ public class FilterList {
                 //unknown
                 studentsWhoLeftToASpecificProgram.add(filteredStudentListWhoLeftProgramUnknown.size());
                 //total
-                studentsWhoLeftToASpecificProgram.add(totalLeft);
-                System.out.println("left: " + totalLeft
+                studentsWhoLeftToASpecificProgram.add(dropout);
+              /*  System.out.println("left: " + totalLeft
                         + " M=    " + filteredStudentsWhoDroppedMale.size()
                         + " F=    " + filteredStudentsWhoDroppedFemale.size() + " U=    " + filteredStudentsWhoDroppedUnknown.size() + " (reason for leaving " + newProgram + ")");
-
+*/
                 return studentsWhoLeftToASpecificProgram;
             } else {
-                System.out.println("left: " + totalLeft
+               /* System.out.println("left: " + totalLeft
                         + " M=    " + filteredStudentListWhoLeftProgramMale.size()
                         + " F=    " + filteredStudentListWhoLeftProgramFemale.size() + " U=    " + filteredStudentListWhoLeftProgramUnknown.size() + " (reason for leaving " + newProgram + ")");
-
+*/
                 studentsWhoLeftToASpecificProgram.add(filteredStudentListWhoLeftProgramMale.size());
                 //female
                 studentsWhoLeftToASpecificProgram.add(filteredStudentListWhoLeftProgramFemale.size());

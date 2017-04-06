@@ -39,7 +39,7 @@ public class FlowRectangle extends JPanel {
         if(isComing) {
             gridBagConstraints.gridy = 0;
             gridBagConstraints.weighty = 1;
-            JLabel title = new JLabel("Coming");
+            JLabel title = new JLabel("Leaving");
             add(title, gridBagConstraints);
             gridBagConstraints.weighty = 100;
             gridBagConstraints.gridy = 1;
@@ -50,12 +50,14 @@ public class FlowRectangle extends JPanel {
             setupGenderPanelForComing(ProgramEnum.CSMNR, DegreeCompletionVisualizerFacade.getInstance().getFilterSettings().getProgramEnum(), yearEnum);
             gridBagConstraints.gridy = 4;
             setupGenderPanelForComing(ProgramEnum.OTHER, DegreeCompletionVisualizerFacade.getInstance().getFilterSettings().getProgramEnum(), yearEnum);
+            gridBagConstraints.gridy = 5;
+            setupGenderPanelForComing(ProgramEnum.CSMAJ, DegreeCompletionVisualizerFacade.getInstance().getFilterSettings().getProgramEnum(), yearEnum);
 
         }
         else {
             gridBagConstraints.gridy = 0;
             gridBagConstraints.weighty = 1;
-            JLabel title = new JLabel("Leaving");
+            JLabel title = new JLabel("Coming");
             add(title, gridBagConstraints);
             gridBagConstraints.weighty = 100;
             gridBagConstraints.gridy = 1;
@@ -68,6 +70,8 @@ public class FlowRectangle extends JPanel {
             setupGenderPanelForLeaving(DegreeCompletionVisualizerFacade.getInstance().getFilterSettings().getProgramEnum(), ProgramEnum.OTHER, yearEnum);
             gridBagConstraints.gridy = 5;
             setupGenderPanelForLeaving(DegreeCompletionVisualizerFacade.getInstance().getFilterSettings().getProgramEnum(), ProgramEnum.DROPOUT, yearEnum);
+            gridBagConstraints.gridy = 6;
+            setupGenderPanelForLeaving( DegreeCompletionVisualizerFacade.getInstance().getFilterSettings().getProgramEnum(), ProgramEnum.CSMAJ, yearEnum);
 
         }
 
@@ -107,6 +111,10 @@ public class FlowRectangle extends JPanel {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.weightx = 40;
         add(new GenderDistributionRectangle(male,female,unknown, listOfAmounts), gridBagConstraints);
+        gridBagConstraints.gridx = 2;
+        JLabel totalAmount = new JLabel((int)total + "");
+        gridBagConstraints.weightx = 1;
+        add(totalAmount, gridBagConstraints);
 
     }
     void setupGenderPanelForLeaving (ProgramEnum programEnum, ProgramEnum newProgramEnum, YearEnum yearEnum){
@@ -123,6 +131,10 @@ public class FlowRectangle extends JPanel {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.weightx = 40;
         add(new GenderDistributionRectangle(male,female,unknown, listOfAmounts), gridBagConstraints);
+        gridBagConstraints.gridx = 2;
+        JLabel totalAmount = new JLabel((int)total + "");
+        gridBagConstraints.weightx = 1;
+        add(totalAmount, gridBagConstraints);
 
     }
 

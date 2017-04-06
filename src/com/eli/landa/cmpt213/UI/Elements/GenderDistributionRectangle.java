@@ -17,14 +17,14 @@ public class GenderDistributionRectangle extends JPanel{
         this.unknownPercent = unknownPercent;
         setLayout(new GridBagLayout());
         setBorder(BorderFactory.createLineBorder(Color.black, 5));
-        System.out.println(sizes);
+        //System.out.println(boysPercent);
         setupGenderPanel(Color.blue, 0, sizes.get(0), boysPercent);
         setupGenderPanel(Color.gray, 1, sizes.get(2), unknownPercent);
         setupGenderPanel(Color.red, 2, sizes.get(1), girlsPercent);
 
 
 
-        setPreferredSize(new Dimension(100,30));
+       // setPreferredSize(new Dimension(100,30));
     }
 
     void setupGenderPanel (Color color, int gridX, int sizeVal, float percent){
@@ -41,7 +41,7 @@ public class GenderDistributionRectangle extends JPanel{
             add(genderRect, gridBagConstraints);
         }
         else {
-            System.out.println("notadded");
+    //        System.out.println("notadded");
         }
     }
 

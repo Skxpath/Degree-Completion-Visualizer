@@ -105,7 +105,7 @@ public class FilterList {
             studentsAtMileStone.add(renamingFemaleStudents);
             studentsAtMileStone.add(remainingUnknownStudents);
             studentsAtMileStone.add(remainingTotalStudents);
-            System.out.println(studentsAtMileStone);
+          //  System.out.println(studentsAtMileStone);
             return studentsAtMileStone;
             /*System.out.println(yearEnum + "     " + remainingTotalStudents + ":  M = " + remainingMaleStudents
                     + " F = " + renamingFemaleStudents + " U = "
@@ -133,19 +133,19 @@ public class FilterList {
             System.out.println("Year: " + yearEnum);
 
             int totalLeft = 0;
-
+/*
             totalLeft += leftToSpecificProgram(programEnum, ProgramEnum.CSMAJ, yearEnum);
             totalLeft += leftToSpecificProgram(programEnum, ProgramEnum.SOSY, yearEnum);
             totalLeft += leftToSpecificProgram(programEnum, ProgramEnum.CSMNR, yearEnum);
             totalLeft += leftToSpecificProgram(programEnum, ProgramEnum.CSJNT, yearEnum);
             totalLeft += leftToSpecificProgram(programEnum, ProgramEnum.OTHER, yearEnum);
-            totalLeft += leftToSpecificProgram(programEnum, ProgramEnum.DROPOUT, yearEnum);
+            totalLeft += leftToSpecificProgram(programEnum, ProgramEnum.DROPOUT, yearEnum);*/
 
             System.out.println("Total Left: " + totalLeft + "\n");
         }
 
-        private static int leftToSpecificProgram(ProgramEnum programEnum, ProgramEnum newProgram, YearEnum yearEnum) {
-
+        public static List<Integer> leftToSpecificProgram(ProgramEnum programEnum, ProgramEnum newProgram, YearEnum yearEnum) {
+            List<Integer> studentsWhoLeftToASpecificProgram = new ArrayList<>();
             FilterContainer filterContainer = new FilterContainer();
             StudentManager studentManager = model.getStudentManager();
             List<Student> allStudentsList = studentManager.getStudents();
@@ -182,18 +182,34 @@ public class FilterList {
                 filteredStudentsWhoDroppedFemale = filterContainer.listOfStudentWhoDroppedOutInAGivenYear(yearEnum, filteredStudentListFemale);
                 filteredStudentsWhoDroppedUnknown = filterContainer.listOfStudentWhoDroppedOutInAGivenYear(yearEnum, filteredStudentListUnknown);
 
-                totalLeft = filteredStudentsWhoDroppedMale.size() + filteredStudentsWhoDroppedFemale.size() + filteredStudentsWhoDroppedUnknown.size();
-
-                System.out.println("left: " + totalLeft
+                //new stuff
+                int dropout = filteredStudentsWhoDroppedMale.size() + filteredStudentsWhoDroppedFemale.size() + filteredStudentsWhoDroppedUnknown.size();
+                //male
+                studentsWhoLeftToASpecificProgram.add(filteredStudentListWhoLeftProgramMale.size());
+                //female
+                studentsWhoLeftToASpecificProgram.add(filteredStudentListWhoLeftProgramFemale.size());
+                //unknown
+                studentsWhoLeftToASpecificProgram.add(filteredStudentListWhoLeftProgramUnknown.size());
+                //total
+                studentsWhoLeftToASpecificProgram.add(dropout);
+              /*  System.out.println("left: " + totalLeft
                         + " M=    " + filteredStudentsWhoDroppedMale.size()
                         + " F=    " + filteredStudentsWhoDroppedFemale.size() + " U=    " + filteredStudentsWhoDroppedUnknown.size() + " (reason for leaving " + newProgram + ")");
-
-                return totalLeft;
+*/
+                return studentsWhoLeftToASpecificProgram;
             } else {
-                System.out.println("left: " + totalLeft
+               /* System.out.println("left: " + totalLeft
                         + " M=    " + filteredStudentListWhoLeftProgramMale.size()
                         + " F=    " + filteredStudentListWhoLeftProgramFemale.size() + " U=    " + filteredStudentListWhoLeftProgramUnknown.size() + " (reason for leaving " + newProgram + ")");
-                return totalLeft;
+*/
+                studentsWhoLeftToASpecificProgram.add(filteredStudentListWhoLeftProgramMale.size());
+                //female
+                studentsWhoLeftToASpecificProgram.add(filteredStudentListWhoLeftProgramFemale.size());
+                //unknown
+                studentsWhoLeftToASpecificProgram.add(filteredStudentListWhoLeftProgramUnknown.size());
+                //total
+                studentsWhoLeftToASpecificProgram.add(totalLeft);
+                return studentsWhoLeftToASpecificProgram;
             }
         }
 
@@ -224,9 +240,13 @@ public class FilterList {
             int totalJoined = filteredStudentListWhoLeftProgramMale.size() + filteredStudentListWhoLeftProgramFemale.size() + filteredStudentListWhoLeftProgramUnknown.size();
             List<Integer> studentsWhoJoinedFromSpecificProgram = new ArrayList<>();
 
+            //male
             studentsWhoJoinedFromSpecificProgram.add(filteredStudentListWhoLeftProgramMale.size());
+            //female
             studentsWhoJoinedFromSpecificProgram.add(filteredStudentListWhoLeftProgramFemale.size());
+            //unknown
             studentsWhoJoinedFromSpecificProgram.add(filteredStudentListWhoLeftProgramUnknown.size());
+            //total
             studentsWhoJoinedFromSpecificProgram.add(totalJoined);
 
             /*System.out.println("joined: " + totalJoined

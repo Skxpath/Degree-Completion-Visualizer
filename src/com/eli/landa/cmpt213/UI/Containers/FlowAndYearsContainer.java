@@ -18,24 +18,28 @@ public class FlowAndYearsContainer extends JPanel implements Observer{
         DegreeCompletionVisualizerFacade.getInstance().registerObserver(this);
         setLayout(new GridBagLayout());
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
-        int gridXVal = 1;
+        setBorder(BorderFactory.createLineBorder(Color.black, 1));
+        int gridXVal = 0;
         YearEnum yearEnums[] = YearEnum.values();
         ProgramEnum programEnums[] = ProgramEnum.values();
         for (int i = 0; i < 5; i ++){
             gridBagConstraints.gridx = gridXVal;
             gridBagConstraints.gridy = 3;
-            add(new YearRectangle(yearEnums[i], programEnums[0]), gridBagConstraints);
+            gridBagConstraints.weightx = 1;
+            gridBagConstraints.weighty = 1;
+            gridBagConstraints.fill = 1;
+            add(new YearRectangle(yearEnums[i], DegreeCompletionVisualizerFacade.getInstance().getFilterSettings().getProgramEnum()), gridBagConstraints);
             gridXVal++;
-
+            gridBagConstraints.weighty = .1;
             gridBagConstraints.gridx = gridXVal;
             gridBagConstraints.gridy = 2;
-            add(new FlowRectangle(YearEnum.FIRST_YEAR, true), gridBagConstraints);
+            add(new FlowRectangle(yearEnums[i], true), gridBagConstraints);
 
             gridXVal++;
 
             gridBagConstraints.gridx = gridXVal;
             gridBagConstraints.gridy = 4;
-            add(new FlowRectangle(YearEnum.FIRST_YEAR, false), gridBagConstraints);
+            add(new FlowRectangle(yearEnums[i], false), gridBagConstraints);
 
             gridXVal++;
         }
@@ -51,9 +55,12 @@ public class FlowAndYearsContainer extends JPanel implements Observer{
         for (int i = 0; i < 5; i ++){
             gridBagConstraints.gridx = gridXVal;
             gridBagConstraints.gridy = 3;
+            gridBagConstraints.weightx = 1;
+            gridBagConstraints.weighty = 1;
+            gridBagConstraints.fill = 1;
             add(new YearRectangle(yearEnums[i], DegreeCompletionVisualizerFacade.getInstance().getFilterSettings().getProgramEnum()), gridBagConstraints);
             gridXVal++;
-
+            gridBagConstraints.weighty = .1;
             gridBagConstraints.gridx = gridXVal;
             gridBagConstraints.gridy = 2;
             add(new FlowRectangle(yearEnums[i], true), gridBagConstraints);

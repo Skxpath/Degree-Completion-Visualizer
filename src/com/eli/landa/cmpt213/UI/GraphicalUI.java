@@ -34,6 +34,7 @@ public class GraphicalUI {
         frame.setLocation(0, 0);
         frame.setLayout(new GridBagLayout());
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.fill = 1;
         setupMiddlePanels(frame, gridBagConstraints);
         setupTopPanels(frame, gridBagConstraints);
 
@@ -52,9 +53,10 @@ public class GraphicalUI {
     }
 
     private static void setupMiddlePanels(JFrame frame, GridBagConstraints gridBagConstraints) {
-        gridBagConstraints.anchor = GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 0;
+        gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1;
         gridBagConstraints.weighty = 1;
+        gridBagConstraints.gridy = 1;
         frame.add(new FlowAndYearsContainer(), gridBagConstraints);
     }
 
@@ -70,7 +72,7 @@ public class GraphicalUI {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1;
-        gridBagConstraints.weighty = 1;
+        gridBagConstraints.weighty = .1;
         frame.add(containerTop, gridBagConstraints);
     }
     static void setupYearFlow(List<JPanel> panels, JFrame frame, GridBagConstraints gridBagConstraints){

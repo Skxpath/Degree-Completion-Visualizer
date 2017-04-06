@@ -45,7 +45,7 @@ public class FilterContainer {
         return filteredStudents;
     }
 
-    List<Student> sortByGender(GenderEnum genderEnum, List<Student> students) {
+    public List<Student> sortByGender(GenderEnum genderEnum, List<Student> students) {
         List<Student> filteredStudents = new ArrayList<>();
         StudentFilter genderFilter = new StudentFilter() {
             @Override
@@ -64,7 +64,7 @@ public class FilterContainer {
         return filteredStudents;
     }
 
-    List<Student> sortByProgramWithGivenYear(ProgramEnum programEnum, YearEnum yearEnum, List<Student> students) {
+    public List<Student> sortByProgramWithGivenYear(ProgramEnum programEnum, YearEnum yearEnum, List<Student> students) {
         List<Student> filteredStudents = new ArrayList<>();
 
         StudentFilter programFilter = new StudentFilter() {

@@ -12,6 +12,10 @@ import java.util.List;
  * Created by Eli on 2017-04-03.
  */
 public class FilterStudentsCheckBoxAndEditTexts extends JPanel{
+    public static boolean inSelectedProgramInYear = true;
+    public static boolean graduatedInSelectedProgramInYear = true;
+    public static int year1 = 0;
+    public static int year2 = 0;
     public FilterStudentsCheckBoxAndEditTexts () {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(BorderFactory.createLineBorder(Color.black, 5));
@@ -23,7 +27,8 @@ public class FilterStudentsCheckBoxAndEditTexts extends JPanel{
 
         List<JPanel> topPanel = new ArrayList<>();
 
-        topPanel.add(new CheckBox("In selected program in the year"));
+        CheckBox inSelectedProgramInYearBox = new CheckBox("In selected program in the year", inSelectedProgramInYear);
+        topPanel.add(inSelectedProgramInYearBox);
         topPanel.get(0).setPreferredSize(new Dimension(300,30));
 
         topPanel.add(new TextBox());
@@ -33,7 +38,8 @@ public class FilterStudentsCheckBoxAndEditTexts extends JPanel{
 
         List<JPanel> bottomPanel = new ArrayList<>();
 
-        bottomPanel.add(new CheckBox("Graduated selected program in the year"));
+        CheckBox graduatedSelectedProgramInYearBox = new CheckBox("Graduated selected program in the year", graduatedInSelectedProgramInYear);
+        bottomPanel.add(graduatedSelectedProgramInYearBox);
         bottomPanel.get(0).setPreferredSize(new Dimension(300,30));
 
         bottomPanel.add(new TextBox());
@@ -47,6 +53,8 @@ public class FilterStudentsCheckBoxAndEditTexts extends JPanel{
         btn.getModel().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                DegreeCompletionVisualizerFacade.getInstance().getFilterSettings().setInSelectedProgramInYear(inSelectedProgramInYear);
+                DegreeCompletionVisualizerFacade.getInstance().getFilterSettings().setGraduatedSelectedProgramInYear(graduatedInSelectedProgramInYear);
                 DegreeCompletionVisualizerFacade.getInstance().updateObservers();
             }
         });

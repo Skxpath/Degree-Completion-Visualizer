@@ -15,10 +15,18 @@ import java.util.List;
 /**
  * Created by Eli on 2017-04-03.
  */
-public class FlowRectangle extends JPanel{
+public class FlowRectangle extends JPanel {
+    List<Student> filteredStudentListMale = null;
+    List<Student> filteredStudentListFemale = null;
+    List<Student> filteredStudentListUnknown = null;
+    YearEnum yearEnum;
+    GridBagConstraints gridBagConstraints = new GridBagConstraints();
     public FlowRectangle(YearEnum yearEnum, boolean isComing) {
+        //DegreeCompletionVisualizerFacade.getInstance().registerObserver(this);
+        this.yearEnum = yearEnum;
+
         setLayout(new GridBagLayout());
-        GridBagConstraints gridBagConstraints = new GridBagConstraints();
+
 
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -32,25 +40,29 @@ public class FlowRectangle extends JPanel{
 
 
 
-        List<Student> filteredStudentListMale = null;
-        List<Student> filteredStudentListFemale = null;
-        List<Student> filteredStudentListUnknown = null;
-
         ProgramEnum programEnum = ProgramEnum.CSMAJ;
-        setupFilters(filteredStudentListMale, filteredStudentListFemale, filteredStudentListUnknown, programEnum, yearEnum);
+        setupFilters(programEnum, yearEnum);
+        List<Float> listOfPercents = getListOfPercents();
+        List<Integer> listOfAmounts = new ArrayList<>();
+        listOfAmounts.add(4);
+        listOfAmounts.add(12);
+        listOfAmounts.add(3);
+        add(new GenderDistributionRectangle(listOfPercents.get(0),listOfPercents.get(1),listOfPercents.get(2), listOfAmounts), gridBagConstraints);
 
-        List<Float> listOfPercents = new ArrayList<>();
-
-        add(new GenderDistributionRectangle(.2f,.6f,.3f), gridBagConstraints);
-
+        programEnum = ProgramEnum.CSJNT;
+        setupFilters(programEnum, yearEnum);
+        listOfPercents = getListOfPercents();
         gridBagConstraints.gridy = 1;
-        add(new GenderDistributionRectangle(.7f,.1f,.3f), gridBagConstraints);
+        add(new GenderDistributionRectangle(listOfPercents.get(0),listOfPercents.get(1),listOfPercents.get(2), listOfAmounts), gridBagConstraints);
 
+        programEnum = ProgramEnum.SOSY;
+        setupFilters(programEnum, yearEnum);
+        listOfPercents = getListOfPercents();
         gridBagConstraints.gridy = 2;
-        add(new GenderDistributionRectangle(.5f,.3f,.2f), gridBagConstraints);
+        add(new GenderDistributionRectangle(listOfPercents.get(0),listOfPercents.get(1),listOfPercents.get(2), listOfAmounts), gridBagConstraints);
     }
 
-    void setupFilters (List<Student> filteredStudentListMale, List<Student> filteredStudentListFemale, List<Student> filteredStudentListUnknown, ProgramEnum programEnum , YearEnum yearEnum){
+    void setupFilters (ProgramEnum programEnum , YearEnum yearEnum){
         FilterContainer filterContainer = new FilterContainer();
         StudentManager studentManager = DegreeCompletionVisualizerFacade.getInstance().getStudentManager();
         List<Student> allStudentsList = studentManager.getStudents();
@@ -60,10 +72,12 @@ public class FlowRectangle extends JPanel{
     }
 
     float getPercent (int amount, int total){
-        return (float)(amount/total);
+        float demnominator = total;
+        float numerator = amount;
+        return (numerator/demnominator);
     }
 
-    List<Float> getListOfPercents (List<Student> filteredStudentListMale, List<Student> filteredStudentListFemale, List<Student> filteredStudentListUnknown) {
+    List<Float> getListOfPercents () {
         List<Float> listOfPercents = new ArrayList<>();
         int sum = filteredStudentListFemale.size() + filteredStudentListMale.size() + filteredStudentListUnknown.size();
         float malePercent = getPercent(filteredStudentListMale.size(), sum);
@@ -74,4 +88,27 @@ public class FlowRectangle extends JPanel{
         listOfPercents.add(unknownPercent);
         return listOfPercents;
     }
+
+   /* @Override
+    public void update() {
+        removeAll();
+        ProgramEnum programEnum = ProgramEnum.CSMAJ;
+        setupFilters(programEnum, yearEnum);
+        List<Float> listOfPercents = getListOfPercents();
+        gridBagConstraints.gridy = 0;
+        add(new GenderDistributionRectangle(listOfPercents.get(0),listOfPercents.get(1),listOfPercents.get(2)), gridBagConstraints);
+
+        programEnum = ProgramEnum.CSJNT;
+        setupFilters(programEnum, yearEnum);
+        listOfPercents = getListOfPercents();
+        gridBagConstraints.gridy = 1;
+        add(new GenderDistributionRectangle(listOfPercents.get(0),listOfPercents.get(1),listOfPercents.get(2)), gridBagConstraints);
+
+        programEnum = ProgramEnum.SOSY;
+        setupFilters(programEnum, yearEnum);
+        listOfPercents = getListOfPercents();
+        gridBagConstraints.gridy = 2;
+        add(new GenderDistributionRectangle(listOfPercents.get(0),listOfPercents.get(1),listOfPercents.get(2)), gridBagConstraints);
+        updateUI();
+    }*/
 }

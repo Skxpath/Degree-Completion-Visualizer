@@ -1,5 +1,6 @@
 package com.eli.landa.cmpt213.UI.Elements;
 
+import com.eli.landa.cmpt213.Enums.ProgramEnum;
 import com.eli.landa.cmpt213.Model.DegreeCompletionVisualizerFacade;
 
 import javax.swing.*;
@@ -33,9 +34,32 @@ public class SelectAProgramDropdownMenu extends JPanel {
         btn.getModel().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                DegreeCompletionVisualizerFacade.getInstance().getFilterSettings().setProgramEnum(stringToProgramEnum(cb.getSelectedItem().toString()));
                 DegreeCompletionVisualizerFacade.getInstance().updateObservers();
             }
         });
+    }
+    ProgramEnum stringToProgramEnum (String text){
+        ProgramEnum programEnum = ProgramEnum.CSMAJ;
+        switch (text){
+            case "CS Major":
+                programEnum = ProgramEnum.CSMAJ;
+                break;
+            case "CS SoSy":
+                programEnum = ProgramEnum.SOSY;
+                break;
+            case "CS Minor":
+                programEnum = ProgramEnum.CSMNR;
+                break;
+            case "CS Joint Major":
+                programEnum = ProgramEnum.CSJNT;
+                break;
+            case "Unknown":
+                programEnum = ProgramEnum.OTHER;
+                break;
+        }
+      //  System.out.println(programEnum.toString());
+        return programEnum;
     }
 
 

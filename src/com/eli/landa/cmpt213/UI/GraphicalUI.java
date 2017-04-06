@@ -25,6 +25,8 @@ public class GraphicalUI {
         }
 
         model.getStudentManager().populateProgramsInStudentSemesters();
+
+     //   FilterList filterList = new FilterList();
         JFrame frame = new JFrame("Degree Completion Visualizer");
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

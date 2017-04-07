@@ -252,7 +252,33 @@ public class FilterList {
             /*System.out.println("joined: " + totalJoined
                     + " M=    " + filteredStudentListWhoLeftProgramMale.size()
                     + " F=    " + filteredStudentListWhoLeftProgramFemale.size() + " U=    " + filteredStudentListWhoLeftProgramUnknown.size() + " (previous program " + newProgram + ")");*/
+            if (newProgram.equals(ProgramEnum.DROPOUT)) {
 
+                filteredStudentListMale = filterContainer.sortByGender(GenderEnum.MALE, filterContainer.sortByProgramWithGivenYear(programEnum, yearEnum, allStudentsList));
+                filteredStudentListFemale = filterContainer.sortByGender(GenderEnum.FEMALE, filterContainer.sortByProgramWithGivenYear(programEnum, yearEnum, allStudentsList));
+                filteredStudentListUnknown = filterContainer.sortByGender(GenderEnum.UNKNOWN, filterContainer.sortByProgramWithGivenYear(programEnum, yearEnum, allStudentsList));
+
+                List<Student> filteredStudentsWhoDroppedMale = filterContainer.listOfStudentWhoDroppedOutInAGivenYear(yearEnum, filteredStudentListMale);
+                List<Student> filteredStudentsWhoDroppedFemale = filterContainer.listOfStudentWhoDroppedOutInAGivenYear(yearEnum, filteredStudentListFemale);
+                List<Student> filteredStudentsWhoDroppedUnknown = filterContainer.listOfStudentWhoDroppedOutInAGivenYear(yearEnum, filteredStudentListUnknown);
+
+                //new stuff
+                int dropout = filteredStudentsWhoDroppedMale.size() + filteredStudentsWhoDroppedFemale.size() + filteredStudentsWhoDroppedUnknown.size();
+                studentsWhoJoinedFromSpecificProgram.clear();
+                //male
+                studentsWhoJoinedFromSpecificProgram.add(filteredStudentsWhoDroppedMale.size());
+                //female
+                studentsWhoJoinedFromSpecificProgram.add(filteredStudentsWhoDroppedFemale.size());
+                //unknown
+                studentsWhoJoinedFromSpecificProgram.add(filteredStudentsWhoDroppedUnknown.size());
+                //total
+                studentsWhoJoinedFromSpecificProgram.add(dropout);
+              /*  System.out.println("left: " + totalLeft
+                        + " M=    " + filteredStudentsWhoDroppedMale.size()
+                        + " F=    " + filteredStudentsWhoDroppedFemale.size() + " U=    " + filteredStudentsWhoDroppedUnknown.size() + " (reason for leaving " + newProgram + ")");
+*/
+                return studentsWhoJoinedFromSpecificProgram;
+            }
             return studentsWhoJoinedFromSpecificProgram;
         }
 }

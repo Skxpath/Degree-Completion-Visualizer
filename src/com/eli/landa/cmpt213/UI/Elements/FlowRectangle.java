@@ -39,7 +39,7 @@ public class FlowRectangle extends JPanel {
         if(isComing) {
             gridBagConstraints.gridy = 0;
             gridBagConstraints.weighty = 1;
-            JLabel title = new JLabel("Leaving");
+            JLabel title = new JLabel("Coming");
             add(title, gridBagConstraints);
             gridBagConstraints.weighty = 100;
             gridBagConstraints.gridy = 1;
@@ -57,7 +57,7 @@ public class FlowRectangle extends JPanel {
         else {
             gridBagConstraints.gridy = 0;
             gridBagConstraints.weighty = 1;
-            JLabel title = new JLabel("Coming");
+            JLabel title = new JLabel("Leaving");
             add(title, gridBagConstraints);
             gridBagConstraints.weighty = 100;
             gridBagConstraints.gridy = 1;
@@ -130,6 +130,7 @@ public class FlowRectangle extends JPanel {
         add(other, gridBagConstraints);
         gridBagConstraints.gridx = 1;
         gridBagConstraints.weightx = 40;
+        System.out.println(unknown);
         add(new GenderDistributionRectangle(male,female,unknown, listOfAmounts), gridBagConstraints);
         gridBagConstraints.gridx = 2;
         JLabel totalAmount = new JLabel((int)total + "");

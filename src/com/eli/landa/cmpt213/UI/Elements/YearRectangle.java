@@ -48,6 +48,9 @@ public class YearRectangle extends JPanel{
 
         gridBagConstraints.gridy = 3;
         JLabel year = new JLabel(yearEnum.toString());
+        if(yearEnum.equals(YearEnum.FOURTH_YEAR)){
+            year = new JLabel("GRADUATED");
+        }
         add(year, gridBagConstraints);
         setPreferredSize(new Dimension(100,200));
     }

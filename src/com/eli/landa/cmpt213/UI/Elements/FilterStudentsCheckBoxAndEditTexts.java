@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 /**
- * Created by Eli on 2017-04-03.
+ * lets users filter by year in program, or by when students graduated from a program
  */
 public class FilterStudentsCheckBoxAndEditTexts extends JPanel{
     public static boolean inSelectedProgramInYear = true;

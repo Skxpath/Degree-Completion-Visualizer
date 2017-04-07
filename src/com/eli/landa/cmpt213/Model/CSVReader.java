@@ -249,7 +249,7 @@ public class CSVReader {
 
     public List<File> populateFiles() {
         List<File> files = new ArrayList<>();
-        File directory = new File("C:\\Users\\Aria\\IdeaProjects\\Degree-Completion-Visualizer\\src\\com\\eli\\landa\\cmpt213\\Data");
+        File directory = new File("C:\\Users\\Eli\\IdeaProjects\\Degree-Completion-Visualizer-use-this\\src\\com\\eli\\landa\\cmpt213\\Data");
         int AMOUNT_OF_FILES_IN_DIRECTORY = directory.listFiles().length;
         for (int i = 0; i < AMOUNT_OF_FILES_IN_DIRECTORY; i++) {
             files.add(directory.listFiles()[i]);

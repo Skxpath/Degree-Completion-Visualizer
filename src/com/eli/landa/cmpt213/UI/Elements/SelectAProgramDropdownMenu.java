@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by Eli on 2017-04-03.
+ * dropdown menu for sorting by programs
  */
 public class SelectAProgramDropdownMenu extends JPanel {
     public SelectAProgramDropdownMenu() {

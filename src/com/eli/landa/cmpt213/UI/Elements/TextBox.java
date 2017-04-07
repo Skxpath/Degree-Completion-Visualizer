@@ -5,7 +5,7 @@ import com.eli.landa.cmpt213.Model.Observer;
 import javax.swing.*;
 
 /**
- * Created by Eli on 2017-04-03.
+ * lets u type in a box
  */
 public class TextBox extends JPanel implements Observer{
     public  TextBox () {

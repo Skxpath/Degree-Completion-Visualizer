@@ -3,7 +3,7 @@ package com.eli.landa.cmpt213.UI.Elements;
 import javax.swing.*;
 
 /**
- * Created by Eli on 2017-04-03.
+ * Can be ticked or unticked
  */
 public class CheckBox extends JPanel {
     public CheckBox(String text, boolean isTicked) {

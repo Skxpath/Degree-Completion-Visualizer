@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 /**
- * Created by QueenNadine on 2017-04-03.
+ * Contains JPanels
  */
 public class Container extends JPanel{
 

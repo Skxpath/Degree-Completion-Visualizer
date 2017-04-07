@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 /**
- * Created by Eli on 2017-04-03.
+ *Displays inflow and out flow of students
  */
 public class FlowRectangle extends JPanel {
     List<Student> filteredStudentListMale = null;
@@ -130,7 +130,7 @@ public class FlowRectangle extends JPanel {
         add(other, gridBagConstraints);
         gridBagConstraints.gridx = 1;
         gridBagConstraints.weightx = 40;
-        System.out.println(unknown);
+      //  System.out.println(unknown);
         add(new GenderDistributionRectangle(male,female,unknown, listOfAmounts), gridBagConstraints);
         gridBagConstraints.gridx = 2;
         JLabel totalAmount = new JLabel((int)total + "");

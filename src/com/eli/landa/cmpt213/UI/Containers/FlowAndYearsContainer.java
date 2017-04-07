@@ -11,7 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created by Eli on 2017-04-05.
+ * Draws the flow and mileStone years
  */
 public class FlowAndYearsContainer extends JPanel implements Observer{
     public FlowAndYearsContainer() {

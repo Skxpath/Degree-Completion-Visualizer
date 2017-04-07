@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created by QueenNadine on 2017-04-03.
+ * its a rectangle
  */
 public class Rectangle extends JPanel {
     private int width;

@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 /**
- * Created by Eli on 2017-04-05.
+ * Displays milestone years
  */
 public class YearRectangle extends JPanel{
     ProgramEnum programEnum;

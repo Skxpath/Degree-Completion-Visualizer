@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 /**
- * Created by Eli on 2017-04-03.
+*Shows distribution of genders
  */
 public class GenderDistributionRectangle extends JPanel{
     final int height = 20;

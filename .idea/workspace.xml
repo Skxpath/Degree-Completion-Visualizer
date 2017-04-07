@@ -3,7 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="428944b9-81f9-4efb-8d34-1e8cf509ac87" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Elements/FilterStudentsCheckBoxAndEditTexts.java" afterPath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Elements/FilterStudentsCheckBoxAndEditTexts.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Data/test_programs.csv" afterPath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Data/test_programs.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Data/test_semesters.csv" afterPath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Data/test_semesters.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Data/test_students.csv" afterPath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/Data/test_students.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Containers/FlowAndYearsContainer.java" afterPath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Containers/FlowAndYearsContainer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Elements/FlowRectangle.java" afterPath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Elements/FlowRectangle.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/FilterList.java" afterPath="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/FilterList.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FilterList.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="FilterList.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/FilterList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="169" column="83" lean-forward="true" selection-start-line="169" selection-start-column="83" selection-end-line="169" selection-end-column="83" />
+            <state relative-caret-position="389">
+              <caret line="272" column="90" lean-forward="false" selection-start-line="272" selection-start-column="90" selection-end-line="272" selection-end-column="90" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -67,8 +72,8 @@
       <file leaf-file-name="FlowAndYearsContainer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Containers/FlowAndYearsContainer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="457">
-              <caret line="80" column="158" lean-forward="false" selection-start-line="80" selection-start-column="158" selection-end-line="80" selection-end-column="158" />
+            <state relative-caret-position="442">
+              <caret line="43" column="23" lean-forward="false" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -79,8 +84,8 @@
       <file leaf-file-name="FlowRectangle.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Elements/FlowRectangle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="833">
-              <caret line="72" column="40" lean-forward="false" selection-start-line="72" selection-start-column="40" selection-end-line="72" selection-end-column="40" />
+            <state relative-caret-position="316">
+              <caret line="132" column="34" lean-forward="false" selection-start-line="132" selection-start-column="34" selection-end-line="132" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -98,7 +103,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FilterStudentsCheckBoxAndEditTexts.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FilterStudentsCheckBoxAndEditTexts.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Elements/FilterStudentsCheckBoxAndEditTexts.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="355">
@@ -108,11 +113,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SelectAProgramDropdownMenu.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Elements/SelectAProgramDropdownMenu.java">
+      <file leaf-file-name="FilterContainer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/FilterContainer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="60" column="13" lean-forward="false" selection-start-line="60" selection-start-column="10" selection-end-line="60" selection-end-column="13" />
+            <state relative-caret-position="17">
+              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -121,7 +126,7 @@
       <file leaf-file-name="GenderDistributionRectangle.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Elements/GenderDistributionRectangle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
+            <state relative-caret-position="112">
               <caret line="19" column="14" lean-forward="false" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="14" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -178,7 +183,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="AlmostDoneStillNeedGradAndCheckBoxFilters" />
+        <entry key="$PROJECT_DIR$" value="NeedToDoCheckBox" />
       </map>
     </option>
   </component>
@@ -237,10 +242,10 @@
         <option value="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Elements/GenderDistributionRectangle.java" />
         <option value="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Elements/YearRectangle.java" />
         <option value="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/GraphicalUI.java" />
-        <option value="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/FilterList.java" />
+        <option value="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Elements/FilterStudentsCheckBoxAndEditTexts.java" />
         <option value="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Containers/FlowAndYearsContainer.java" />
         <option value="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Elements/FlowRectangle.java" />
-        <option value="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Elements/FilterStudentsCheckBoxAndEditTexts.java" />
+        <option value="$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/FilterList.java" />
       </list>
     </option>
   </component>
@@ -806,7 +811,21 @@
       <option name="project" value="LOCAL" />
       <updated>1491518626027</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="improved UI">
+      <created>1491518883191</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1491518883192</updated>
+    </task>
+    <task id="LOCAL-00021" summary="partially fixed flow">
+      <created>1491523602808</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1491523602808</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -878,7 +897,8 @@
     <MESSAGE value="the big central squares which denote the year milestones are now working" />
     <MESSAGE value="Almost done, still need graduation and check box filters" />
     <MESSAGE value="improved UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="improved UI" />
+    <MESSAGE value="partially fixed flow" />
+    <option name="LAST_COMMIT_MESSAGE" value="partially fixed flow" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1114,14 +1134,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/FilterContainer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2584">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Elements/FlowCompleteComponent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="282">
@@ -1168,13 +1180,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Elements/GenderDistributionRectangle.java">
+    <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Containers/Container.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="19" column="14" lean-forward="false" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="102">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Elements/FilterStudentsCheckBoxAndEditTexts.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="58" column="136" lean-forward="false" selection-start-line="58" selection-start-column="136" selection-end-line="58" selection-end-column="136" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1186,11 +1204,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Containers/Container.java">
+    <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Containers/FlowAndYearsContainer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="442">
+          <caret line="43" column="23" lean-forward="false" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Elements/GenderDistributionRectangle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="19" column="14" lean-forward="false" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Elements/FlowRectangle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="132" column="34" lean-forward="false" selection-start-line="132" selection-start-column="34" selection-end-line="132" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1204,41 +1244,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/FilterContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/FilterList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="169" column="83" lean-forward="true" selection-start-line="169" selection-start-column="83" selection-end-line="169" selection-end-column="83" />
+        <state relative-caret-position="389">
+          <caret line="272" column="90" lean-forward="false" selection-start-line="272" selection-start-column="90" selection-end-line="272" selection-end-column="90" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Containers/FlowAndYearsContainer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="80" column="158" lean-forward="false" selection-start-line="80" selection-start-column="158" selection-end-line="80" selection-end-column="158" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Elements/FlowRectangle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="72" column="40" lean-forward="false" selection-start-line="72" selection-start-column="40" selection-end-line="72" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eli/landa/cmpt213/UI/Elements/FilterStudentsCheckBoxAndEditTexts.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="58" column="136" lean-forward="false" selection-start-line="58" selection-start-column="136" selection-end-line="58" selection-end-column="136" />
-          <folding />
         </state>
       </provider>
     </entry>

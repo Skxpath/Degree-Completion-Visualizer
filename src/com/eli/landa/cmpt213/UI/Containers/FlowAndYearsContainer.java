@@ -33,13 +33,13 @@ public class FlowAndYearsContainer extends JPanel implements Observer{
             gridBagConstraints.weighty = .1;
             gridBagConstraints.gridx = gridXVal;
             gridBagConstraints.gridy = 2;
-            add(new FlowRectangle(yearEnums[i+1], true), gridBagConstraints);
+            add(new FlowRectangle(yearEnums[i+1], false), gridBagConstraints);
 
             gridXVal++;
 
             gridBagConstraints.gridx = gridXVal;
             gridBagConstraints.gridy = 4;
-            add(new FlowRectangle(yearEnums[i+1], false), gridBagConstraints);
+            add(new FlowRectangle(yearEnums[i+1], true), gridBagConstraints);
 
             gridXVal++;
         }
@@ -66,13 +66,13 @@ public class FlowAndYearsContainer extends JPanel implements Observer{
             gridBagConstraints.weighty = .1;
             gridBagConstraints.gridx = gridXVal;
             gridBagConstraints.gridy = 2;
-            add(new FlowRectangle(yearEnums[i+1], true), gridBagConstraints);
+            add(new FlowRectangle(yearEnums[i+1], false), gridBagConstraints);
 
             gridXVal++;
 
             gridBagConstraints.gridx = gridXVal;
             gridBagConstraints.gridy = 4;
-            add(new FlowRectangle(yearEnums[i+1], false), gridBagConstraints);
+            add(new FlowRectangle(yearEnums[i+1], true), gridBagConstraints);
 
             gridXVal++;
         }

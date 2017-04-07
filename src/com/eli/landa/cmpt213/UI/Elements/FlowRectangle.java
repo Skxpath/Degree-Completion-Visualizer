@@ -39,7 +39,7 @@ public class FlowRectangle extends JPanel {
         if(isComing) {
             gridBagConstraints.gridy = 0;
             gridBagConstraints.weighty = 1;
-            JLabel title = new JLabel("Leaving");
+            JLabel title = new JLabel("Coming");
             add(title, gridBagConstraints);
             gridBagConstraints.weighty = 100;
             gridBagConstraints.gridy = 1;
@@ -57,7 +57,7 @@ public class FlowRectangle extends JPanel {
         else {
             gridBagConstraints.gridy = 0;
             gridBagConstraints.weighty = 1;
-            JLabel title = new JLabel("Coming");
+            JLabel title = new JLabel("Leaving");
             add(title, gridBagConstraints);
             gridBagConstraints.weighty = 100;
             gridBagConstraints.gridy = 1;
@@ -118,10 +118,10 @@ public class FlowRectangle extends JPanel {
 
     }
     void setupGenderPanelForLeaving (ProgramEnum programEnum, ProgramEnum newProgramEnum, YearEnum yearEnum){
-        float total = FilterList.leftToSpecificProgram(programEnum,newProgramEnum,yearEnum).get(3);
-        float male = FilterList.leftToSpecificProgram(programEnum,newProgramEnum,yearEnum).get(0);
-        float female = FilterList.leftToSpecificProgram(programEnum,newProgramEnum,yearEnum).get(1);
-        float unknown = FilterList.leftToSpecificProgram(programEnum,newProgramEnum,yearEnum).get(2);
+        float total = FilterList.joinedFromSpecificProgram(programEnum,newProgramEnum,yearEnum).get(3);
+        float male = FilterList.joinedFromSpecificProgram(programEnum,newProgramEnum,yearEnum).get(0);
+        float female = FilterList.joinedFromSpecificProgram(programEnum,newProgramEnum,yearEnum).get(1);
+        float unknown = FilterList.joinedFromSpecificProgram(programEnum,newProgramEnum,yearEnum).get(2);
         //  System.out.println(yearEnum);
         List<Integer> listOfAmounts = FilterList.joinedFromSpecificProgram(programEnum,newProgramEnum,yearEnum);
         JLabel other = new JLabel(newProgramEnum.toString());
@@ -130,6 +130,7 @@ public class FlowRectangle extends JPanel {
         add(other, gridBagConstraints);
         gridBagConstraints.gridx = 1;
         gridBagConstraints.weightx = 40;
+        System.out.println(unknown);
         add(new GenderDistributionRectangle(male,female,unknown, listOfAmounts), gridBagConstraints);
         gridBagConstraints.gridx = 2;
         JLabel totalAmount = new JLabel((int)total + "");

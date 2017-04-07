@@ -18,7 +18,8 @@ public class DegreeCompletionVisualizerFacade {
     private List<Observer> observers = new ArrayList<>();
     private CSVReader reader;
     private static List<Student> startingStudentList = new ArrayList<>();
-    private FilterSettings filterSettings= new FilterSettings(ProgramEnum.CSMAJ, true, true, 2000,2000);
+    private FilterSettings filterSettings = new FilterSettings(ProgramEnum.CSMAJ, true, true, 2000, 2000);
+
     private DegreeCompletionVisualizerFacade() {
         studentManager = new StudentManager();
     }
@@ -43,12 +44,12 @@ public class DegreeCompletionVisualizerFacade {
         this.reader = reader;
     }
 
-    public void registerObserver (Observer observer){
+    public void registerObserver(Observer observer) {
         observers.add(observer);
     }
 
-    public void updateObservers (){
-        for (Observer observer: observers) {
+    public void updateObservers() {
+        for (Observer observer : observers) {
             observer.update();
         }
     }

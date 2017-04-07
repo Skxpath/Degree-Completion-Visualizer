@@ -4,6 +4,8 @@ import com.eli.landa.cmpt213.Enums.ProgramEnum;
 
 /**
  * Created by Eli on 2017-04-05.
+ * <p>
+ * Filter Settings class to store filtered data based on different parameters passed in.
  */
 public class FilterSettings {
     ProgramEnum programEnum;

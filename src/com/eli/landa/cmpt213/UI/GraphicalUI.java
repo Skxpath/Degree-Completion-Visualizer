@@ -11,10 +11,15 @@ import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-/* GraphicalUI class to display data dump to the console
+
+
+/*
+* GraphicalUI class to display filtered model data on a GUI.
+*
 * */
 public class GraphicalUI {
     private static DegreeCompletionVisualizerFacade model = DegreeCompletionVisualizerFacade.getInstance();
+
     public static void main(String[] args) {
         CSVReader reader = new CSVReader();
         List<File> files = reader.populateFiles();
@@ -26,7 +31,7 @@ public class GraphicalUI {
 
         model.getStudentManager().populateProgramsInStudentSemesters();
 
-     //   FilterList filterList = new FilterList();
+        //   FilterList filterList = new FilterList();
         JFrame frame = new JFrame("Degree Completion Visualizer");
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,8 +70,8 @@ public class GraphicalUI {
 
         topPanels.add(new SelectAProgramDropdownMenu());
         topPanels.add(new FilterStudentsCheckBoxAndEditTexts());
-        topPanels.get(0).setPreferredSize(new Dimension(130,130));
-        topPanels.get(1).setPreferredSize(new Dimension(400,130));
+        topPanels.get(0).setPreferredSize(new Dimension(130, 130));
+        topPanels.get(1).setPreferredSize(new Dimension(400, 130));
         JPanel containerTop = new com.eli.landa.cmpt213.UI.Containers.Container(topPanels);
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -75,8 +80,9 @@ public class GraphicalUI {
         gridBagConstraints.weighty = .1;
         frame.add(containerTop, gridBagConstraints);
     }
-    static void setupYearFlow(List<JPanel> panels, JFrame frame, GridBagConstraints gridBagConstraints){
-        for (JPanel panel: panels) {
+
+    static void setupYearFlow(List<JPanel> panels, JFrame frame, GridBagConstraints gridBagConstraints) {
+        for (JPanel panel : panels) {
             frame.add(panel, gridBagConstraints);
             gridBagConstraints.gridx++;
         }

@@ -3,26 +3,34 @@ package com.eli.landa.cmpt213.UI;
 import com.eli.landa.cmpt213.Enums.GenderEnum;
 import com.eli.landa.cmpt213.Enums.ProgramEnum;
 import com.eli.landa.cmpt213.Enums.YearEnum;
+import com.eli.landa.cmpt213.Model.CSVReader;
 import com.eli.landa.cmpt213.Model.DegreeCompletionVisualizerFacade;
 import com.eli.landa.cmpt213.Model.Student;
 import com.eli.landa.cmpt213.Model.StudentManager;
 
-import java.util.ArrayList;
+import java.io.File;
 import java.util.List;
 
-/**
- * Created by Eli on 2017-04-05.
- * <p>
- * FilterList class to create all the different
- * filtered lists needed to display to the text and gui.
- */
-public class FilterList {
-
+/*
+* TextUI class to display data dump to the console.
+* */
+public class TextUI {
     private static DegreeCompletionVisualizerFacade model = DegreeCompletionVisualizerFacade.getInstance();
 
     //Files are populated from a local directory in CSVReader.java line 192. This must be changed to fit the directory of the user.
-    public FilterList() {
-        //  displayUI(DegreeCompletionVisualizerFacade.getInstance().getFilterSettings().getProgramEnum());
+    public static void main(String[] args) {
+
+        CSVReader reader = new CSVReader();
+        List<File> files = reader.populateFiles();
+        model.setCSVReader(reader);
+
+        for (int i = files.size() - 1; i >= 0; i--) {
+            reader.readCSVFile(files.get(i));
+        }
+
+        model.getStudentManager().populateProgramsInStudentSemesters();
+
+        displayUI(ProgramEnum.CSMAJ);
     }
 
     private static void displayUI(ProgramEnum selectedProgram) {
@@ -68,7 +76,7 @@ public class FilterList {
         studentsInProgramAtMilestone(YearEnum.GRADUATED, selectedProgram);
     }
 
-    public static List<Integer> studentsInProgramAtMilestone(YearEnum yearEnum, ProgramEnum programEnum) {
+    private static void studentsInProgramAtMilestone(YearEnum yearEnum, ProgramEnum programEnum) {
 
         StudentManager studentManager = model.getStudentManager();
         List<Student> allStudentsList = studentManager.getStudents();
@@ -101,18 +109,12 @@ public class FilterList {
         int remainingMaleStudents = filteredStudentListMale.size() - filteredStudentListWhoLeftProgramMale.size() - filteredStudentsWhoDroppedMale.size();
         int renamingFemaleStudents = filteredStudentListFemale.size() - filteredStudentListWhoLeftProgramFemale.size() - filteredStudentsWhoDroppedFemale.size();
         int remainingUnknownStudents = filteredStudentListUnknown.size() - filteredStudentListWhoLeftProgramUnknown.size() - filteredStudentsWhoDroppedUnknown.size();
+
         int remainingTotalStudents = remainingMaleStudents + renamingFemaleStudents + remainingUnknownStudents;
 
-        List<Integer> studentsAtMileStone = new ArrayList<>();
-        studentsAtMileStone.add(remainingMaleStudents);
-        studentsAtMileStone.add(renamingFemaleStudents);
-        studentsAtMileStone.add(remainingUnknownStudents);
-        studentsAtMileStone.add(remainingTotalStudents);
-        //  System.out.println(studentsAtMileStone);
-        return studentsAtMileStone;
-            /*System.out.println(yearEnum + "     " + remainingTotalStudents + ":  M = " + remainingMaleStudents
-                    + " F = " + renamingFemaleStudents + " U = "
-                    + remainingUnknownStudents + " CS_MAJOR students at " + yearEnum);*/
+        System.out.println(yearEnum + "     " + remainingTotalStudents + ":  M = " + remainingMaleStudents
+                + " F = " + renamingFemaleStudents + " U = "
+                + remainingUnknownStudents + " CS_MAJOR students at " + yearEnum);
     }
 
     private static void studentsWhoJoinProgramAtMilestone(YearEnum yearEnum, ProgramEnum programEnum) {
@@ -121,13 +123,13 @@ public class FilterList {
 
         int totalJoined = 0;
 
-            /*totalJoined += joinedFromSpecificProgram(programEnum, ProgramEnum.CSMAJ, yearEnum);
-            totalJoined += joinedFromSpecificProgram(programEnum, ProgramEnum.SOSY, yearEnum);
-            totalJoined += joinedFromSpecificProgram(programEnum, ProgramEnum.CSMNR, yearEnum);
-            totalJoined += joinedFromSpecificProgram(programEnum, ProgramEnum.CSJNT, yearEnum);
-            totalJoined += joinedFromSpecificProgram(programEnum, ProgramEnum.OTHER, yearEnum);
-            totalJoined += joinedFromSpecificProgram(programEnum, ProgramEnum.DROPOUT, yearEnum);
-*/
+        totalJoined += joinedFromSpecificProgram(programEnum, ProgramEnum.CSMAJ, yearEnum);
+        totalJoined += joinedFromSpecificProgram(programEnum, ProgramEnum.SOSY, yearEnum);
+        totalJoined += joinedFromSpecificProgram(programEnum, ProgramEnum.CSMNR, yearEnum);
+        totalJoined += joinedFromSpecificProgram(programEnum, ProgramEnum.CSJNT, yearEnum);
+        totalJoined += joinedFromSpecificProgram(programEnum, ProgramEnum.OTHER, yearEnum);
+        totalJoined += joinedFromSpecificProgram(programEnum, ProgramEnum.DROPOUT, yearEnum);
+
         System.out.println("Total Joined: " + totalJoined + "\n");
     }
 
@@ -136,19 +138,19 @@ public class FilterList {
         System.out.println("Year: " + yearEnum);
 
         int totalLeft = 0;
-/*
-            totalLeft += leftToSpecificProgram(programEnum, ProgramEnum.CSMAJ, yearEnum);
-            totalLeft += leftToSpecificProgram(programEnum, ProgramEnum.SOSY, yearEnum);
-            totalLeft += leftToSpecificProgram(programEnum, ProgramEnum.CSMNR, yearEnum);
-            totalLeft += leftToSpecificProgram(programEnum, ProgramEnum.CSJNT, yearEnum);
-            totalLeft += leftToSpecificProgram(programEnum, ProgramEnum.OTHER, yearEnum);
-            totalLeft += leftToSpecificProgram(programEnum, ProgramEnum.DROPOUT, yearEnum);*/
+
+        totalLeft += leftToSpecificProgram(programEnum, ProgramEnum.CSMAJ, yearEnum);
+        totalLeft += leftToSpecificProgram(programEnum, ProgramEnum.SOSY, yearEnum);
+        totalLeft += leftToSpecificProgram(programEnum, ProgramEnum.CSMNR, yearEnum);
+        totalLeft += leftToSpecificProgram(programEnum, ProgramEnum.CSJNT, yearEnum);
+        totalLeft += leftToSpecificProgram(programEnum, ProgramEnum.OTHER, yearEnum);
+        totalLeft += leftToSpecificProgram(programEnum, ProgramEnum.DROPOUT, yearEnum);
 
         System.out.println("Total Left: " + totalLeft + "\n");
     }
 
-    public static List<Integer> leftToSpecificProgram(ProgramEnum programEnum, ProgramEnum newProgram, YearEnum yearEnum) {
-        List<Integer> studentsWhoLeftToASpecificProgram = new ArrayList<>();
+    private static int leftToSpecificProgram(ProgramEnum programEnum, ProgramEnum newProgram, YearEnum yearEnum) {
+
         FilterContainer filterContainer = new FilterContainer();
         StudentManager studentManager = model.getStudentManager();
         List<Student> allStudentsList = studentManager.getStudents();
@@ -185,39 +187,23 @@ public class FilterList {
             filteredStudentsWhoDroppedFemale = filterContainer.listOfStudentWhoDroppedOutInAGivenYear(yearEnum, filteredStudentListFemale);
             filteredStudentsWhoDroppedUnknown = filterContainer.listOfStudentWhoDroppedOutInAGivenYear(yearEnum, filteredStudentListUnknown);
 
-            //new stuff
-            int dropout = filteredStudentsWhoDroppedMale.size() + filteredStudentsWhoDroppedFemale.size() + filteredStudentsWhoDroppedUnknown.size();
-            //male
-            studentsWhoLeftToASpecificProgram.add(filteredStudentListWhoLeftProgramMale.size());
-            //female
-            studentsWhoLeftToASpecificProgram.add(filteredStudentListWhoLeftProgramFemale.size());
-            //unknown
-            studentsWhoLeftToASpecificProgram.add(filteredStudentListWhoLeftProgramUnknown.size());
-            //total
-            studentsWhoLeftToASpecificProgram.add(dropout);
-              /*  System.out.println("left: " + totalLeft
-                        + " M=    " + filteredStudentsWhoDroppedMale.size()
-                        + " F=    " + filteredStudentsWhoDroppedFemale.size() + " U=    " + filteredStudentsWhoDroppedUnknown.size() + " (reason for leaving " + newProgram + ")");
-*/
-            return studentsWhoLeftToASpecificProgram;
+            totalLeft = filteredStudentsWhoDroppedMale.size() + filteredStudentsWhoDroppedFemale.size() + filteredStudentsWhoDroppedUnknown.size();
+
+            System.out.println("left: " + totalLeft
+                    + " M=    " + filteredStudentsWhoDroppedMale.size()
+                    + " F=    " + filteredStudentsWhoDroppedFemale.size() + " U=    " + filteredStudentsWhoDroppedUnknown.size() + " (reason for leaving " + newProgram + ")");
+
+            return totalLeft;
         } else {
-               /* System.out.println("left: " + totalLeft
-                        + " M=    " + filteredStudentListWhoLeftProgramMale.size()
-                        + " F=    " + filteredStudentListWhoLeftProgramFemale.size() + " U=    " + filteredStudentListWhoLeftProgramUnknown.size() + " (reason for leaving " + newProgram + ")");
-*/
-            studentsWhoLeftToASpecificProgram.add(filteredStudentListWhoLeftProgramMale.size());
-            //female
-            studentsWhoLeftToASpecificProgram.add(filteredStudentListWhoLeftProgramFemale.size());
-            //unknown
-            studentsWhoLeftToASpecificProgram.add(filteredStudentListWhoLeftProgramUnknown.size());
-            //total
-            studentsWhoLeftToASpecificProgram.add(totalLeft);
-            return studentsWhoLeftToASpecificProgram;
+            System.out.println("left: " + totalLeft
+                    + " M=    " + filteredStudentListWhoLeftProgramMale.size()
+                    + " F=    " + filteredStudentListWhoLeftProgramFemale.size() + " U=    " + filteredStudentListWhoLeftProgramUnknown.size() + " (reason for leaving " + newProgram + ")");
+            return totalLeft;
         }
     }
 
 
-    public static List<Integer> joinedFromSpecificProgram(ProgramEnum programEnum, ProgramEnum newProgram, YearEnum yearEnum) {
+    private static int joinedFromSpecificProgram(ProgramEnum programEnum, ProgramEnum newProgram, YearEnum yearEnum) {
 
         FilterContainer filterContainer = new FilterContainer();
 
@@ -241,49 +227,11 @@ public class FilterList {
         filteredStudentListWhoLeftProgramUnknown = filterContainer.listOfStudentsLeavingToAGivenProgramAtAGivenYear(yearEnum, filteredStudentListUnknown, newProgram);
 
         int totalJoined = filteredStudentListWhoLeftProgramMale.size() + filteredStudentListWhoLeftProgramFemale.size() + filteredStudentListWhoLeftProgramUnknown.size();
-        List<Integer> studentsWhoJoinedFromSpecificProgram = new ArrayList<>();
 
-        //male
-        studentsWhoJoinedFromSpecificProgram.add(filteredStudentListWhoLeftProgramMale.size());
-        //female
-        studentsWhoJoinedFromSpecificProgram.add(filteredStudentListWhoLeftProgramFemale.size());
-        //unknown
-        studentsWhoJoinedFromSpecificProgram.add(filteredStudentListWhoLeftProgramUnknown.size());
-        //total
-        studentsWhoJoinedFromSpecificProgram.add(totalJoined);
+        System.out.println("joined: " + totalJoined
+                + " M=    " + filteredStudentListWhoLeftProgramMale.size()
+                + " F=    " + filteredStudentListWhoLeftProgramFemale.size() + " U=    " + filteredStudentListWhoLeftProgramUnknown.size() + " (previous program " + newProgram + ")");
 
-            /*System.out.println("joined: " + totalJoined
-                    + " M=    " + filteredStudentListWhoLeftProgramMale.size()
-                    + " F=    " + filteredStudentListWhoLeftProgramFemale.size() + " U=    " + filteredStudentListWhoLeftProgramUnknown.size() + " (previous program " + newProgram + ")");*/
-        if (newProgram.equals(ProgramEnum.DROPOUT)) {
-
-            filteredStudentListMale = filterContainer.sortByGender(GenderEnum.MALE, filterContainer.sortByProgramWithGivenYear(programEnum, yearEnum, allStudentsList));
-            filteredStudentListFemale = filterContainer.sortByGender(GenderEnum.FEMALE, filterContainer.sortByProgramWithGivenYear(programEnum, yearEnum, allStudentsList));
-            filteredStudentListUnknown = filterContainer.sortByGender(GenderEnum.UNKNOWN, filterContainer.sortByProgramWithGivenYear(programEnum, yearEnum, allStudentsList));
-
-            List<Student> filteredStudentsWhoDroppedMale = filterContainer.listOfStudentWhoDroppedOutInAGivenYear(yearEnum, filteredStudentListMale);
-            List<Student> filteredStudentsWhoDroppedFemale = filterContainer.listOfStudentWhoDroppedOutInAGivenYear(yearEnum, filteredStudentListFemale);
-            List<Student> filteredStudentsWhoDroppedUnknown = filterContainer.listOfStudentWhoDroppedOutInAGivenYear(yearEnum, filteredStudentListUnknown);
-
-            //new stuff
-            int dropout = filteredStudentsWhoDroppedMale.size() + filteredStudentsWhoDroppedFemale.size() + filteredStudentsWhoDroppedUnknown.size();
-            studentsWhoJoinedFromSpecificProgram.clear();
-            //male
-            studentsWhoJoinedFromSpecificProgram.add(filteredStudentsWhoDroppedMale.size());
-            //female
-            studentsWhoJoinedFromSpecificProgram.add(filteredStudentsWhoDroppedFemale.size());
-            //unknown
-            studentsWhoJoinedFromSpecificProgram.add(filteredStudentsWhoDroppedUnknown.size());
-            //total
-            studentsWhoJoinedFromSpecificProgram.add(dropout);
-              /*  System.out.println("left: " + totalLeft
-                        + " M=    " + filteredStudentsWhoDroppedMale.size()
-                        + " F=    " + filteredStudentsWhoDroppedFemale.size() + " U=    " + filteredStudentsWhoDroppedUnknown.size() + " (reason for leaving " + newProgram + ")");
-*/
-            return studentsWhoJoinedFromSpecificProgram;
-        }
-        return studentsWhoJoinedFromSpecificProgram;
+        return totalJoined;
     }
 }
-
-

@@ -118,10 +118,10 @@ public class FlowRectangle extends JPanel {
 
     }
     void setupGenderPanelForLeaving (ProgramEnum programEnum, ProgramEnum newProgramEnum, YearEnum yearEnum){
-        float total = FilterList.leftToSpecificProgram(programEnum,newProgramEnum,yearEnum).get(3);
-        float male = FilterList.leftToSpecificProgram(programEnum,newProgramEnum,yearEnum).get(0);
-        float female = FilterList.leftToSpecificProgram(programEnum,newProgramEnum,yearEnum).get(1);
-        float unknown = FilterList.leftToSpecificProgram(programEnum,newProgramEnum,yearEnum).get(2);
+        float total = FilterList.joinedFromSpecificProgram(programEnum,newProgramEnum,yearEnum).get(3);
+        float male = FilterList.joinedFromSpecificProgram(programEnum,newProgramEnum,yearEnum).get(0);
+        float female = FilterList.joinedFromSpecificProgram(programEnum,newProgramEnum,yearEnum).get(1);
+        float unknown = FilterList.joinedFromSpecificProgram(programEnum,newProgramEnum,yearEnum).get(2);
         //  System.out.println(yearEnum);
         List<Integer> listOfAmounts = FilterList.joinedFromSpecificProgram(programEnum,newProgramEnum,yearEnum);
         JLabel other = new JLabel(newProgramEnum.toString());
